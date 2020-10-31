@@ -22,4 +22,28 @@
     <Watch Include="..\**\*.scss" />
     <Watch Include="..\**\*.cs" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\app.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Pages\Counter - Copy - Copy.razor.cs" />
+    <Watch Remove="Pages\Counter - Copy.razor.cs" />
+    <Watch Remove="Pages\FetchData.razor.cs" />
+    <Watch Remove="Pages\Values.razor.cs" />
+    <Watch Remove="Pages\Variables.razor" />
+    <Watch Remove="Shared\MainLayout.razor.cs" />
+    <Watch Remove="Shared\NavMenu.razor.cs" />
+    <Watch Remove="Shared\SurveyPrompt.razor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\Counter - Copy - Copy.razor.cs">
+      <DependentUpon>Counter - Copy.razor.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Counter - Copy.razor.cs">
+      <DependentUpon>Counter.razor.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+﻿/*@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -116,7 +116,7 @@ app {
 .validation-message {
     color: red;
 }
-
+    */
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
@@ -135,7 +135,7 @@ app {
     right: 0.75rem;
     top: 0.5rem;
 }
-
+/*
 @media (max-width: 767.98px) {
     .main .top-row:not(.auth) {
         display: none;
@@ -176,8 +176,8 @@ app {
         display: none;
     }
 
-    .sidebar .collapse {
+    .sidebar .collapse {*/
         /* Never collapse the sidebar for wide screens */
-        display: block;
+        /*display: block;
     }
-}
+}*/

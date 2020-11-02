@@ -24,10 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\css\app.css" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Watch Remove="Pages\Counter - Copy - Copy.razor.cs" />
     <Watch Remove="Pages\Counter - Copy.razor.cs" />
     <Watch Remove="Pages\FetchData.razor.cs" />

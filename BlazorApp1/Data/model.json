@@ -1,0 +1,20 @@
+﻿{
+  "Variables": [
+    {
+      "Name": "Nazwa1",
+      "Description": "Opis zmiennej Nazwa I"
+    },
+    {
+      "Name": "Nazwa2",
+      "Description": "Opis zmiennej Nazwa II"
+    },
+    {
+      "Name": "Nazwa3",
+      "Description": "Opis zmiennej Nazwa III"
+    },
+    {
+      "Name": "Nazwa4",
+      "Description": "Opis zmiennej Nazwa IV"
+    }
+  ]
+}

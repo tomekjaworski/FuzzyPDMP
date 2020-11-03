@@ -10,11 +10,39 @@ namespace BlazorApp1.Fuzzy
 {
     public class Model
     {
-        public List<Variable> Variables { get; set; }
+        private List<FuzzyVariable> variables;
+        public FuzzyVariable[] Variables => this.variables.ToArray();
 
         public Model()
         {
-            this.Variables = new List<Variable>();
+            this.variables = new List<FuzzyVariable>();
+        }
+
+        public FuzzyVariable AddVariable(string name, string description)
+        {
+            FuzzyVariable @var = new FuzzyVariable() { Name = name, Description = description };
+            this.variables.Add(@var);
+            return var;
+        }
+
+        public bool RemoveValue(FuzzyValue value)
+        {
+            if (!this.variables.Contains(value.Variable))
+                return false;
+
+            return value.Variable.RemoveValue(value);
+        }
+
+        public bool RemoveVariable(FuzzyVariable variable)
+        {
+            if (!this.variables.Contains(variable))
+                return false;
+
+
+            this.variables.Remove(variable);
+            //todo: aktualizacja reguł
+
+            return true;
         }
     }
 
@@ -35,14 +63,27 @@ namespace BlazorApp1.Fuzzy
 
         private ModelProvider()
         {
-            Model m;
-            using (FileStream fs = File.OpenRead("Data\\model.json"))
-            {
-                StreamReader sr = new StreamReader(fs, Encoding.UTF8);
-                string str = sr.ReadToEnd();
-                m = JsonConvert.DeserializeObject<Model>(str);
-            }
-            this.model = m;
+            this.model = new Model();
+
+            var v1 = this.model.AddVariable("Nazwa 1", "Opis zmiennej Nazwa I");
+            var v2 = this.model.AddVariable("Nazwa 2", "Opis zmiennej Nazwa II");
+            var v3 = this.model.AddVariable("Nazwa 1", "Opis zmiennej Nazwa III");
+            var v4 = this.model.AddVariable("Nazwa 4", "Opis zmiennej Nazwa IV");
+
+            v1.AddValue("Mało", "Opis wartości Mało");
+            v1.AddValue("Średnio", "Opis wartości Średnio");
+            v1.AddValue("Dużo", "Opis wartości Dużo");
+
+            v2.AddValue("Zimno", "Opis wartości Zimno");
+            v2.AddValue("Ciepło", "Opis wartości Ciepło");
+            v2.AddValue("Gorąco", "Opis wartości Gorąco");
+
+
+            v3.AddValue("Negatywny", "Opis wartości Negatywny");
+            v3.AddValue("Zerowy", "Opis wartości Zerowy");
+            v3.AddValue("Pozytywny", "Opis wartości Pozytywny");
+
         }
+
     }
 }

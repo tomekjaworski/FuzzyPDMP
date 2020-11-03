@@ -19,6 +19,7 @@ namespace BlazorApp1.Modals
             
             ModalOptions mo = new ModalOptions();
             mo.DisableBackgroundCancel = true;
+            mo.HideCloseButton = true;
 
             IModalReference result = modalService.Show<OkContent>(title, mp, mo);
             ModalResult mr = await result.Result;
@@ -34,6 +35,7 @@ namespace BlazorApp1.Modals
 
             ModalOptions mo = new ModalOptions();
             mo.DisableBackgroundCancel = true;
+            mo.HideCloseButton = true;
 
             IModalReference result = modalService.Show<OkCancelContent>(title, mp, mo);
             ModalResult mr = await result.Result;
@@ -53,6 +55,7 @@ namespace BlazorApp1.Modals
 
             ModalOptions mo = new ModalOptions();
             mo.DisableBackgroundCancel = true;
+            mo.HideCloseButton = true;
 
             IModalReference result = modalService.Show<TextInputContent>(title, mp, mo);
             ModalResult mr = await result.Result;

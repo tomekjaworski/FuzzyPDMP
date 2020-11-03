@@ -1,7 +1,6 @@
 ﻿@using Fuzzy
 @page "/Variables"
 @inject IModalService Modal
-
 @*<h1>Counter?xxxxxxxxxxxxxxxxxxxxxxxxxxxxx</h1>
 
     <p>Current count: @currentCount</p>
@@ -13,22 +12,27 @@
     <div class="row">
         <div class="col-md-12">
 
-            <div>
-                <span @onclick="TestMe">To jest tekst</span>
-                <i class="fas fa-ellipsis-v text-black-50"></i>
-            </div>
+            @*<div>
+                    <span @onclick="TestMe">To jest tekst</span>
+                    <i class="fas fa-ellipsis-v text-black-50"></i>
+                </div>*@
 
-            @foreach (Variable v in ModelProvider.Data.Model.Variables)
+            @foreach (FuzzyVariable v in ModelProvider.Data.Model.Variables)
             {
                 <div class="card mb-2">
-                    <div class="card-header">Zmienna <span class="font-weight-bold" contenteditable="true">@v.Name</span> <i class="fas fa-ellipsis-v text-black-50"></i> - <i>@v.Description</i> <i class="fas fa-ellipsis-v text-black-50"></i></div>
+                    <div class="card-header d-flex justify-content-between align-items-center p-2">
+                        <div>
+                            Zmienna <span class="font-weight-bold">@v.Name</span> - <span class="font-italic">@v.Description</span>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-light" @onclick="@((MouseEventArgs e) => OnEditVariableDescription(e, v))"><i class="far fa-edit"></i></button>
+                            <button class="btn btn-sm btn-light text-danger" @onclick="@((MouseEventArgs e) => OnRemoveVariable(e, v))" ><i class="far fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+
                     <div class="card-body">
-
-
                         <div class="row">
                             <div class="col-md-8">
-
-
 
                                 <div>
                                     <img src="" alt="Wizualizacja">
@@ -49,17 +53,30 @@
 
                             <div class="col-md-4">
                                 <p>Wartości lingwistyczne:</p>
-                                <ul class="list-group">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center"> Cras justo odio <span class="badge badge-primary badge-pill">14</span> </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center"> Dapibus ac facilisis in <span class="badge badge-primary badge-pill">2</span> </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center"> Morbi leo risus <span class="badge badge-primary badge-pill">1</span> </li>
-                                </ul><a class="btn btn-secondary" href="#" contenteditable="true">Dodaj wartość</a>
+                                <ul class="list-group mb-1">
+                                    @foreach (FuzzyValue value in v.Values)
+                                    {
+                                        <li class="list-group-item pr-2">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span>@value.Name</span>
+                                                <div>
+                                                    <button class="btn btn-sm  btn-light p-1" @onclick="@((MouseEventArgs e) => OnEditValueDescription(e, value))"><i class="far fa-edit"></i></button>
+                                                    <button class="btn btn-sm text-danger btn-light p-1" @onclick="@((MouseEventArgs e) => OnRemoveValue(e, value) )"><i class="far fa-trash-alt"></i></button>
+                                                </div>
+                                            </div>
+                                            <small>@value.Description</small>
+                                        </li>
+                                    }
+
+
+                                </ul>
+                                <button class="btn btn-secondary btn-sm">Dodaj wartość</button>
                             </div>
 
 
                         </div>
                     </div>
-                </div>
+                MouseEventArgs</div>
             }
         </div>
     </div>

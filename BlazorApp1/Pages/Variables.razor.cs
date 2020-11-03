@@ -59,5 +59,21 @@ namespace BlazorApp1.Pages
             ModelProvider.Data.Model.RemoveValue(value);
         }
 
+
+        private async Task OnAddValue(MouseEventArgs e, FuzzyVariable variable)
+        {
+            Random rnd = new Random();
+            variable.AddValue(
+                $"Value-{rnd.Next():X08}",
+                $"Description-{rnd.Next():X08}");
+        }
+
+        private async Task OnAddVariable(MouseEventArgs e)
+        {
+            Random rnd = new Random();
+            ModelProvider.Data.Model.AddVariable(
+                $"Value-{rnd.Next():X08}",
+                $"Description-{rnd.Next():X08}");
+        }
     }
 }

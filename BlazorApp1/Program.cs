@@ -12,13 +12,10 @@ using Microsoft.Extensions.Logging;
 
 namespace BlazorApp1
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
-
-            ModelProvider.Data.Model.Variables.Count();
-
             CreateHostBuilder(args).Build().Run();
         }
 

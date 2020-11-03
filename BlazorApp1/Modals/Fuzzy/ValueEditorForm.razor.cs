@@ -12,11 +12,11 @@ namespace BlazorApp1.Modals
     {
         [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; }
         
-        [Parameter] public VariableEditorData Data { get; set; }
+        [Parameter] public ValueEditorData Data { get; set; }
 
         void OkClicked()
         {
-            BlazoredModal.Close(ModalResult.Ok<VariableEditorData>(Data));
+            BlazoredModal.Close(ModalResult.Ok<ValueEditorData>(Data));
         }
 
         void CancelClicked()

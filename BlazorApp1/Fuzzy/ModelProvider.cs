@@ -55,7 +55,7 @@
             val2 = var3.AddValue("Zerowy", "Opis wartości Zerowy");
             val3 = var3.AddValue("Pozytywny", "Opis wartości Pozytywny");
             var3.MembershipType = MembershipFunctionFamily.Trapezoidal;
-            var3.Minimum.Value = 0;
+            var3.Minimum.Value = -40;
             var3.Maximum.Value = 40;
 
 

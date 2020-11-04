@@ -19,13 +19,17 @@ namespace BlazorApp1.Fuzzy
 
         public FuzzyValue[] Values => this.values.ToArray();
 
-        public void ValidateCrispParameters()
+        public bool ValidateCrispParameters()
         {
             // sprawdź dziedzinę
+            bool is_ok = true;
             this.dmin.IsValid = this.dmax.IsValid = this.dmin.Value <= this.dmax.Value;
+            is_ok &= this.dmin.IsValid;
 
             foreach (FuzzyValue fv in this.values)
-                fv.ValidateCrispParameters();
+                is_ok &= fv.ValidateCrispParameters();
+
+            return is_ok;
         }
 
         public override string ToString() => $"{Name}: {Description}";
@@ -37,7 +41,8 @@ namespace BlazorApp1.Fuzzy
                 foreach (var v in this.values)
                     v.SetMembershipType(value);
 
-                this.ValidateCrispParameters();
+                bool is_ok = this.ValidateCrispParameters();
+
             }
         }
 
@@ -53,38 +58,41 @@ namespace BlazorApp1.Fuzzy
         public NamedParameter Minimum => this.dmin;
         public NamedParameter Maximum => this.dmax;
 
-        public byte[] ImageBytes { get; set; }
+        public ChartHolder ChartHolder { get; set; }
 
 
         public FuzzyVariable()
         {
 
-            Bitmap bmp = new Bitmap(512, 128, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            using(Graphics g = Graphics.FromImage(bmp))
-            {
-                g.FillRectangle(Brushes.Red, 0, 0, 512, 128);
-            }
+            //Bitmap bmp = new Bitmap(512, 128, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            //using(Graphics g = Graphics.FromImage(bmp))
+            //{
+            //    g.FillRectangle(Brushes.Red, 0, 0, 512, 128);
+            //}
 
-            using (var stream = new MemoryStream())
-            {
-                bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-                this.ImageBytes = stream.ToArray();
-            }
-            
+            //using (var stream = new MemoryStream())
+            //{
+            //    bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+            //    this.ImageBytes = stream.ToArray();
+            //}
+            this.ChartHolder = new ChartHolder();
 
             this.values = new List<FuzzyValue>();
             this.membership_family = MembershipFunctionFamily.Unspecified;
 
             this.dmin = new NamedParameter("Dmin", 0, this, null);
             this.dmax = new NamedParameter("Dmax", 10, this, null);
-            this.ValidateCrispParameters();
+            bool is_ok = this.ValidateCrispParameters();
+            if (is_ok)
+                this.ChartHolder.UpdateChart(this);
         }
 
         public FuzzyValue AddValue(string name, string description)
         {
             FuzzyValue val = new FuzzyValue(this, name, description, this.membership_family);
             this.values.Add(val);
-            this.ValidateCrispParameters();
+            if (this.ValidateCrispParameters())
+                this.ChartHolder.UpdateChart(this);
             return val;
         }
 
@@ -96,7 +104,8 @@ namespace BlazorApp1.Fuzzy
             this.values.Remove(value);
             // todo: aktualziac reguł
 
-            this.ValidateCrispParameters();
+            if (this.ValidateCrispParameters())
+                this.ChartHolder.UpdateChart(this);
             return true;
         }
 

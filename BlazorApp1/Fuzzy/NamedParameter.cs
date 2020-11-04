@@ -13,7 +13,8 @@
             set {
                 this.value = value;
                 if (this.ParentVariable != null)
-                    this.ParentVariable.ValidateCrispParameters(); ;
+                    if (this.ParentVariable.ValidateCrispParameters())
+                        this.ParentVariable.ChartHolder.UpdateChart(this.ParentVariable);
             }
         }
 

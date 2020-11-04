@@ -22,7 +22,9 @@ namespace BlazorApp1.Fuzzy
         {
             FuzzyVariable @var = new FuzzyVariable() { Name = name, Description = description };
             this.variables.Add(@var);
-            @var.ValidateCrispParameters();
+            if (@var.ValidateCrispParameters())
+                @var.ChartHolder.UpdateChart(@var);
+            
             return @var;
         }
 

@@ -46,11 +46,11 @@ namespace BlazorApp1.Fuzzy
             return pars[parameterName] as NamedParameter;
         }
 
-        internal void ValidateCrispParameters()
+        public bool ValidateCrispParameters()
         {
             OrderedDictionary pars = this.parameters[this.membership_family];
             if (pars.Count == 0)
-                return;
+                return true;
 
             if (this.membership_family == MembershipFunctionFamily.Trapezoidal)
             {
@@ -78,7 +78,11 @@ namespace BlazorApp1.Fuzzy
                     sr.Value > sl.Value &&
                     sr.Value > kl.Value &&
                     sr.Value >= kr.Value;
+
+                return sl.IsValid && kl.IsValid && kr.IsValid && sr.IsValid;
             }
+
+            return true;
         }
 
         internal void SetMembershipType(MembershipFunctionFamily value)

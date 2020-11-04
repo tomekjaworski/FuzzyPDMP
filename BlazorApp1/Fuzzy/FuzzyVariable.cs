@@ -11,7 +11,7 @@ namespace BlazorApp1.Fuzzy
     {
         private List<FuzzyValue> values;
         private MembershipFunctionFamily membership_family;
-        private CrispParameter dmin, dmax;
+        private NamedParameter dmin, dmax;
 
 
         public string Name { get; set; }
@@ -41,15 +41,17 @@ namespace BlazorApp1.Fuzzy
             }
         }
 
-        public CrispParameter[] Parameters {
+        public NamedParameter[] Parameters {
             get {
-                List<CrispParameter> pars = new List<CrispParameter>();
+                List<NamedParameter> pars = new List<NamedParameter>();
                 pars.AddRange(new[] { this.dmin, this.dmax });
                 pars.AddRange(this.values.SelectMany(x => x.Parameters));
                 return pars.ToArray();
             }
         }
 
+        public NamedParameter Minimum => this.dmin;
+        public NamedParameter Maximum => this.dmax;
 
         public byte[] ImageBytes { get; set; }
 
@@ -73,8 +75,8 @@ namespace BlazorApp1.Fuzzy
             this.values = new List<FuzzyValue>();
             this.membership_family = MembershipFunctionFamily.Unspecified;
 
-            this.dmin = new CrispParameter("Dmin", 0, this, null);
-            this.dmax = new CrispParameter("Dmax", 10, this, null);
+            this.dmin = new NamedParameter("Dmin", 0, this, null);
+            this.dmax = new NamedParameter("Dmax", 10, this, null);
             this.ValidateCrispParameters();
         }
 

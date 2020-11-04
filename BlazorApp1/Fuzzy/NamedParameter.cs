@@ -1,6 +1,6 @@
 ﻿namespace BlazorApp1.Fuzzy
 {
-    public class CrispParameter
+    public class NamedParameter
     {
         private double value;
 
@@ -22,7 +22,7 @@
         public FuzzyVariable ParentVariable { get; }
         public FuzzyValue ParentValue { get; }
 
-        public CrispParameter(string shortName, double defaultValue,
+        public NamedParameter(string shortName, double defaultValue,
             FuzzyVariable parentVariable, FuzzyValue parentValue)
         {
             this.ShortName = shortName;

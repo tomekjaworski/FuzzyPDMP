@@ -17,7 +17,9 @@ namespace BlazorApp1.Fuzzy
         public string Description { get; set; }
         public FuzzyVariable Variable { get; set; }
 
-        public CrispParameter[] Parameters => this.parameters[this.membership_family].Values.OfType<CrispParameter>().ToArray();
+        public NamedParameter[] Parameters => this.parameters[this.membership_family].Values.OfType<NamedParameter>().ToArray();
+
+        public MembershipFunctionFamily MembershipType => this.membership_family;
 
         public override string ToString() => $"{Name}: {Description}";
 
@@ -35,6 +37,15 @@ namespace BlazorApp1.Fuzzy
             this.SetMembershipType(membershipFamily);
         }
 
+        public NamedParameter GetParameter(string parameterName)
+        {
+            OrderedDictionary pars = this.parameters[this.membership_family];
+            if (!pars.Contains(parameterName))
+                return null;
+
+            return pars[parameterName] as NamedParameter;
+        }
+
         internal void ValidateCrispParameters()
         {
             OrderedDictionary pars = this.parameters[this.membership_family];
@@ -43,10 +54,10 @@ namespace BlazorApp1.Fuzzy
 
             if (this.membership_family == MembershipFunctionFamily.Trapezoidal)
             {
-                CrispParameter sl = pars["SuppL"] as CrispParameter; // support left
-                CrispParameter sr = pars["SuppR"] as CrispParameter; // support right
-                CrispParameter kl = pars["KernL"] as CrispParameter; // kernel left
-                CrispParameter kr = pars["KernR"] as CrispParameter; // kernel right
+                NamedParameter sl = pars["SuppL"] as NamedParameter; // support left
+                NamedParameter sr = pars["SuppR"] as NamedParameter; // support right
+                NamedParameter kl = pars["KernL"] as NamedParameter; // kernel left
+                NamedParameter kr = pars["KernR"] as NamedParameter; // kernel right
 
                 sl.IsValid =
                     sl.Value <= kl.Value &&
@@ -80,10 +91,10 @@ namespace BlazorApp1.Fuzzy
                 // trapezy
                 if (value == MembershipFunctionFamily.Trapezoidal)
                 {
-                    CrispParameter support_left = new CrispParameter("SuppL", 1.0, this.Variable, this);
-                    CrispParameter kernel_left = new CrispParameter("KernL", 2.0, this.Variable, this);
-                    CrispParameter kernel_right = new CrispParameter("KernR", 3.0, this.Variable, this);
-                    CrispParameter support_right = new CrispParameter("SuppR", 4.0, this.Variable, this);
+                    NamedParameter support_left = new NamedParameter("SuppL", 1.0, this.Variable, this);
+                    NamedParameter kernel_left = new NamedParameter("KernL", 2.0, this.Variable, this);
+                    NamedParameter kernel_right = new NamedParameter("KernR", 3.0, this.Variable, this);
+                    NamedParameter support_right = new NamedParameter("SuppR", 4.0, this.Variable, this);
 
                     this.parameters[value].Add(support_left.ShortName, support_left);
                     this.parameters[value].Add(kernel_left.ShortName, kernel_left);

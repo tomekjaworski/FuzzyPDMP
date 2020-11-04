@@ -19,7 +19,7 @@
 </head>
 <body>
 
-  
+
     <app>
         <component type="typeof(App)" render-mode="ServerPrerendered" />
     </app>
@@ -36,7 +36,22 @@
     </div>
 
     <script src="_framework/blazor.server.js"></script>
+
+    <!-- Komunikaty modalne -->
     <script src="_content/Blazored.Modal/blazored.modal.js"></script>
+
+    <!-- Wykresy -->
+    <!-- Reference the included moment.js javascript file. -->
+    <script src="_content/ChartJs.Blazor/moment-with-locales.min.js" type="text/javascript" language="javascript"></script>
+
+    <!-- Reference the included ChartJs javascript file. -->
+    <script src="_content/ChartJs.Blazor/Chart.min.js" type="text/javascript" language="javascript"></script>
+
+    <!-- This is the glue between the C# code and the ChartJs charts -->
+    <script src="_content/ChartJs.Blazor/ChartJsBlazorInterop.js" type="text/javascript" language="javascript"></script>
+
+    <!-- Some styling -->
+    <link rel="stylesheet" href="_content/ChartJs.Blazor/ChartJSBlazor.css" />
 
 </body>
 </html>

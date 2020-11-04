@@ -56,7 +56,8 @@ namespace BlazorApp1.Pages
             if (!await MessageBox.OkCancel(this.Modal, "Pytanie", $"Czy chcesz <b>usunąć</b> wartość lingwistyczną {value.Name} ze zmiennej {value.Variable.Name}?"))
                 return;
 
-            ModelProvider.Data.Model.RemoveValue(value);
+            //ModelProvider.Data.Model.RemoveValue(value);
+            value.Variable.RemoveValue(value);
         }
 
 

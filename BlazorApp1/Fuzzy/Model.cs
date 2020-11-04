@@ -26,14 +26,14 @@ namespace BlazorApp1.Fuzzy
             return @var;
         }
 
-        public bool RemoveValue(FuzzyValue value)
-        {
-            if (!this.variables.Contains(value.Variable))
-                return false;
+        //public bool RemoveValue(FuzzyValue value)
+        //{
+        //    if (!this.variables.Contains(value.Variable))
+        //        return false;
 
 
-            return value.Variable.RemoveValue(value);
-        }
+        //    return value.Variable.RemoveValue(value);
+        //}
 
         public bool RemoveVariable(FuzzyVariable variable)
         {

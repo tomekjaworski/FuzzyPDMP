@@ -63,11 +63,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (CrispParameter cp in variable.Parameters) {
+                                        @foreach (NamedParameter np in variable.Parameters) {
                                         <tr>
-                                            <td class="@(!cp.IsValid ? "text-danger font-weight-bold":"")">@cp.FullName</td>
+                                            <td class="@(!np.IsValid ? "text-danger font-weight-bold":"")">@np.FullName</td>
                                             <td>
-                                                <input type="text" class="form-control form-control-sm" @bind="@cp.Value">
+                                                <input type="text" class="form-control form-control-sm" @bind="@np.Value">
                                             </td>
                                         </tr>
                                         }

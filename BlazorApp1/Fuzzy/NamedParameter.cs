@@ -14,7 +14,7 @@
                 this.value = value;
                 if (this.ParentVariable != null)
                     if (this.ParentVariable.ValidateCrispParameters())
-                        this.ParentVariable.ChartHolder.UpdateChart(this.ParentVariable);
+                        this.ParentVariable.ChartHolder.UpdateChart();
             }
         }
 

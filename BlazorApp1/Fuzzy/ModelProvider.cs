@@ -59,8 +59,8 @@
             var3.Maximum.Value = 40;
 
 
-            val1.GetParameter("SuppL").Value = -30;
-            val1.GetParameter("KernL").Value = -30;
+            val1.GetParameter("SuppL").Value = -41;
+            val1.GetParameter("KernL").Value = -41;
             val1.GetParameter("KernR").Value = -20;
             val1.GetParameter("SuppR").Value = 0;
 

@@ -13,11 +13,15 @@ namespace BlazorApp1.Fuzzy
 {
     public class ChartHolder
     {
+        private FuzzyVariable parent_variable;
+
         public LineConfig Config;
         public ChartJsLineChart Chart;
 
-        public ChartHolder()
+        public ChartHolder(FuzzyVariable fuzzyVariable)
         {
+            this.parent_variable = fuzzyVariable;
+
             this.Config = new LineConfig
             {
                 Options = new LineOptions
@@ -75,18 +79,18 @@ namespace BlazorApp1.Fuzzy
             };
         }
 
-        public void UpdateChart(FuzzyVariable variable)
+        public void UpdateChart()
         {
-            this.Config.Options.Title.Text = $"Zmienna lingwistyczna {variable.Name}: {variable.Description}";
+            this.Config.Options.Title.Text = $"Zmienna lingwistyczna {this.parent_variable.Name}: {this.parent_variable.Description}";
             LinearCartesianAxis lca = this.Config.Options.Scales.xAxes[0] as LinearCartesianAxis;
-            lca.Ticks.Min = variable.Minimum.Value;
-            lca.Ticks.Max = variable.Maximum.Value;
+            lca.Ticks.Min = this.parent_variable.Minimum.Value;
+            lca.Ticks.Max = this.parent_variable.Maximum.Value;
 
             this.Config.Data.Datasets.Clear();
 
             string[] colors = new[] { "blue", "red", "green", "black", "magenta", "cyan", "brown", "yellow" };
             int icolor = 0;
-            foreach (FuzzyValue fval in variable.Values)
+            foreach (FuzzyValue fval in this.parent_variable.Values)
             {
                 LineDataset<Point> data_set = new LineDataset<Point>
                 {
@@ -105,12 +109,12 @@ namespace BlazorApp1.Fuzzy
                     NamedParameter kr = fval.GetParameter("KernR");
                     NamedParameter sr = fval.GetParameter("SuppR");
 
-                    data_set.Add(new Point(variable.Minimum.Value, 0));
+                    data_set.Add(new Point(this.parent_variable.Minimum.Value, 0));
                     data_set.Add(new Point(sl.Value, 0));
                     data_set.Add(new Point(kl.Value, 1));
                     data_set.Add(new Point(kr.Value, 1));
                     data_set.Add(new Point(sr.Value, 0));
-                    data_set.Add(new Point(variable.Maximum.Value, 0));
+                    data_set.Add(new Point(this.parent_variable.Maximum.Value, 0));
 
                     this.Config.Data.Datasets.Add(data_set);
                 }

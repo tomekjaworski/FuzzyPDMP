@@ -13,7 +13,16 @@ namespace BlazorApp1.Pages
 {
     public partial class Variables
     {
-  
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            foreach (FuzzyVariable fvar in ModelProvider.Data.Model.Variables)
+            {
+                fvar.ResetChartHolder();
+                fvar.ChartHolder.UpdateChart();
+            }
+        }
 
         private async Task OnEditVariableDescription(MouseEventArgs e, FuzzyVariable variable)
         {
@@ -25,6 +34,7 @@ namespace BlazorApp1.Pages
             {
                 variable.Description = out_data.Description;
                 variable.Name = out_data.Name;
+                variable.ChartHolder.UpdateChart();
             }
         }
 
@@ -39,6 +49,7 @@ namespace BlazorApp1.Pages
             {
                 value.Description = out_data.Description;
                 value.Name = out_data.Name;
+                value.Variable.ChartHolder.UpdateChart();
             }
         }
 

@@ -1,10 +1,5 @@
 ﻿@page "/"
 
-@using ChartJs.Blazor.Charts
-
-<button class="btn btn-primary" @onclick="Test">Klik!</button>
-<ChartJsLineChart Config="@holder.Config" Width="600" Height="300" @ref="@holder.Chart" />
-
 <div class="row">
     <div class="col-md-12">
         <h2>Edytor reguł rozmytych dla projektu <b>pDMP</b></h2>
@@ -14,54 +9,3 @@
         <div> <i class="fas fa-angle-right"></i> <b>Generator skfuzzy</b> - xxxxxxxxxx. </div>
     </div>
 </div>
-
-@using BlazorApp1.Fuzzy 
-@code {
-
-
-
-    ChartHolder holder = new ChartHolder();
-
-
-    protected override void OnInitialized()
-    {
-
-    }
-
-    public void Test()
-    {
-        FuzzyVariable fv = new FuzzyVariable()
-        {
-            Name = "Prędkość",
-            Description = "Opis zmienne",
-            MembershipType = MembershipFunctionFamily.Trapezoidal
-        };
-
-        FuzzyValue v1 = fv.AddValue("Mała", "");
-        FuzzyValue v2 = fv.AddValue("Średnia", "");
-        FuzzyValue v3 = fv.AddValue("Duża", "");
-
-        v1.GetParameter("SuppL").Value = 0;
-        v1.GetParameter("KernL").Value = 0;
-        v1.GetParameter("KernR").Value = 25;
-        v1.GetParameter("SuppR").Value = 40;
-
-        v2.GetParameter("SuppL").Value = 25;
-        v2.GetParameter("KernL").Value = 40;
-        v2.GetParameter("KernR").Value = 55;
-        v2.GetParameter("SuppR").Value = 70;
-
-        v3.GetParameter("SuppL").Value = 55;
-        v3.GetParameter("KernL").Value = 70;
-        v3.GetParameter("KernR").Value = 110;
-        v3.GetParameter("SuppR").Value = 110;
-
-        fv.Minimum.Value = 10;
-        fv.Maximum.Value = 100;
-
-        //
-
-        holder.UpdateChart(fv);
-    }
-
-}

@@ -32,6 +32,11 @@ namespace BlazorApp1.Fuzzy
             return is_ok;
         }
 
+        internal void ResetChartHolder()
+        {
+            this.ChartHolder = new ChartHolder(this);
+        }
+
         public override string ToString() => $"{Name}: {Description}";
 
         public MembershipFunctionFamily MembershipType {
@@ -75,7 +80,7 @@ namespace BlazorApp1.Fuzzy
             //    bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
             //    this.ImageBytes = stream.ToArray();
             //}
-            this.ChartHolder = new ChartHolder();
+            this.ResetChartHolder();
 
             this.values = new List<FuzzyValue>();
             this.membership_family = MembershipFunctionFamily.Unspecified;
@@ -84,7 +89,7 @@ namespace BlazorApp1.Fuzzy
             this.dmax = new NamedParameter("Dmax", 10, this, null);
             bool is_ok = this.ValidateCrispParameters();
             if (is_ok)
-                this.ChartHolder.UpdateChart(this);
+                this.ChartHolder.UpdateChart();
         }
 
         public FuzzyValue AddValue(string name, string description)
@@ -92,7 +97,7 @@ namespace BlazorApp1.Fuzzy
             FuzzyValue val = new FuzzyValue(this, name, description, this.membership_family);
             this.values.Add(val);
             if (this.ValidateCrispParameters())
-                this.ChartHolder.UpdateChart(this);
+                this.ChartHolder.UpdateChart();
             return val;
         }
 
@@ -105,7 +110,7 @@ namespace BlazorApp1.Fuzzy
             // todo: aktualziac reguł
 
             if (this.ValidateCrispParameters())
-                this.ChartHolder.UpdateChart(this);
+                this.ChartHolder.UpdateChart();
             return true;
         }
 

@@ -121,21 +121,44 @@ namespace BlazorApp1.Fuzzy
 
     public class FuzzySubexpression
     {
+        private FuzzyValue fuzzy_value;
+        private FuzzyVariable fuzzy_variable;
+
         public FuzzyConjunctionType? ConjunctionType { get; set; }
 
-        public FuzzyValue Value { get; set; }
-        public FuzzyVariable Variable => this.Value?.Variable;
+        public FuzzyValue Value {
+            get => this.fuzzy_value;
+            set {
+                this.fuzzy_value = value;
+                this.fuzzy_variable = value.Variable;
+                //this.VariableHolder = value.Variable;
+            }
+        }
+
+        public FuzzyVariable Variable {
+            get => this.fuzzy_variable;
+            set {
+                if (value != this.fuzzy_variable)
+                {
+                    this.fuzzy_variable = value;
+                    this.fuzzy_value = value.Values.FirstOrDefault();
+                }
+            }
+        }
 
         public FuzzySubexpression(FuzzyConjunctionType? fuzzyConjunctionType, FuzzyValue fuzzyValue)
         {
             this.ConjunctionType = fuzzyConjunctionType;
-            this.Value = fuzzyValue;
+            //this.Value = fuzzyValue;
+
+            this.fuzzy_value = fuzzyValue;
+            this.fuzzy_variable = fuzzyValue.Variable;
         }
 
         public override string ToString() => 
-            ConjunctionType == null ?
-            $"[{Variable.Name} IS {Value.Name}]" :
-            $"{ConjunctionType} [{Variable.Name} IS {Value.Name}]";
+            this.ConjunctionType == null ?
+            $"[{this.Value.Variable.Name} IS {this.Value.Name}]" :
+            $"{this.ConjunctionType} [{this.Value.Variable.Name} IS {this.Value.Name}]";
     }
 }
 

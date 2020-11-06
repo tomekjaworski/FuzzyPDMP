@@ -32,5 +32,10 @@ namespace BlazorApp1.Pages
         {
 
         }
+
+        private void OnAddRuleClicked()
+        {
+
+        }
     }
 }

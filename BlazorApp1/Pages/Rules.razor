@@ -1,16 +1,6 @@
 ﻿@page "/Rules"
 @using BlazorApp1.Fuzzy
 
-<div class="btn-group">
-    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Dropdown </button>
-    <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Action</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Separated link</a>
-    </div>
-</div>
-
-
 
 <div class="container">
     <div class="row">
@@ -33,42 +23,42 @@
                             @foreach (FuzzySubexpression premise_expression in rule.Premise)
                             {
                                 <div class="d-flex d-flex-row mb-1">
-                                    <div class="d-flex align-items-center">
-                                        <btn-group style=@(premise_expression.ConjunctionType == null ? "display:none" : "display:block")>
-                                            <button class="btn dropdown-toggle btn-light" data-toggle="dropdown" aria-expanded="false"> oraz </button>
-                                            <div class="dropdown-menu" style="position: absolute; " x-placement="bottom-start">
-                                                <a class="dropdown-item" href="#">oraz</a>
-                                                <a class="dropdown-item" href="#">lub</a>
-                                            </div>
-                                        </btn-group>
+                                    <btn-group style=@(premise_expression.ConjunctionType == null ? "display:none" : "display:block")>
+                                        <button class="btn dropdown-toggle btn-light" data-toggle="dropdown"> oraz </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">oraz</a>
+                                            <a class="dropdown-item" href="#">lub</a>
+                                        </div>
+                                    </btn-group>
 
 
-                                        <btn-group>
-
-                                            <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"> WWW.. </button>
-                                            <div class="dropdown-menu">
-                                                @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.ModelProvider.Model.Variables)
-                                                {
-                                                    <a class="dropdown-item" href="#"><b>@fvar.Name</b> - @fvar.Description</a>
-                                                }
-                                            </div>
-                                        </btn-group>
-
-
-
-                                        <div class="text-center px-3"> jest </div>
+                                    <btn-group>
+                                        <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">@premise_expression.Variable.Name</button>
+                                        <div class="dropdown-menu">
+                                            @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.ModelProvider.Model.Variables)
+                                            {
+                                                <a class="dropdown-item @(premise_expression.Variable == fvar ? "active ":"")" href="#"
+                                                   @onclick="@(()=> { premise_expression.Variable = fvar; })" @onclick:preventDefault>
+                                                    <b>@fvar.Name</b> - @fvar.Description
+                                                </a>
+                                            }
+                                        </div>
+                                    </btn-group>
 
 
-                                        <btn-group class="">
-                                            <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown"> Wartość </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">Wartość A</a>
-                                                <a class="dropdown-item" href="#">Wartość B</a>
-                                            </div>
-                                        </btn-group>
-                                    </div>
+
+                                    <div class="text-center px-3 w-100"> jest </div>
 
 
+                                    <btn-group>
+                                        <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown">@premise_expression.Value.Name</button>
+                                        <div class="dropdown-menu">
+                                            @foreach (FuzzyValue fval in premise_expression.Variable.Values)
+                                            {
+                                                <a class="dropdown-item" href="#" @onclick="@(()=> { premise_expression.Value = fval; })" @onclick:preventDefault><b>@fval.Name</b> - @fval.Description</a>
+                                            }
+                                        </div>
+                                    </btn-group>
 
 
                                     <button class="btn btn-outline-danger mx-2" @onclick="@(()=>OnRemovePremiseClicked(rule, premise_expression))">
@@ -123,7 +113,7 @@
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </div>
-                        <div class="card-body" style="">
+                        <div class="card-body">
                             <!-- CARD BODY -->
                             @foreach (FuzzySubexpression conclusion_expression in rule.Conclusion)
                             {
@@ -132,20 +122,26 @@
                                     <div class="py-1 pr-2"> oraz </div>
                                     <!-- xxxx -->
                                     <btn-group class="">
-                                        <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> Zmienna </button>
-                                        <div class="dropdown-menu " style="position: absolute;" x-placement="bottom-start">
+                                        <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"> @conclusion_expression.Variable.Name </button>
+                                        <div class="dropdown-menu ">
                                             @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.ModelProvider.Model.Variables)
                                             {
-                                                <a class="dropdown-item" href="#"><b>@fvar.Name</b> - @fvar.Description</a>
+                                                <a class="dropdown-item @(conclusion_expression.Variable == fvar ? "active ":"")" href="#"
+                                                   @onclick="@(()=> { conclusion_expression.Variable = fvar; })" @onclick:preventDefault>
+                                                    <b>@fvar.Name</b> - @fvar.Description
+                                                </a>
                                             }
                                         </div>
                                     </btn-group>
                                     <div class="p-1 w-100 text-center"> jest </div>
                                     <btn-group class="">
-                                        <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown" aria-expanded="false"> Wartość </button>
-                                        <div class="dropdown-menu" style="position: absolute;" x-placement="bottom-start">
-                                            <a class="dropdown-item" href="#">Wartość A</a>
-                                            <a class="dropdown-item" href="#">Wartość B</a>
+                                        <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown" aria-expanded="false">@conclusion_expression.Value.Name</button>
+                                        <div class="dropdown-menu">
+                                            @foreach (FuzzyValue fval in conclusion_expression.Variable.Values)
+                                            {
+                                                <a class="dropdown-item" href="#" @onclick="@(()=> { conclusion_expression.Value = fval; })"
+                                                   @onclick:preventDefault><b>@fval.Name</b> - @fval.Description</a>
+                                            }
                                         </div>
                                     </btn-group>
                                     <button class="btn btn-outline-danger mx-2" @onclick="@(()=>OnRemoveConclusionClicked(rule, conclusion_expression))">
@@ -196,7 +192,9 @@
 
     <row class="row mt-3 ">
         <div class="col-md-12 d-flex flex-row-reverse">
-            <button class="btn btn-success btn-sm d-flex">Dodaj <span class="font-weight-bold">przesłankę</span></button>
+            <button class="btn btn-success btn-sm d-flex" @onclick="@(()=>this.OnAddRuleClicked())">
+                Dodaj <span class="font-weight-bold">regułę</span>
+            </button>
         </div>
     </row>
 </div>

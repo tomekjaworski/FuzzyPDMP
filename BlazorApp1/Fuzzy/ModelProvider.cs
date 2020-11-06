@@ -4,7 +4,9 @@
     {
         #region static
         private static ModelProvider mp;
-        public static ModelProvider Data => mp;
+        public static ModelProvider Provider => mp;
+        public static Model Model => mp.model;
+
 
         static ModelProvider()
         {
@@ -13,7 +15,6 @@
         #endregion
 
         private Model model;
-        public Model Model => this.model;
 
         private ModelProvider()
         {
@@ -21,60 +22,82 @@
 
             var var1 = this.model.AddVariable("Nazwa 1", "Opis zmiennej Nazwa I");
 
-            FuzzyValue val1, val2, val3;
-            val1 = var1.AddValue("Mało", "Opis wartości Mało");
-            val2 = var1.AddValue("Średnio", "Opis wartości Średnio");
-            val3 = var1.AddValue("Dużo", "Opis wartości Dużo");
+            FuzzyValue var1_val1, var1_val2, var1_val3;
+            var1_val1 = var1.AddValue("Mało", "Opis wartości Mało");
+            var1_val2 = var1.AddValue("Średnio", "Opis wartości Średnio");
+            var1_val3 = var1.AddValue("Dużo", "Opis wartości Dużo");
             var1.MembershipType = MembershipFunctionFamily.Trapezoidal;
             var1.Minimum.Value = 10;
             var1.Maximum.Value = 100;
 
-            val1.GetParameter("SuppL").Value = 0;
-            val1.GetParameter("KernL").Value = 0;
-            val1.GetParameter("KernR").Value = 25;
-            val1.GetParameter("SuppR").Value = 40;
+            var1_val1.GetParameter("SuppL").Value = 0;
+            var1_val1.GetParameter("KernL").Value = 0;
+            var1_val1.GetParameter("KernR").Value = 25;
+            var1_val1.GetParameter("SuppR").Value = 40;
 
-            val2.GetParameter("SuppL").Value = 25;
-            val2.GetParameter("KernL").Value = 40;
-            val2.GetParameter("KernR").Value = 55;
-            val2.GetParameter("SuppR").Value = 70;
+            var1_val2.GetParameter("SuppL").Value = 25;
+            var1_val2.GetParameter("KernL").Value = 40;
+            var1_val2.GetParameter("KernR").Value = 55;
+            var1_val2.GetParameter("SuppR").Value = 70;
 
-            val3.GetParameter("SuppL").Value = 55;
-            val3.GetParameter("KernL").Value = 70;
-            val3.GetParameter("KernR").Value = 110;
-            val3.GetParameter("SuppR").Value = 110;
+            var1_val3.GetParameter("SuppL").Value = 55;
+            var1_val3.GetParameter("KernL").Value = 70;
+            var1_val3.GetParameter("KernR").Value = 110;
+            var1_val3.GetParameter("SuppR").Value = 110;
 
 
             //val1 = var2.AddValue("Zimno", "Opis wartości Zimno");
             //val2 = var2.AddValue("Ciepło", "Opis wartości Ciepło");
             //val3 = var2.AddValue("Gorąco", "Opis wartości Gorąco");
             //var2.MembershipType = MembershipFunctionFamily.Trapezoidal;
-            var var3 = this.model.AddVariable("Nazwa 3", "Opis zmiennej Nazwa III");
+            var var2 = this.model.AddVariable("Nazwa 3", "Opis zmiennej Nazwa III");
 
-            val1 = var3.AddValue("Negatywny", "Opis wartości Negatywny");
-            val2 = var3.AddValue("Zerowy", "Opis wartości Zerowy");
-            val3 = var3.AddValue("Pozytywny", "Opis wartości Pozytywny");
-            var3.MembershipType = MembershipFunctionFamily.Trapezoidal;
-            var3.Minimum.Value = -40;
-            var3.Maximum.Value = 40;
-
-
-            val1.GetParameter("SuppL").Value = -41;
-            val1.GetParameter("KernL").Value = -41;
-            val1.GetParameter("KernR").Value = -20;
-            val1.GetParameter("SuppR").Value = 0;
-
-            val2.GetParameter("SuppL").Value = -20;
-            val2.GetParameter("KernL").Value = 0;
-            val2.GetParameter("KernR").Value = 0;
-            val2.GetParameter("SuppR").Value = 20;
-
-            val3.GetParameter("SuppL").Value = 0;
-            val3.GetParameter("KernL").Value = 20;
-            val3.GetParameter("KernR").Value = 41;
-            val3.GetParameter("SuppR").Value = 41;
+            FuzzyValue var2_val1, var2_val2, var2_val3;
+            var2_val1 = var2.AddValue("Negatywny", "Opis wartości Negatywny");
+            var2_val2 = var2.AddValue("Zerowy", "Opis wartości Zerowy");
+            var2_val3 = var2.AddValue("Pozytywny", "Opis wartości Pozytywny");
+            var2.MembershipType = MembershipFunctionFamily.Trapezoidal;
+            var2.Minimum.Value = -40;
+            var2.Maximum.Value = 40;
 
 
+            var2_val1.GetParameter("SuppL").Value = -41;
+            var2_val1.GetParameter("KernL").Value = -41;
+            var2_val1.GetParameter("KernR").Value = -20;
+            var2_val1.GetParameter("SuppR").Value = 0;
+
+            var2_val2.GetParameter("SuppL").Value = -20;
+            var2_val2.GetParameter("KernL").Value = 0;
+            var2_val2.GetParameter("KernR").Value = 0;
+            var2_val2.GetParameter("SuppR").Value = 20;
+
+            var2_val3.GetParameter("SuppL").Value = 0;
+            var2_val3.GetParameter("KernL").Value = 20;
+            var2_val3.GetParameter("KernR").Value = 41;
+            var2_val3.GetParameter("SuppR").Value = 41;
+
+
+            //
+            FuzzySubexpression _feci;
+
+            FuzzyRule r1 = model.AddRule();
+            _ = r1.AddConclusion(var2_val1);
+            _ = r1.AddPremise(var1_val1);
+            _feci = r1.AddPremise(FuzzyConjunctionType.And, var1_val2);
+            _feci = r1.AddPremise(FuzzyConjunctionType.Or, var2_val3);
+
+            FuzzyRule r2 = model.AddRule();
+            r2.AddConclusion(var2_val2);
+            r2.AddConclusion(var2_val3);
+
+            FuzzyRule r3 = model.AddRule();
+            _feci = r3.AddPremise(var1_val1);
+            _feci = r3.AddPremise(FuzzyConjunctionType.And, var1_val2);
+            _feci = r3.AddPremise(FuzzyConjunctionType.Or, var2_val3);
+
+            FuzzyRule r4 = model.AddRule();
+            _ = r4.AddPremise(var2_val3);
+            _ = r4.AddConclusion(var1_val3);
         }
     }
 }

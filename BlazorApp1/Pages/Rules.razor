@@ -1,4 +1,5 @@
 ﻿@page "/Rules"
+@using BlazorApp1.Fuzzy
 
 <div class="btn-group">
     <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Dropdown </button>
@@ -16,120 +17,76 @@
         <div class="col-md-12">
             <!-- XXXXXXXXXXXXXXXXXX -->
 
-            <div class="card-group">
-                <div class="card">
-                    <div class="card-header p-1 px-2 d-flex flex-row">
-                        <div class="font-weight-bold">Jeżeli...</div>
-                        <button class="btn btn-outline-danger btn-sm ml-auto " style="visibility:hidden"><i class="far fa-trash-alt"></i></button>
-                    </div>
+            @foreach (FuzzyRule rule in ModelProvider.Model.Rules)
+            {
+                <div class="card-group mb-4">
+                    <div class="card">
+                        <div class="card-header p-1 px-2 d-flex flex-row">
+                            <div class="font-weight-bold">Jeżeli...</div>
+                            <button class="btn btn-outline-danger btn-sm ml-auto " style="visibility:hidden">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </div>
 
-                    <div class="card-body">
-                        <div class="d-flex d-flex-row mb-1">
+                        <div class="card-body">
 
-                            <div class="d-flex align-items-center">
-                                <btn-group>
+                            @foreach (FuzzySubexpression premise_expression in rule.Premise)
+                            {
+                                <div class="d-flex d-flex-row mb-1">
+                                    <div class="d-flex align-items-center">
+                                        <btn-group style=@(premise_expression.ConjunctionType == null ? "display:none" : "display:block")>
+                                            <button class="btn dropdown-toggle btn-light" data-toggle="dropdown" aria-expanded="false"> oraz </button>
+                                            <div class="dropdown-menu" style="position: absolute; " x-placement="bottom-start">
+                                                <a class="dropdown-item" href="#">oraz</a>
+                                                <a class="dropdown-item" href="#">lub</a>
+                                            </div>
+                                        </btn-group>
 
-                                    <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"> Zmienna </button>
-                                    <div class="dropdown-menu">
-                                        @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.ModelProvider.Data.Model.Variables)
-                                        {
-                                            <a class="dropdown-item" href="#"><b>@fvar.Name</b> - @fvar.Description</a>
-                                        }
+
+                                        <btn-group>
+
+                                            <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"> WWW.. </button>
+                                            <div class="dropdown-menu">
+                                                @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.ModelProvider.Model.Variables)
+                                                {
+                                                    <a class="dropdown-item" href="#"><b>@fvar.Name</b> - @fvar.Description</a>
+                                                }
+                                            </div>
+                                        </btn-group>
+
+
+
+                                        <div class="text-center px-3"> jest </div>
+
+
+                                        <btn-group class="">
+                                            <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown"> Wartość </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Wartość A</a>
+                                                <a class="dropdown-item" href="#">Wartość B</a>
+                                            </div>
+                                        </btn-group>
                                     </div>
-                                </btn-group>
 
 
 
-                                <div class="text-center px-3"> jest </div>
 
-
-                                <btn-group class="">
-                                    <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown"> Wartość </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Zmienna A</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Zmienna B</a>
-                                    </div>
-                                </btn-group>
+                                    <button class="btn btn-outline-danger mx-2" @onclick="@(()=>OnRemovePremiseClicked(rule, premise_expression))">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
                                 </div>
-
-
-
-
-                                <button class="btn btn-outline-danger mx-2"> <i class="far fa-trash-alt"></i></button>
-                            </div>
+                            }
                             <!-- xxxxxxxxxxxxxxxxxx -->
-                            <div class="d-flex d-flex-row mb-1">
-                                <btn-group class="">
-                                    <button class="btn dropdown-toggle btn-light" data-toggle="dropdown" aria-expanded="false"> oraz </button>
-                                    <div class="dropdown-menu" style="position: absolute; " x-placement="bottom-start">
-                                        <a class="dropdown-item" href="#">oraz</a>
-                                        <a class="dropdown-item" href="#">lub</a>
-                                    </div>
-                                </btn-group>
-                                <!-- xxxx -->
-                                <btn-group class="">
-                                    <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> Zmienna </button>
-                                    <div class="dropdown-menu " style="position: absolute; " x-placement="bottom-start">
-                                        <a class="dropdown-item" href="#">Zmienna A</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Zmienna B</a>
-                                    </div>
-                                </btn-group>
-                                <div class="p-1 w-100 text-center"> jest </div>
-                                <btn-group class="">
-                                    <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown" aria-expanded="false"> Wartość </button>
-                                    <div class="dropdown-menu" style="position: absolute; " x-placement="bottom-start">
-                                        <a class="dropdown-item" href="#">Zmienna A</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Zmienna B</a>
-                                    </div>
-                                </btn-group>
-                                <button class="btn btn-outline-danger mx-2"> <i class="far fa-trash-alt"></i></button>
-                                <!-- xxxx -->
-                            </div>
-                            <!-- xxxx -->
-                            <!-- xxxx -->
-                        </div>
-                    <div class="card-footer d-flex d-flex-row flex-row-reverse">
-                        <button class="btn btn-success btn-sm">Dodaj <span class="font-weight-bold">przesłankę</span></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header p-1 px-2 d-flex flex-row">
-                        <div class="font-weight-bold">to...</div>
-                        <button class="btn btn-outline-danger btn-sm ml-auto "><i class="far fa-trash-alt"></i></button>
-                    </div>
-                    <div class="card-body" style="">
-                        <!-- CARD BODY -->
-                        <div class="d-flex d-flex-row mb-1">
-                            <div class="py-1 pr-2"> oraz </div>
-                            <!-- xxxx -->
+                            <!--<div class="d-flex d-flex-row mb-1">
                             <btn-group class="">
-                                <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> Zmienna </button>
-                                <div class="dropdown-menu " style="position: absolute;" x-placement="bottom-start">
-                                    <a class="dropdown-item" href="#">Zmienna A</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Zmienna B</a>
+                                <button class="btn dropdown-toggle btn-light" data-toggle="dropdown" aria-expanded="false"> oraz </button>
+                                <div class="dropdown-menu" style="position: absolute; " x-placement="bottom-start">
+                                    <a class="dropdown-item" href="#">oraz</a>
+                                    <a class="dropdown-item" href="#">lub</a>
                                 </div>
-                            </btn-group>
-                            <div class="p-1 w-100 text-center"> jest </div>
-                            <btn-group class="">
-                                <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown" aria-expanded="false"> Wartość </button>
-                                <div class="dropdown-menu" style="position: absolute;" x-placement="bottom-start">
-                                    <a class="dropdown-item" href="#">Zmienna A</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Zmienna B</a>
-                                </div>
-                            </btn-group>
-                            <button class="btn btn-outline-danger mx-2"> <i class="far fa-trash-alt"></i></button>
+                            </btn-group>-->
                             <!-- xxxx -->
-                        </div>
-                        <!-- ---------------------- -->
-                        <div class="d-flex d-flex-row mb-1">
-                            <div class="py-1 pr-2"> oraz </div>
-                            <!-- xxxx -->
-                            <btn-group class="">
+                            <!--<btn-group class="">
                                 <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> Zmienna </button>
                                 <div class="dropdown-menu " style="position: absolute; " x-placement="bottom-start">
                                     <a class="dropdown-item" href="#">Zmienna A</a>
@@ -146,19 +103,101 @@
                                     <a class="dropdown-item" href="#">Zmienna B</a>
                                 </div>
                             </btn-group>
-                            <button class="btn btn-outline-danger mx-2"> <i class="far fa-trash-alt"></i></button>
+                            <button class="btn btn-outline-danger mx-2"> <i class="far fa-trash-alt"></i></button>-->
+                            <!-- xxxx -->
+                            <!--</div>-->
+                            <!-- xxxx -->
                             <!-- xxxx -->
                         </div>
-                        <!-- /CARD BODY -->
+                        <div class="card-footer d-flex d-flex-row flex-row-reverse">
+                            <button class="btn btn-success btn-sm" @onclick="@(()=>OnAddPremiseClicked(rule))">
+                                <span>Dodaj </span>
+                                <span class="font-weight-bold">przesłankę</span>
+                            </button>
+                        </div>
                     </div>
-                    <div class="card-footer d-flex d-flex-row flex-row-reverse">
-                        <button class="btn btn-success btn-sm">Dodaj <span class="font-weight-bold">konkluzję</span></button>
+                    <div class="card">
+                        <div class="card-header p-1 px-2 d-flex flex-row">
+                            <div class="font-weight-bold">to...</div>
+                            <button class="btn btn-outline-danger btn-sm ml-auto" @onclick="@(()=>OnRemoveRuleClicked(rule))">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </div>
+                        <div class="card-body" style="">
+                            <!-- CARD BODY -->
+                            @foreach (FuzzySubexpression conclusion_expression in rule.Conclusion)
+                            {
+
+                                <div class="d-flex d-flex-row mb-1">
+                                    <div class="py-1 pr-2"> oraz </div>
+                                    <!-- xxxx -->
+                                    <btn-group class="">
+                                        <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> Zmienna </button>
+                                        <div class="dropdown-menu " style="position: absolute;" x-placement="bottom-start">
+                                            @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.ModelProvider.Model.Variables)
+                                            {
+                                                <a class="dropdown-item" href="#"><b>@fvar.Name</b> - @fvar.Description</a>
+                                            }
+                                        </div>
+                                    </btn-group>
+                                    <div class="p-1 w-100 text-center"> jest </div>
+                                    <btn-group class="">
+                                        <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown" aria-expanded="false"> Wartość </button>
+                                        <div class="dropdown-menu" style="position: absolute;" x-placement="bottom-start">
+                                            <a class="dropdown-item" href="#">Wartość A</a>
+                                            <a class="dropdown-item" href="#">Wartość B</a>
+                                        </div>
+                                    </btn-group>
+                                    <button class="btn btn-outline-danger mx-2" @onclick="@(()=>OnRemoveConclusionClicked(rule, conclusion_expression))">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                    <!-- xxxx -->
+                                </div>
+                            }
+                            <!-- ---------------------- -->
+                            <!--<div class="d-flex d-flex-row mb-1">
+                            <div class="py-1 pr-2"> oraz </div>-->
+                            <!-- xxxx -->
+                            <!--<btn-group class="">
+                                <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> Zmienna </button>
+                                <div class="dropdown-menu " style="position: absolute; " x-placement="bottom-start">
+                                    <a class="dropdown-item" href="#">Zmienna A</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Zmienna B</a>
+                                </div>
+                            </btn-group>
+                            <div class="p-1 w-100 text-center"> jest </div>
+                            <btn-group class="">
+                                <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown" aria-expanded="false"> Wartość </button>
+                                <div class="dropdown-menu" style="position: absolute; " x-placement="bottom-start">
+                                    <a class="dropdown-item" href="#">Zmienna A</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Zmienna B</a>
+                                </div>
+                            </btn-group>
+                            <button class="btn btn-outline-danger mx-2"> <i class="far fa-trash-alt"></i></button>-->
+                            <!-- xxxx -->
+                            <!--</div>-->
+                            <!-- /CARD BODY -->
+                        </div>
+                        <div class="card-footer d-flex d-flex-row flex-row-reverse">
+                            <button class="btn btn-success btn-sm" @onclick="@(()=>OnAddConclusionClicked(rule))">
+                                Dodaj <span class="font-weight-bold">konkluzję</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
 
 
             <!-- XXXXXXXXXXXXXXXXXXX -->
         </div>
     </div>
+
+    <row class="row mt-3 ">
+        <div class="col-md-12 d-flex flex-row-reverse">
+            <button class="btn btn-success btn-sm d-flex">Dodaj <span class="font-weight-bold">przesłankę</span></button>
+        </div>
+    </row>
 </div>
+

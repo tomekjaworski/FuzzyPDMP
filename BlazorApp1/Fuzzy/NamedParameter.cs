@@ -8,6 +8,7 @@
 
         public string FullName => ParentValue == null ? this.ShortName :
             $"{this.ParentValue.Name}::{this.ShortName}";
+
         public double Value {
             get => this.value;
             set {
@@ -33,7 +34,7 @@
             this.ParentVariable = parentVariable;
         }
 
-        public override string ToString() => $"{this.FullName} [{this.Value}:4N]";
+        public override string ToString() => $"{this.FullName} [{this.Value:N4}]";
     }
 }
 

@@ -11,11 +11,18 @@ namespace BlazorApp1.Fuzzy
     public class Model
     {
         private List<FuzzyVariable> variables;
+        private List<FuzzyRule> rules;
+
         public FuzzyVariable[] Variables => this.variables.ToArray();
+
+        public FuzzyRule[] Rules => this.rules.ToArray();
+
 
         public Model()
         {
             this.variables = new List<FuzzyVariable>();
+            this.rules = new List<FuzzyRule>();
+
         }
 
         public FuzzyVariable AddVariable(string name, string description)
@@ -28,15 +35,6 @@ namespace BlazorApp1.Fuzzy
             return @var;
         }
 
-        //public bool RemoveValue(FuzzyValue value)
-        //{
-        //    if (!this.variables.Contains(value.Variable))
-        //        return false;
-
-
-        //    return value.Variable.RemoveValue(value);
-        //}
-
         public bool RemoveVariable(FuzzyVariable variable)
         {
             if (!this.variables.Contains(variable))
@@ -47,6 +45,13 @@ namespace BlazorApp1.Fuzzy
             //todo: aktualizacja reguł
 
             return true;
+        }
+
+        internal FuzzyRule AddRule()
+        {
+            FuzzyRule fr = new FuzzyRule();
+            this.rules.Add(fr);
+            return fr;
         }
     }
 }

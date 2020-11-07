@@ -1,5 +1,6 @@
 ﻿@page "/Rules"
 @using BlazorApp1.Fuzzy
+@inject IModalService Modal
 
 
 <div class="container">
@@ -24,16 +25,22 @@
                             {
                                 <div class="d-flex d-flex-row mb-1">
                                     <btn-group style=@(premise_expression.ConjunctionType == null ? "display:none" : "display:block")>
-                                        <button class="btn dropdown-toggle btn-light" data-toggle="dropdown"> oraz </button>
+                                        <button class="btn dropdown-toggle btn-light" data-toggle="dropdown"> @(premise_expression.ConjunctionType.HasValue ? premise_expression.ConjunctionType.Value.GetEnumDescription() : "???") </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#">oraz</a>
-                                            <a class="dropdown-item" href="#">lub</a>
+                                            @foreach (Enum item in Enum.GetValues(typeof(FuzzyConjunctionType)))
+                                            {
+                                                <a class="dropdown-item @(premise_expression.ConjunctionType == (FuzzyConjunctionType)item ? "active":"")"
+                                                   href="#"
+                                                   @onclick:preventDefault>@(((FuzzyConjunctionType)item).GetEnumDescription())</a>
+                                            }
+
+
                                         </div>
                                     </btn-group>
 
 
                                     <btn-group>
-                                        <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">@premise_expression.Variable.Name</button>
+                                        <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">@(premise_expression.Variable?.Name ?? "Wybierz...")</button>
                                         <div class="dropdown-menu">
                                             @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.ModelProvider.Model.Variables)
                                             {
@@ -51,12 +58,13 @@
 
 
                                     <btn-group>
-                                        <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown">@premise_expression.Value.Name</button>
+                                        <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown">@(premise_expression.Value?.Name ?? "Wybierz...")</button>
                                         <div class="dropdown-menu">
-                                            @foreach (FuzzyValue fval in premise_expression.Variable.Values)
-                                            {
-                                                <a class="dropdown-item" href="#" @onclick="@(()=> { premise_expression.Value = fval; })" @onclick:preventDefault><b>@fval.Name</b> - @fval.Description</a>
-                                            }
+                                            @if (premise_expression.Variable != null)
+                                                foreach (FuzzyValue fval in premise_expression.Variable.Values)
+                                                {
+                                                    <a class="dropdown-item" href="#" @onclick="@(() => { premise_expression.Value = fval; })" @onclick:preventDefault><b>@fval.Name</b> - @fval.Description</a>
+                                                }
                                         </div>
                                     </btn-group>
 
@@ -66,38 +74,7 @@
                                     </button>
                                 </div>
                             }
-                            <!-- xxxxxxxxxxxxxxxxxx -->
-                            <!--<div class="d-flex d-flex-row mb-1">
-                            <btn-group class="">
-                                <button class="btn dropdown-toggle btn-light" data-toggle="dropdown" aria-expanded="false"> oraz </button>
-                                <div class="dropdown-menu" style="position: absolute; " x-placement="bottom-start">
-                                    <a class="dropdown-item" href="#">oraz</a>
-                                    <a class="dropdown-item" href="#">lub</a>
-                                </div>
-                            </btn-group>-->
-                            <!-- xxxx -->
-                            <!--<btn-group class="">
-                                <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> Zmienna </button>
-                                <div class="dropdown-menu " style="position: absolute; " x-placement="bottom-start">
-                                    <a class="dropdown-item" href="#">Zmienna A</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Zmienna B</a>
-                                </div>
-                            </btn-group>
-                            <div class="p-1 w-100 text-center"> jest </div>
-                            <btn-group class="">
-                                <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown" aria-expanded="false"> Wartość </button>
-                                <div class="dropdown-menu" style="position: absolute; " x-placement="bottom-start">
-                                    <a class="dropdown-item" href="#">Zmienna A</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Zmienna B</a>
-                                </div>
-                            </btn-group>
-                            <button class="btn btn-outline-danger mx-2"> <i class="far fa-trash-alt"></i></button>-->
-                            <!-- xxxx -->
-                            <!--</div>-->
-                            <!-- xxxx -->
-                            <!-- xxxx -->
+
                         </div>
                         <div class="card-footer d-flex d-flex-row flex-row-reverse">
                             <button class="btn btn-success btn-sm" @onclick="@(()=>OnAddPremiseClicked(rule))">
@@ -119,10 +96,10 @@
                             {
 
                                 <div class="d-flex d-flex-row mb-1">
-                                    <div class="py-1 pr-2"> oraz </div>
+                                    <div class="py-1 pr-2"> @(conclusion_expression.ConjunctionType.HasValue ? conclusion_expression.ConjunctionType.Value.GetEnumDescription() : "") </div>
                                     <!-- xxxx -->
                                     <btn-group class="">
-                                        <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown"> @conclusion_expression.Variable.Name </button>
+                                        <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">@(conclusion_expression.Variable?.Name ?? "Wybierz...") </button>
                                         <div class="dropdown-menu ">
                                             @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.ModelProvider.Model.Variables)
                                             {
@@ -135,12 +112,15 @@
                                     </btn-group>
                                     <div class="p-1 w-100 text-center"> jest </div>
                                     <btn-group class="">
-                                        <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown" aria-expanded="false">@conclusion_expression.Value.Name</button>
+                                        <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown" aria-expanded="false">@(conclusion_expression.Value?.Name ?? "Wybierz...")</button>
                                         <div class="dropdown-menu">
-                                            @foreach (FuzzyValue fval in conclusion_expression.Variable.Values)
+                                            @if (conclusion_expression.Variable != null)
                                             {
-                                                <a class="dropdown-item" href="#" @onclick="@(()=> { conclusion_expression.Value = fval; })"
-                                                   @onclick:preventDefault><b>@fval.Name</b> - @fval.Description</a>
+                                                foreach (FuzzyValue fval in conclusion_expression.Variable.Values)
+                                                {
+                                                    <a class="dropdown-item" href="#" @onclick="@(() => { conclusion_expression.Value = fval; })"
+                                                       @onclick:preventDefault><b>@fval.Name</b> - @fval.Description</a>
+                                                }
                                             }
                                         </div>
                                     </btn-group>
@@ -150,31 +130,7 @@
                                     <!-- xxxx -->
                                 </div>
                             }
-                            <!-- ---------------------- -->
-                            <!--<div class="d-flex d-flex-row mb-1">
-                            <div class="py-1 pr-2"> oraz </div>-->
-                            <!-- xxxx -->
-                            <!--<btn-group class="">
-                                <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> Zmienna </button>
-                                <div class="dropdown-menu " style="position: absolute; " x-placement="bottom-start">
-                                    <a class="dropdown-item" href="#">Zmienna A</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Zmienna B</a>
-                                </div>
-                            </btn-group>
-                            <div class="p-1 w-100 text-center"> jest </div>
-                            <btn-group class="">
-                                <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown" aria-expanded="false"> Wartość </button>
-                                <div class="dropdown-menu" style="position: absolute; " x-placement="bottom-start">
-                                    <a class="dropdown-item" href="#">Zmienna A</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Zmienna B</a>
-                                </div>
-                            </btn-group>
-                            <button class="btn btn-outline-danger mx-2"> <i class="far fa-trash-alt"></i></button>-->
-                            <!-- xxxx -->
-                            <!--</div>-->
-                            <!-- /CARD BODY -->
+
                         </div>
                         <div class="card-footer d-flex d-flex-row flex-row-reverse">
                             <button class="btn btn-success btn-sm" @onclick="@(()=>OnAddConclusionClicked(rule))">

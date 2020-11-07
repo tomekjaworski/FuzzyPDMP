@@ -83,6 +83,7 @@
             FuzzyRule r1 = model.AddRule();
             _ = r1.AddConclusion(var2_val1);
             _ = r1.AddPremise(var1_val1);
+            _feci = r1.AddPremise(var1_val2);
             _feci = r1.AddPremise(FuzzyConjunctionType.And, var1_val2);
             _feci = r1.AddPremise(FuzzyConjunctionType.Or, var2_val3);
 

@@ -35,6 +35,18 @@ namespace BlazorApp1.Fuzzy
             return @var;
         }
 
+        public bool RemoveRule(FuzzyRule rule)
+        {
+            if (!this.rules.Contains(rule))
+                return false;
+
+
+            this.rules.Remove(rule);
+            //todo: aktualizacja reguł
+
+            return true;
+        }
+
         public bool RemoveVariable(FuzzyVariable variable)
         {
             if (!this.variables.Contains(variable))
@@ -53,5 +65,6 @@ namespace BlazorApp1.Fuzzy
             this.rules.Add(fr);
             return fr;
         }
+
     }
 }

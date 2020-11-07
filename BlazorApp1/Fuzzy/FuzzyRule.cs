@@ -23,10 +23,6 @@ namespace BlazorApp1.Fuzzy
 
         public FuzzySubexpression AddConclusion(FuzzyValue fuzzyValue)
         {
-            if (fuzzyValue == null)
-                throw new NullReferenceException("fuzzyValue");
-
-
             FuzzySubexpression fs;
             if (this.conclusion.Count == 0)
                 fs = new FuzzySubexpression(null, fuzzyValue);
@@ -36,6 +32,19 @@ namespace BlazorApp1.Fuzzy
             this.conclusion.Add(fs);
             return fs;
         }
+
+        public FuzzySubexpression AddEmptyConclusion()
+        {
+            FuzzySubexpression fs;
+            if (this.conclusion.Count == 0)
+                fs = new FuzzySubexpression(null, null);
+            else
+                fs = new FuzzySubexpression(FuzzyConjunctionType.And, null);
+
+            this.conclusion.Add(fs);
+            return fs;
+        }
+
 
         public bool RemoveConclusion(FuzzySubexpression subexpression)
         {
@@ -69,12 +78,14 @@ namespace BlazorApp1.Fuzzy
             }
         }
 
-        public FuzzySubexpression AddPremise(FuzzyConjunctionType conjunction, FuzzyValue fuzzyValue) 
+        public FuzzySubexpression AddPremise(FuzzyConjunctionType conjunction, FuzzyValue fuzzyValue = null) 
             => this.AddPremiseImpl(conjunction, fuzzyValue);
 
         public FuzzySubexpression AddPremise(FuzzyValue fuzzyValue) 
             => this.AddPremiseImpl(null, fuzzyValue);
 
+        public FuzzySubexpression AddEmptyPremise()
+            => this.AddPremiseImpl(null, null);
 
         public bool RemovePremise(FuzzySubexpression subexpression)
         {
@@ -90,19 +101,11 @@ namespace BlazorApp1.Fuzzy
         {
             string p = string.Join(" ", this.Premise.Select(x => $"{x}"));
             string c = string.Join(" ", this.Conclusion.Select(x => $"{x}"));
+            p = (p == "") ? "..." : p;
+            c = (c == "") ? "..." : c;
             return $"IF {p} THEN {c}";
         }
     }
-
-    //public class FuzzyRuleBase
-    //{
-    //    public List<FuzzyRule> Rules { get; }
-
-    //    public FuzzyRuleBase()
-    //    {
-    //        this.Rules = new List<FuzzyRule>();
-    //    }
-    //}
 
     public enum FuzzyConjunctionType
     {
@@ -152,7 +155,7 @@ namespace BlazorApp1.Fuzzy
             //this.Value = fuzzyValue;
 
             this.fuzzy_value = fuzzyValue;
-            this.fuzzy_variable = fuzzyValue.Variable;
+            this.fuzzy_variable = fuzzyValue?.Variable;
         }
 
         public override string ToString() => 

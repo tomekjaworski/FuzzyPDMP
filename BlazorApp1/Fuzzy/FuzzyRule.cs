@@ -48,10 +48,12 @@ namespace BlazorApp1.Fuzzy
 
         public bool RemoveConclusion(FuzzySubexpression subexpression)
         {
-            if (!this.Conclusion.Contains(subexpression))
+            if (!this.conclusion.Contains(subexpression))
                 return false;
 
             this.conclusion.Remove(subexpression);
+            
+            // W pierwszej konkluzji usuń spójnik; nie ma on w takim przypadku sensu.
             if (this.conclusion.Count > 0 && this.conclusion[0].ConjunctionType != null)
                 this.conclusion[0].ConjunctionType = null;
 
@@ -60,22 +62,15 @@ namespace BlazorApp1.Fuzzy
 
         private FuzzySubexpression AddPremiseImpl(FuzzyConjunctionType? conjunction, FuzzyValue fuzzyValue)
         {
-            if (conjunction == null)
-            {
-                // już istnieje pierwsza/bezspójnikowa przesłanka
-                if (this.Premise.Where(x => x.ConjunctionType == null).Any())
-                    return null;
+            FuzzySubexpression subexpr = null;
 
-                FuzzySubexpression subexpr = new FuzzySubexpression(conjunction, fuzzyValue);
-                this.premise.Insert(0, subexpr);
-                return subexpr;
-            }
+            if (this.premise.Count == 0)
+                subexpr = new FuzzySubexpression(null, fuzzyValue);
             else
-            {
-                FuzzySubexpression subexpr = new FuzzySubexpression(conjunction, fuzzyValue);
-                this.premise.Add(subexpr);
-                return subexpr;
-            }
+                subexpr = new FuzzySubexpression(conjunction ?? FuzzyConjunctionType.And, fuzzyValue);
+
+            this.premise.Add(subexpr);
+            return subexpr;
         }
 
         public FuzzySubexpression AddPremise(FuzzyConjunctionType conjunction, FuzzyValue fuzzyValue = null) 
@@ -89,11 +84,17 @@ namespace BlazorApp1.Fuzzy
 
         public bool RemovePremise(FuzzySubexpression subexpression)
         {
-            if (!this.Premise.Contains(subexpression))
+            if (!this.premise.Contains(subexpression))
                 return false;
 
             this.premise.Remove(subexpression);
+
+            // W pierwszej konkluzji usuń spójnik; nie ma on w takim przypadku sensu.
+            if (this.premise.Count > 0 && this.premise[0].ConjunctionType != null)
+                this.premise[0].ConjunctionType = null;
+
             return true;
+
         }
 
 

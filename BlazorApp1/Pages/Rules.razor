@@ -31,6 +31,7 @@
                                             {
                                                 <a class="dropdown-item @(premise_expression.ConjunctionType == (FuzzyConjunctionType)item ? "active":"")"
                                                    href="#"
+                                                   @onclick="@(()=> { premise_expression.ConjunctionType = (FuzzyConjunctionType)item; })"
                                                    @onclick:preventDefault>@(((FuzzyConjunctionType)item).GetEnumDescription())</a>
                                             }
 

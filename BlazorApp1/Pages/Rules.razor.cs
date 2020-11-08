@@ -11,8 +11,8 @@ namespace BlazorApp1.Pages
     { 
         private async Task OnRemovePremiseClicked(FuzzyRule rule, FuzzySubexpression premiseExpression)
         {
-            string representation = premiseExpression.Value == null ? "" : $"<p class=\"font-weight-light\">{premiseExpression}</p>";
-            if (!await MessageBox.OkCancel(this.Modal, "Pytanie", $"Czy chcesz usunąć poniższą <b>przesłankę</b>?{representation}"))
+            string representation = premiseExpression.Value == null ? "" : $"<p class=\"font-weight-light bg-light rounded\">{premiseExpression}</p>";
+            if (!await MessageBox.OkCancel(this.Modal, "Pytanie", $"Czy chcesz usunąć wybraną <b>przesłankę</b>?{representation}"))
                 return;
 
             //Model m = ModelProvider.Model;
@@ -21,8 +21,8 @@ namespace BlazorApp1.Pages
 
         private async Task OnRemoveConclusionClicked(FuzzyRule rule, FuzzySubexpression conclusionExpression)
         {
-            string representation = conclusionExpression.Value == null ? "" : $"<p class=\"font-weight-light\">{conclusionExpression}</p>";
-            if (!await MessageBox.OkCancel(this.Modal, "Pytanie", $"Czy chcesz usunąć poniższą <b>konkluzję</b>?{representation}"))
+            string representation = conclusionExpression.Value == null ? "" : $"<p class=\"font-weight-light bg-light rounded\">{conclusionExpression}</p>";
+            if (!await MessageBox.OkCancel(this.Modal, "Pytanie", $"Czy chcesz usunąć wybraną <b>konkluzję</b>?{representation}"))
                 return;
 
             Model m = ModelProvider.Model;
@@ -47,7 +47,7 @@ namespace BlazorApp1.Pages
 
         private async Task OnRemoveRuleClicked(FuzzyRule rule)
         {
-            if (!await MessageBox.OkCancel(this.Modal, "Pytanie", $"Czy chcesz usunąć poniższą <b>regułę</b>?<p class=\"font-weight-light\">{rule}</p>"))
+            if (!await MessageBox.OkCancel(this.Modal, "Pytanie", $"Czy chcesz usunąć wybraną <b>regułę</b>?<p class=\"font-weight-light bg-light rounded\">{rule}</p>"))
                 return;
 
             Model m = ModelProvider.Model;

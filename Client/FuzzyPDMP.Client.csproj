@@ -9,11 +9,37 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="3.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Build" Version="3.2.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="3.2.1" PrivateAssets="all" />
-    <PackageReference Include="System.Net.Http.Json" Version="3.2.0" />
+    <PackageReference Include="RazorComponentsPreview" Version="0.6.0" />
+    <PackageReference Include="System.Net.Http.Json" Version="3.2.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\FuzzyPDMP.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Include="..\**\*.razor" />
+    <Watch Include="..\**\*.scss" />
+    <Watch Include="..\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Pages\Counter - Copy - Copy.razor.cs" />
+    <Watch Remove="Pages\Counter - Copy.razor.cs" />
+    <Watch Remove="Pages\FetchData.razor.cs" />
+    <Watch Remove="Pages\Values.razor.cs" />
+    <Watch Remove="Pages\Variables.razor" />
+    <Watch Remove="Shared\MainLayout.razor.cs" />
+    <Watch Remove="Shared\NavMenu.razor.cs" />
+    <Watch Remove="Shared\SurveyPrompt.razor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\Counter - Copy - Copy.razor.cs">
+      <DependentUpon>Counter - Copy.razor.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Counter - Copy.razor.cs">
+      <DependentUpon>Counter.razor.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

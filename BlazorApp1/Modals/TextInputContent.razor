@@ -1,0 +1,12 @@
+﻿
+<div>
+
+    <div class="form-group">
+        <label for="valueeditor">@(new MarkupString(Message))</label>
+        <input type="text" class="form-control form-control-sm" placeholder="Wprowadź wartość..." id="valueeditor" @bind="Value">
+    </div>
+
+    <button @onclick="OkClicked" class="btn btn-primary">Zatwierdź</button>
+    <button @onclick="CancelClicked" class="btn btn-secondary">Cancel</button>
+    @*<button @onclick="TestClicked" class="btn btn-secondary">Test</button>*@
+</div>

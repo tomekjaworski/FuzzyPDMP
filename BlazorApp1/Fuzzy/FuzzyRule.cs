@@ -8,8 +8,8 @@ namespace BlazorApp1.Fuzzy
 {
     public class FuzzyRule
     {
-        private List<FuzzySubexpression> premise;
-        private List<FuzzySubexpression> conclusion;
+        readonly private List<FuzzySubexpression> premise;
+        readonly private List<FuzzySubexpression> conclusion;
 
         public FuzzySubexpression[] Premise => this.premise.ToArray();
 
@@ -62,8 +62,7 @@ namespace BlazorApp1.Fuzzy
 
         private FuzzySubexpression AddPremiseImpl(FuzzyConjunctionType? conjunction, FuzzyValue fuzzyValue)
         {
-            FuzzySubexpression subexpr = null;
-
+            FuzzySubexpression subexpr;
             if (this.premise.Count == 0)
                 subexpr = new FuzzySubexpression( FuzzyConjunctionType.None, fuzzyValue);
             else

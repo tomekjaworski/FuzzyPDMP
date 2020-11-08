@@ -10,6 +10,7 @@ namespace BlazorApp1.Fuzzy
     public class FuzzyVariable
     {
         private List<FuzzyValue> values;
+
         private MembershipFunctionFamily membership_family;
         private NamedParameter dmin, dmax;
 
@@ -46,8 +47,7 @@ namespace BlazorApp1.Fuzzy
                 foreach (var v in this.values)
                     v.SetMembershipType(value);
 
-                bool is_ok = this.ValidateCrispParameters();
-
+                this.ValidateCrispParameters();
             }
         }
 

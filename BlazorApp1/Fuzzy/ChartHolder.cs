@@ -13,7 +13,7 @@ namespace BlazorApp1.Fuzzy
 {
     public class ChartHolder
     {
-        private FuzzyVariable parent_variable;
+        readonly private FuzzyVariable parent_variable;
 
         public LineConfig Config;
         public ChartJsLineChart Chart;

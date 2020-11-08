@@ -25,7 +25,6 @@ namespace BlazorApp1.Pages
             if (!await MessageBox.OkCancel(this.Modal, "Pytanie", $"Czy chcesz usunąć wybraną <b>konkluzję</b>?{representation}"))
                 return;
 
-            Model m = ModelProvider.Model;
             rule.RemoveConclusion(conclusionExpression);
         }
 

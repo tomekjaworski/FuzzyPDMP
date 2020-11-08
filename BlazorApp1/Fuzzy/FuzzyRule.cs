@@ -130,7 +130,7 @@ namespace BlazorApp1.Fuzzy
             get => this.fuzzy_value;
             set {
                 this.fuzzy_value = value;
-                this.fuzzy_variable = value?.Variable;
+                this.fuzzy_variable = value.Variable;
                 //this.VariableHolder = value.Variable;
             }
         }

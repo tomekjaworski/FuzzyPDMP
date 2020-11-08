@@ -99,6 +99,7 @@
             FuzzyRule r4 = model.AddRule();
             _ = r4.AddPremise(var2_val3);
             _ = r4.AddConclusion(var1_val3);
+            _ = r4.AddEmptyConclusion();
         }
     }
 }

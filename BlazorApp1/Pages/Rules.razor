@@ -24,11 +24,14 @@
                             @foreach (FuzzySubexpression premise_expression in rule.Premise)
                             {
                                 <div class="d-flex d-flex-row mb-1">
-                                    <btn-group style=@(premise_expression.ConjunctionType == null ? "display:none" : "display:block")>
-                                        <button class="btn dropdown-toggle btn-light" data-toggle="dropdown"> @(premise_expression.ConjunctionType.HasValue ? premise_expression.ConjunctionType.Value.GetEnumDescription() : "???") </button>
+                                    <btn-group style=@(premise_expression.ConjunctionType == FuzzyConjunctionType.None ? "display:none" : "display:block")>
+                                        <button class="btn dropdown-toggle btn-light" data-toggle="dropdown"> @(premise_expression.ConjunctionType == FuzzyConjunctionType.None ? "??": premise_expression.ConjunctionType.GetEnumDescription()) </button>
                                         <div class="dropdown-menu">
                                             @foreach (Enum item in Enum.GetValues(typeof(FuzzyConjunctionType)))
                                             {
+                                                if ((FuzzyConjunctionType)item == FuzzyConjunctionType.None)
+                                                    continue;
+
                                                 <a class="dropdown-item @(premise_expression.ConjunctionType == (FuzzyConjunctionType)item ? "active":"")"
                                                    href="#"
                                                    @onclick="@(()=> { premise_expression.ConjunctionType = (FuzzyConjunctionType)item; })"
@@ -97,7 +100,7 @@
                             {
 
                                 <div class="d-flex d-flex-row mb-1">
-                                    <div class="py-1 pr-2"> @(conclusion_expression.ConjunctionType.HasValue ? conclusion_expression.ConjunctionType.Value.GetEnumDescription() : "") </div>
+                                    <div class="py-1 pr-2"> @(conclusion_expression.ConjunctionType != FuzzyConjunctionType.None ? conclusion_expression.ConjunctionType.GetEnumDescription() : "") </div>
                                     <!-- xxxx -->
                                     <btn-group class="">
                                         <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">@(conclusion_expression.Variable?.Name ?? "Wybierz...") </button>

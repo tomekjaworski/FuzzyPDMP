@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BlazorApp1.Models;
 using RazorComponentsPreview;
 using Blazored.Modal;
 
@@ -29,8 +28,6 @@ namespace BlazorApp1
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
-            //services.AddRazorComponentsRuntimeCompilation();
             services.AddBlazoredModal();
 
         }
@@ -56,8 +53,6 @@ namespace BlazorApp1
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
-
-            //app.UseRazorComponentsRuntimeCompilation();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace BlazorApp1.Fuzzy
         {
             FuzzySubexpression fs;
             if (this.conclusion.Count == 0)
-                fs = new FuzzySubexpression(null, fuzzyValue);
+                fs = new FuzzySubexpression( FuzzyConjunctionType.None, fuzzyValue);
             else
                 fs = new FuzzySubexpression(FuzzyConjunctionType.And, fuzzyValue);
 
@@ -37,7 +37,7 @@ namespace BlazorApp1.Fuzzy
         {
             FuzzySubexpression fs;
             if (this.conclusion.Count == 0)
-                fs = new FuzzySubexpression(null, null);
+                fs = new FuzzySubexpression(FuzzyConjunctionType.None, null);
             else
                 fs = new FuzzySubexpression(FuzzyConjunctionType.And, null);
 
@@ -54,8 +54,8 @@ namespace BlazorApp1.Fuzzy
             this.conclusion.Remove(subexpression);
             
             // W pierwszej konkluzji usuń spójnik; nie ma on w takim przypadku sensu.
-            if (this.conclusion.Count > 0 && this.conclusion[0].ConjunctionType != null)
-                this.conclusion[0].ConjunctionType = null;
+            if (this.conclusion.Count > 0 && this.conclusion[0].ConjunctionType != FuzzyConjunctionType.None)
+                this.conclusion[0].ConjunctionType = FuzzyConjunctionType.None;
 
             return true;
         }
@@ -65,7 +65,7 @@ namespace BlazorApp1.Fuzzy
             FuzzySubexpression subexpr = null;
 
             if (this.premise.Count == 0)
-                subexpr = new FuzzySubexpression(null, fuzzyValue);
+                subexpr = new FuzzySubexpression( FuzzyConjunctionType.None, fuzzyValue);
             else
                 subexpr = new FuzzySubexpression(conjunction ?? FuzzyConjunctionType.And, fuzzyValue);
 
@@ -90,8 +90,8 @@ namespace BlazorApp1.Fuzzy
             this.premise.Remove(subexpression);
 
             // W pierwszej konkluzji usuń spójnik; nie ma on w takim przypadku sensu.
-            if (this.premise.Count > 0 && this.premise[0].ConjunctionType != null)
-                this.premise[0].ConjunctionType = null;
+            if (this.premise.Count > 0 && this.premise[0].ConjunctionType != FuzzyConjunctionType.None)
+                this.premise[0].ConjunctionType = FuzzyConjunctionType.None;
 
             return true;
 
@@ -110,11 +110,7 @@ namespace BlazorApp1.Fuzzy
 
     public enum FuzzyConjunctionType
     {
-        //[Description("---")]
-        //None,
-
-        //[Description("lub/oraz")]
-        //Unselected,
+        None,
 
         [Description("oraz")]
         And,
@@ -128,13 +124,13 @@ namespace BlazorApp1.Fuzzy
         private FuzzyValue fuzzy_value;
         private FuzzyVariable fuzzy_variable;
 
-        public FuzzyConjunctionType? ConjunctionType { get; set; }
+        public FuzzyConjunctionType ConjunctionType { get; set; }
 
         public FuzzyValue Value {
             get => this.fuzzy_value;
             set {
                 this.fuzzy_value = value;
-                this.fuzzy_variable = value.Variable;
+                this.fuzzy_variable = value?.Variable;
                 //this.VariableHolder = value.Variable;
             }
         }
@@ -150,7 +146,7 @@ namespace BlazorApp1.Fuzzy
             }
         }
 
-        public FuzzySubexpression(FuzzyConjunctionType? fuzzyConjunctionType, FuzzyValue fuzzyValue)
+        public FuzzySubexpression(FuzzyConjunctionType fuzzyConjunctionType, FuzzyValue fuzzyValue)
         {
             this.ConjunctionType = fuzzyConjunctionType;
             //this.Value = fuzzyValue;
@@ -160,9 +156,9 @@ namespace BlazorApp1.Fuzzy
         }
 
         public override string ToString() => 
-            this.ConjunctionType == null ?
-            $"[{this.Value.Variable.Name} IS {this.Value.Name}]" :
-            $"{this.ConjunctionType} [{this.Value.Variable.Name} IS {this.Value.Name}]";
+            this.ConjunctionType == FuzzyConjunctionType.None ?
+            $"[{this.Value?.Variable?.Name ?? "..." } IS {this.Value?.Name ?? "..."}]" :
+            $"{this.ConjunctionType} [{this.Value?.Variable?.Name ?? "..."} IS {this.Value?.Name ?? "..." }]";
     }
 }
 

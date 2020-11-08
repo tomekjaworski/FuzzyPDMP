@@ -13,9 +13,9 @@ namespace BlazorApp1.Fuzzy
         private List<FuzzyVariable> variables;
         private List<FuzzyRule> rules;
 
-        public FuzzyVariable[] Variables => this.variables.ToArray();
+        public List<FuzzyVariable> Variables => this.variables;
 
-        public FuzzyRule[] Rules => this.rules.ToArray();
+        public List<FuzzyRule> Rules => this.rules;
 
 
         public Model()

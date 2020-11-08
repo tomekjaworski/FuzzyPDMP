@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>a41588c3-f880-46ba-abef-d76f8ef828f2</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +16,6 @@
   <ItemGroup>
     <PackageReference Include="Blazored.Modal" Version="5.1.0" />
     <PackageReference Include="ChartJs.Blazor" Version="1.1.0" />
-    <PackageReference Include="LiveSharp" Version="1.6.17" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="RazorComponentsPreview" Version="0.6.0" />
     <PackageReference Include="System.Collections" Version="4.3.0" />

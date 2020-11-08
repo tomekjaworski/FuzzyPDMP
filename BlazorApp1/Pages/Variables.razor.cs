@@ -72,7 +72,7 @@ namespace BlazorApp1.Pages
         }
 
 
-        private async Task OnAddValue(MouseEventArgs e, FuzzyVariable variable)
+        private void OnAddValue(MouseEventArgs e, FuzzyVariable variable)
         {
             Random rnd = new Random();
             variable.AddValue(
@@ -80,7 +80,7 @@ namespace BlazorApp1.Pages
                 $"Description-{rnd.Next():X08}");
         }
 
-        private async Task OnAddVariable(MouseEventArgs e)
+        private void OnAddVariable(MouseEventArgs e)
         {
             Random rnd = new Random();
             ModelProvider.Model.AddVariable(

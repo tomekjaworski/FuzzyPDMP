@@ -1,4 +1,11 @@
-﻿namespace BlazorApp1.Fuzzy
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.IO;
+using System.Text;
+
+namespace BlazorApp1.Fuzzy
 {
     public class ModelProvider
     {
@@ -7,7 +14,6 @@
         public static ModelProvider Provider => mp;
         public static Model Model => mp.model;
 
-
         static ModelProvider()
         {
             mp = new ModelProvider();
@@ -15,8 +21,23 @@
         #endregion
 
         private Model model;
+        string previous_json_document;
+
 
         private ModelProvider()
+        {
+            this.model = new Model();
+
+            //this.CreateDummyModel();
+            //this.StoreModel();
+            //this.StoreModel();
+            //this.CreateDummyModel();
+            //this.StoreModel();
+            //this.StoreModel();
+            this.LoadModel();
+        }
+
+        private void CreateDummyModel()
         {
             this.model = new Model();
 
@@ -100,6 +121,74 @@
             _ = r4.AddPremise(var2_val3);
             _ = r4.AddConclusion(var1_val3);
             _ = r4.AddEmptyConclusion();
+
+
+        }
+
+        internal void LoadModel()
+        {
+            var settings = new JsonSerializerSettings()
+            {
+                PreserveReferencesHandling = PreserveReferencesHandling.All,
+                TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple,
+                TypeNameHandling = TypeNameHandling.All,
+            };
+
+            try
+            {
+                Console.Write("Wczytywnie modelu: ");
+                string json = File.ReadAllText(Path.Combine("data", "model.json"), Encoding.UTF8);
+                this.model = JsonConvert.DeserializeObject<Model>(json, settings);
+
+                Console.WriteLine("Ok.");
+
+            } catch(Exception ex)
+            {
+                Console.WriteLine($"Błąd: {ex}");
+            }
+        }
+
+        internal void StoreModel()
+        {
+
+            var settings = new JsonSerializerSettings()
+            {
+                PreserveReferencesHandling = PreserveReferencesHandling.All,
+                TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple,
+                TypeNameHandling = TypeNameHandling.All,
+            };
+
+            try
+            {
+                Console.Write("Zapis modelu: ");
+                string current_json_document = JsonConvert.SerializeObject(this.model, Formatting.Indented, settings);
+                if (current_json_document == previous_json_document)
+                {
+                    Console.WriteLine("brak zmian; zapis pominięty.");
+                    return;
+                }
+
+                Directory.CreateDirectory("data");
+                string[] file_names = new string[] {
+                    "model.json",
+                    $"model-{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}.json"
+                };
+
+                foreach (string file_name in file_names)
+                    File.WriteAllText(Path.Combine("data", file_name), 
+                        current_json_document, 
+                        Encoding.UTF8);
+
+                previous_json_document = current_json_document;
+                Console.WriteLine("Ok.");
+
+            }catch (Exception ex)
+            {
+                Console.WriteLine($"Zapis modelu: Błąd podczas zapisu pliku: {ex}");
+            }
+
+
         }
     }
 }
+

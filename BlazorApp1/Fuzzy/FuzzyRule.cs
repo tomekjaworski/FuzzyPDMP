@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,15 +10,18 @@ namespace BlazorApp1.Fuzzy
 {
     public class FuzzyRule
     {
-        readonly private List<FuzzySubexpression> premise;
-        readonly private List<FuzzySubexpression> conclusion;
+        public Guid ID { get; private set; }
 
-        public FuzzySubexpression[] Premise => this.premise.ToArray();
+        private List<FuzzySubexpression> premise;
+        private List<FuzzySubexpression> conclusion;
 
-        public FuzzySubexpression[] Conclusion => this.conclusion.ToArray();
+        public List<FuzzySubexpression> Premise => this.premise;
+
+        public List<FuzzySubexpression> Conclusion => this.conclusion;
 
         public FuzzyRule()
         {
+            this.ID = Guid.NewGuid();
             this.premise = new List<FuzzySubexpression>();
             this.conclusion = new List<FuzzySubexpression>();
         }
@@ -123,13 +128,14 @@ namespace BlazorApp1.Fuzzy
         private FuzzyValue fuzzy_value;
         private FuzzyVariable fuzzy_variable;
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public FuzzyConjunctionType ConjunctionType { get; set; }
 
         public FuzzyValue Value {
             get => this.fuzzy_value;
             set {
                 this.fuzzy_value = value;
-                this.fuzzy_variable = value.Variable;
+                this.fuzzy_variable = value?.Variable;
                 //this.VariableHolder = value.Variable;
             }
         }

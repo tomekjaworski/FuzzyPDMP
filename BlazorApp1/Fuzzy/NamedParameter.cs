@@ -4,7 +4,7 @@
     {
         private double value;
 
-        public string ShortName { get; }
+        public string ShortName { get; set; }
 
         public string FullName => ParentValue == null ? this.ShortName :
             $"{this.ParentValue.Name}::{this.ShortName}";
@@ -21,8 +21,13 @@
 
         public bool IsValid { get; set; }
 
-        public FuzzyVariable ParentVariable { get; }
-        public FuzzyValue ParentValue { get; }
+        public FuzzyVariable ParentVariable { get; set; }
+        public FuzzyValue ParentValue { get; set; }
+
+        public NamedParameter()
+        {
+            //
+        }
 
         public NamedParameter(string shortName, double defaultValue,
             FuzzyVariable parentVariable, FuzzyValue parentValue)
@@ -34,7 +39,10 @@
             this.ParentVariable = parentVariable;
         }
 
-        public override string ToString() => $"{this.FullName} [{this.Value:N4}]";
+        public override string ToString() => string.Format("{0} [{1:N4}; {2}]",
+            this.FullName, this.Value,
+            this.IsValid ? "valid" : "not valid"
+            );
     }
 }
 

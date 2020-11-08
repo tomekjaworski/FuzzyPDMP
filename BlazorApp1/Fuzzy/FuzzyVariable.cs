@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -9,6 +11,8 @@ namespace BlazorApp1.Fuzzy
 {
     public class FuzzyVariable
     {
+        public Guid ID { get; private set; }
+
         private List<FuzzyValue> values;
 
         private MembershipFunctionFamily membership_family;
@@ -18,7 +22,52 @@ namespace BlazorApp1.Fuzzy
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public FuzzyValue[] Values => this.values.ToArray();
+        public List<FuzzyValue> Values => this.values;
+
+        [JsonConverter(typeof(StringEnumConverter))]
+        public MembershipFunctionFamily MembershipType {
+            get => this.membership_family;
+            set {
+                this.membership_family = value;
+                foreach (var v in this.values)
+                    v.SetMembershipType(value);
+
+                this.ValidateCrispParameters();
+            }
+        }
+
+        [JsonIgnore]
+        public NamedParameter[] Parameters {
+            get {
+                List<NamedParameter> pars = new List<NamedParameter>();
+                pars.AddRange(new[] { this.dmin, this.dmax });
+                pars.AddRange(this.values.SelectMany(x => x.MembershipParameters));
+                return pars.ToArray();
+            }
+        }
+
+        public NamedParameter Minimum => this.dmin;
+        public NamedParameter Maximum => this.dmax;
+
+        [JsonIgnore]
+        public ChartHolder ChartHolder { get; set; }
+
+
+
+        public FuzzyVariable()
+        {
+            this.ID = Guid.NewGuid();
+            this.ResetChartHolder();
+
+            this.values = new List<FuzzyValue>();
+            this.membership_family = MembershipFunctionFamily.Unspecified;
+
+            this.dmin = new NamedParameter("Dmin", 0, this, null);
+            this.dmax = new NamedParameter("Dmax", 10, this, null);
+            bool is_ok = this.ValidateCrispParameters();
+            if (is_ok)
+                this.ChartHolder.UpdateChart();
+        }
 
         public bool ValidateCrispParameters()
         {
@@ -40,57 +89,7 @@ namespace BlazorApp1.Fuzzy
 
         public override string ToString() => $"{Name}: {Description}";
 
-        public MembershipFunctionFamily MembershipType {
-            get => this.membership_family;
-            set {
-                this.membership_family = value;
-                foreach (var v in this.values)
-                    v.SetMembershipType(value);
-
-                this.ValidateCrispParameters();
-            }
-        }
-
-        public NamedParameter[] Parameters {
-            get {
-                List<NamedParameter> pars = new List<NamedParameter>();
-                pars.AddRange(new[] { this.dmin, this.dmax });
-                pars.AddRange(this.values.SelectMany(x => x.Parameters));
-                return pars.ToArray();
-            }
-        }
-
-        public NamedParameter Minimum => this.dmin;
-        public NamedParameter Maximum => this.dmax;
-
-        public ChartHolder ChartHolder { get; set; }
-
-
-        public FuzzyVariable()
-        {
-
-            //Bitmap bmp = new Bitmap(512, 128, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            //using(Graphics g = Graphics.FromImage(bmp))
-            //{
-            //    g.FillRectangle(Brushes.Red, 0, 0, 512, 128);
-            //}
-
-            //using (var stream = new MemoryStream())
-            //{
-            //    bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-            //    this.ImageBytes = stream.ToArray();
-            //}
-            this.ResetChartHolder();
-
-            this.values = new List<FuzzyValue>();
-            this.membership_family = MembershipFunctionFamily.Unspecified;
-
-            this.dmin = new NamedParameter("Dmin", 0, this, null);
-            this.dmax = new NamedParameter("Dmax", 10, this, null);
-            bool is_ok = this.ValidateCrispParameters();
-            if (is_ok)
-                this.ChartHolder.UpdateChart();
-        }
+       
 
         public FuzzyValue AddValue(string name, string description)
         {

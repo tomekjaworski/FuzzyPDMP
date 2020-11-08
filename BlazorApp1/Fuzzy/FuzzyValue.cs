@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -9,6 +11,8 @@ namespace BlazorApp1.Fuzzy
 
     public class FuzzyValue
     {
+        public Guid ID { get; private set; }
+
         private MembershipFunctionFamily membership_family;
         private Dictionary<MembershipFunctionFamily, OrderedDictionary> parameters;
 
@@ -17,8 +21,12 @@ namespace BlazorApp1.Fuzzy
         public string Description { get; set; }
         public FuzzyVariable Variable { get; set; }
 
-        public NamedParameter[] Parameters => this.parameters[this.membership_family].Values.OfType<NamedParameter>().ToArray();
+        [JsonIgnore]
+        public NamedParameter[] MembershipParameters => this.parameters[this.membership_family].Values.OfType<NamedParameter>().ToArray();
 
+        public Dictionary<MembershipFunctionFamily, OrderedDictionary> AllParameters => this.parameters;
+
+        [JsonConverter(typeof(StringEnumConverter))] 
         public MembershipFunctionFamily MembershipType => this.membership_family;
 
         public override string ToString() => $"{Name}: {Description}";
@@ -28,6 +36,8 @@ namespace BlazorApp1.Fuzzy
 
         public FuzzyValue(FuzzyVariable fuzzyVariable, string name, string description, MembershipFunctionFamily membershipFamily)
         {
+            this.ID = Guid.NewGuid();
+
             this.Variable = fuzzyVariable;
 
             this.Name = name;

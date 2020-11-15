@@ -17,7 +17,7 @@ namespace BlazorApp1.Pages
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            foreach (FuzzyVariable fvar in ModelProvider.Model.Variables)
+            foreach (FuzzyVariable fvar in BoardProvider.Model.Variables)
             {
                 fvar.ResetChartHolder();
                 fvar.ChartHolder.UpdateChart();
@@ -58,7 +58,7 @@ namespace BlazorApp1.Pages
             if (!await MessageBox.OkCancel(this.Modal, "Pytanie", $"Czy chcesz <b>usunąć</b> zmienną lingwistyczną {variable.Name}?<br/>Usunięcie zmiennej nie spowoduje usunięcia reguł związanych z tą zmienną"))
                 return;
 
-            ModelProvider.Model.RemoveVariable(variable);
+            BoardProvider.Model.RemoveVariable(variable);
         }
 
 
@@ -83,7 +83,7 @@ namespace BlazorApp1.Pages
         private void OnAddVariable(MouseEventArgs e)
         {
             Random rnd = new Random();
-            ModelProvider.Model.AddVariable(
+            BoardProvider.Model.AddVariable(
                 $"Value-{rnd.Next():X08}",
                 $"Description-{rnd.Next():X08}");
         }

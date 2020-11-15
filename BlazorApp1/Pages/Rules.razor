@@ -1,6 +1,7 @@
 ﻿@page "/Rules"
 @using BlazorApp1.Fuzzy
 @inject IModalService Modal
+@inject Blazored.SessionStorage.ISessionStorageService SessionStorage
 
 
 <div class="container">
@@ -8,7 +9,7 @@
         <div class="col-md-12">
             <!-- XXXXXXXXXXXXXXXXXX -->
 
-            @foreach (FuzzyRule rule in ModelProvider.Model.Rules)
+            @foreach (FuzzyRule rule in this.selected_model.Rules)
             {
                 <div class="card-group mb-4">
                     <div class="card">
@@ -46,7 +47,7 @@
                                     <btn-group>
                                         <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">@(premise_expression.Variable?.Name ?? "Wybierz...")</button>
                                         <div class="dropdown-menu">
-                                            @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.ModelProvider.Model.Variables)
+                                            @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.BoardProvider.Model.Variables)
                                             {
                                                 <a class="dropdown-item @(premise_expression.Variable == fvar ? "active ":"")" href="#"
                                                    @onclick="@(()=> { premise_expression.Variable = fvar; })" @onclick:preventDefault>
@@ -105,7 +106,7 @@
                                     <btn-group class="">
                                         <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">@(conclusion_expression.Variable?.Name ?? "Wybierz...") </button>
                                         <div class="dropdown-menu ">
-                                            @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.ModelProvider.Model.Variables)
+                                            @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.BoardProvider.Model.Variables)
                                             {
                                                 <a class="dropdown-item @(conclusion_expression.Variable == fvar ? "active ":"")" href="#"
                                                    @onclick="@(()=> { conclusion_expression.Variable = fvar; })" @onclick:preventDefault>

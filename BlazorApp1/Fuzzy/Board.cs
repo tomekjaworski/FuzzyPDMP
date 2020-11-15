@@ -8,21 +8,18 @@ using System.Threading.Tasks;
 
 namespace BlazorApp1.Fuzzy
 {
-    public class Model
+    public class Board
     {
         private List<FuzzyVariable> variables;
-        private List<FuzzyRule> rules;
+        private List<FuzzyModel> models;
 
         public List<FuzzyVariable> Variables => this.variables;
+        public List<FuzzyModel> Models => this.models;
 
-        public List<FuzzyRule> Rules => this.rules;
-
-
-        public Model()
+        public Board()
         {
             this.variables = new List<FuzzyVariable>();
-            this.rules = new List<FuzzyRule>();
-
+            this.models = new List<FuzzyModel>();
         }
 
         public FuzzyVariable AddVariable(string name, string description)
@@ -35,16 +32,9 @@ namespace BlazorApp1.Fuzzy
             return @var;
         }
 
-        public bool RemoveRule(FuzzyRule rule)
+        internal FuzzyModel GetModelBuGuid(Guid modelGuid)
         {
-            if (!this.rules.Contains(rule))
-                return false;
-
-
-            this.rules.Remove(rule);
-            //todo: aktualizacja reguł
-
-            return true;
+            return this.models.Where(x => x.ID == modelGuid).FirstOrDefault();
         }
 
         public bool RemoveVariable(FuzzyVariable variable)
@@ -59,12 +49,11 @@ namespace BlazorApp1.Fuzzy
             return true;
         }
 
-        internal FuzzyRule AddRule()
+        internal FuzzyModel AddModel(string modelName, string modelDescription)
         {
-            FuzzyRule fr = new FuzzyRule();
-            this.rules.Add(fr);
-            return fr;
+            FuzzyModel fm = new FuzzyModel(this) { Name = modelName, Description = modelDescription };
+            this.models.Add(fm);
+            return fm;
         }
-
     }
 }

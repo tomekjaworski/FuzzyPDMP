@@ -24,7 +24,7 @@ namespace BlazorApp1
             Console.WriteLine($"Katalog roboczy: {Directory.GetCurrentDirectory()}");
             Console.WriteLine($"Wejście: {System.Reflection.Assembly.GetExecutingAssembly().Location}; PID:{Process.GetCurrentProcess().Id}");
 
-            ModelProvider.Provider.LoadModel();
+            BoardProvider.Provider.LoadBoard();
 
             cts = new CancellationTokenSource();
             Thread th = new Thread(new ThreadStart(StoreThread));
@@ -32,7 +32,7 @@ namespace BlazorApp1
             CreateHostBuilder(args).Build().Run();
             cts.Cancel();
             th.Join();
-            ModelProvider.Provider.StoreModel();
+            BoardProvider.Provider.StoreBoard();
         }
 
         private static CancellationTokenSource cts;
@@ -48,7 +48,7 @@ namespace BlazorApp1
                     continue;
 
                 last_store = now;
-                ModelProvider.Provider.StoreModel(); // todo: threadsafe
+                BoardProvider.Provider.StoreBoard(); // todo: threadsafe
             }
         }
 

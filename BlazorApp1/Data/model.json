@@ -7,7 +7,7 @@
       {
         "$id": "2",
         "$type": "BlazorApp1.Fuzzy.FuzzyVariable, BlazorApp1",
-        "ID": "e978a461-42a9-4ba3-8d88-180eb37b3c45",
+        "ID": "e199b1bf-9b24-442f-9e9b-275e06e984de",
         "Name": "wzrost",
         "Description": "Opis zmiennej Nazwa I",
         "Values": {
@@ -16,7 +16,7 @@
             {
               "$id": "3",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
-              "ID": "d220fd3c-475f-41d9-bae8-97edaddd61e1",
+              "ID": "b443dbad-c3d8-4c9d-a980-29c325a47de1",
               "Name": "Mało",
               "Description": "Opis wartości Mało",
               "Variable": {
@@ -86,7 +86,7 @@
             {
               "$id": "10",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
-              "ID": "dbc8d8ab-c32f-40bd-aeae-54c3023eba0f",
+              "ID": "10c8ea46-062e-402e-8f8e-4aeaae77c263",
               "Name": "Średnio",
               "Description": "Opis wartości Średnio",
               "Variable": {
@@ -156,7 +156,7 @@
             {
               "$id": "17",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
-              "ID": "e3ba70dc-42e1-4600-9c7d-a6bf892897e1",
+              "ID": "c8b7d56b-99dc-4039-b1bb-533fde7dfbc9",
               "Name": "Dużo",
               "Description": "Opis wartości Dużo",
               "Variable": {
@@ -226,7 +226,7 @@
             {
               "$id": "24",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
-              "ID": "ce68ca05-7ce8-4c2a-aee5-a889f742e8df",
+              "ID": "6e68a8fe-ad59-48cb-9c24-f8611d19c658",
               "Name": "Value-51736AAD",
               "Description": "Description-22EA8A6C",
               "Variable": {
@@ -296,7 +296,7 @@
             {
               "$id": "31",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
-              "ID": "1bfec413-4018-4f67-8a64-e32842dd04ad",
+              "ID": "427102a4-3c65-4c84-8d64-0f0500f2e6ea",
               "Name": "Value-28276813",
               "Description": "Description-57ACC201",
               "Variable": {
@@ -392,7 +392,7 @@
       {
         "$id": "38",
         "$type": "BlazorApp1.Fuzzy.FuzzyVariable, BlazorApp1",
-        "ID": "1791e78e-181d-4561-9f47-64aa98e7175c",
+        "ID": "9e57745e-1ba3-4488-9425-91bc1ab39f3b",
         "Name": "Nazwa 3",
         "Description": "Opis zmiennej Nazwa III",
         "Values": {
@@ -401,7 +401,7 @@
             {
               "$id": "39",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
-              "ID": "7617f78a-31bd-472d-94ce-76823d7d7555",
+              "ID": "5fc93961-22b7-4aed-b8a8-8f59ea838398",
               "Name": "Negatywny",
               "Description": "Opis wartości Negatywny",
               "Variable": {
@@ -471,7 +471,7 @@
             {
               "$id": "46",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
-              "ID": "81061664-595a-48a1-9912-54273eadc3dd",
+              "ID": "75e88525-85c2-4719-8af8-a7dfc8506d76",
               "Name": "Zerowy",
               "Description": "Opis wartości Zerowy",
               "Variable": {
@@ -541,7 +541,7 @@
             {
               "$id": "53",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
-              "ID": "713c3b32-51a9-40f0-b8b7-bf702661f4c9",
+              "ID": "0d15d128-f947-4ada-9011-6379f9e894e9",
               "Name": "Pozytywny",
               "Description": "Opis wartości Pozytywny",
               "Variable": {
@@ -637,7 +637,7 @@
       {
         "$id": "60",
         "$type": "BlazorApp1.Fuzzy.FuzzyVariable, BlazorApp1",
-        "ID": "028ec1bb-0e0c-4f2f-9d50-fc148536bff0",
+        "ID": "76db4392-a789-4ba2-8a5b-e15f09592043",
         "Name": "Value-6585560A",
         "Description": "Description-3F78075B",
         "Values": {
@@ -689,7 +689,7 @@
             {
               "$id": "63",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "d6c59443-ebd1-42cd-b817-46c23c3c2b33",
+              "ID": "27f061c0-a407-4c70-b32a-c9bef17dc40e",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
@@ -829,7 +829,7 @@
             {
               "$id": "79",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "3415fb8b-89b4-42c5-af16-8fad23301cd5",
+              "ID": "6a30ff1d-5707-47ba-9ea4-5c3b055e7edb",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
@@ -880,7 +880,7 @@
             {
               "$id": "84",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "7f153a34-36b2-4323-9ec8-822702211b04",
+              "ID": "be3c25a2-2154-4006-83cd-04ee92b9196b",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
@@ -927,7 +927,7 @@
             {
               "$id": "88",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "1db41775-6350-48ec-ad4e-1753db73ba55",
+              "ID": "c6f30178-72e5-4e57-8a31-ac284172b864",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
@@ -971,7 +971,7 @@
             {
               "$id": "92",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "dd8aca4b-56ef-48bf-b948-cfbf99a45ee0",
+              "ID": "65b7ba4d-a766-4b3a-9928-6e61b250e150",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -984,7 +984,7 @@
             {
               "$id": "93",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "091d77a7-4bdf-4be6-8bc6-feeb7f5e6996",
+              "ID": "cc3c2431-64e3-4014-b422-807cb1bd5a8a",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -997,7 +997,7 @@
             {
               "$id": "94",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "f3768740-b70b-4e52-b1b1-db468299d3ee",
+              "ID": "5b16cdcd-a0f1-47cc-b645-31cbb8dfe555",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1010,7 +1010,7 @@
             {
               "$id": "95",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "baa8f22e-76a9-4bd1-b48c-3f8dbc026451",
+              "ID": "7e270e92-99e8-45b9-ac6e-61066e7e7d67",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1023,7 +1023,7 @@
             {
               "$id": "96",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "30f29da6-7797-49f3-adbc-674565c98c11",
+              "ID": "0006a51a-6d52-41f0-90ef-bb7f6bc1b541",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1036,7 +1036,7 @@
             {
               "$id": "97",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "e7a51931-df49-4583-b06e-a3963f9f2bdd",
+              "ID": "6c4679d2-addc-45f5-91b1-ade6d13c100a",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1049,7 +1049,7 @@
             {
               "$id": "98",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "00cf3f00-17b1-4c33-9665-ccae4ee9dd49",
+              "ID": "85f59687-b78d-4721-bf93-9591d2203aef",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1062,7 +1062,7 @@
             {
               "$id": "99",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "a2330997-8d3e-41ea-a9cf-35d2dfc4ec1b",
+              "ID": "b119ea21-efc8-4e98-9eb3-86adbb396802",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1075,7 +1075,7 @@
             {
               "$id": "100",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "e276cfd8-50c5-4705-a12b-ce25bd05a824",
+              "ID": "89ae9019-d55f-4ca4-83a0-0c329ffaa967",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1088,7 +1088,7 @@
             {
               "$id": "101",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "6d0a3566-3135-47c5-b5d4-e9abe445d48f",
+              "ID": "ec597c11-3d9a-4de9-b147-440b0ace93ee",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1101,7 +1101,7 @@
             {
               "$id": "102",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "1e5e9dd0-091f-49f9-a8d5-302ef012394a",
+              "ID": "0b0317a4-b4ae-46bc-85bb-d5f11a899d30",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1112,21 +1112,6 @@
               }
             }
           ]
-        }
-      },
-      {
-        "$id": "103",
-        "$type": "BlazorApp1.Fuzzy.FuzzyModel, BlazorApp1",
-        "ID": "0d10fb51-6bb2-4388-bc43-e3ed8c450aae",
-        "Name": null,
-        "Description": null,
-        "Board": {
-          "$ref": "1"
-        },
-        "Rules": {
-          "$id": "104",
-          "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1]], System.Private.CoreLib",
-          "$values": []
         }
       }
     ]

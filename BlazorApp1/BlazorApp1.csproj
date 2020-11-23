@@ -38,4 +38,10 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="StartDevelopmentSession.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

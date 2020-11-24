@@ -8,6 +8,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using BlazorApp1.Fuzzy;
 using HandlebarsDotNet;
+using Highlight;
+using Highlight.Engines;
+
+
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -138,6 +142,11 @@ namespace BlazorApp1
                 string code = template(dict);
 
                 Debug.Write(code);
+
+                //
+                var highlighter = new Highlighter(new HtmlEngine() {UseCss=false });
+                var highlightedCode = highlighter.Highlight("Python", code);
+
             }
 
             cts = new CancellationTokenSource();

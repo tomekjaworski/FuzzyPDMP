@@ -1,13 +1,15 @@
 ﻿namespace BlazorApp1.Modals
 {
-    public class VariableEditorData {
+    public class FuzzyVariableDescriptionData
+    {
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public VariableEditorData(string name, string description)
+        public FuzzyVariableDescriptionData(string name, string description)
         {
             this.Name = name;
             this.Description = description;
         }
     }
 }
+

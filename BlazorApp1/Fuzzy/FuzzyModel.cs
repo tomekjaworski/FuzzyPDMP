@@ -42,6 +42,7 @@ namespace BlazorApp1.Fuzzy
             return fr;
         }
 
+        public override string ToString() => $"{Name}:{Description}";
 
     }
 }

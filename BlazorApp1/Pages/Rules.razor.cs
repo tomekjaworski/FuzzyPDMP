@@ -16,7 +16,7 @@ namespace BlazorApp1.Pages
 
         protected override void OnInitialized()
         {
-            this.selected_model = BoardProvider.Model.Models.FirstOrDefault();
+            this.selected_model = BoardProvider.Board.SelectedModel;
 
         }
 
@@ -65,7 +65,7 @@ namespace BlazorApp1.Pages
 
         private void OnAddRuleClicked()
         {
-            Board m = BoardProvider.Model;
+            Board m = BoardProvider.Board;
             this.selected_model.AddRule();
         }
 
@@ -74,7 +74,7 @@ namespace BlazorApp1.Pages
             if (!await MessageBox.OkCancel(this.Modal, "Pytanie", $"Czy chcesz usunąć wybraną <b>regułę</b>?<p class=\"font-weight-light bg-light rounded\">{rule}</p>"))
                 return;
 
-            Board m = BoardProvider.Model;
+            Board m = BoardProvider.Board;
             this.selected_model.RemoveRule(rule);
         }
     }

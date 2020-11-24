@@ -9,43 +9,64 @@ namespace BlazorApp1.Modals
 {
     public static class FuzzyEditors
     {
-       public static async Task<(bool, VariableEditorData)> EditFuzzyVariable(IModalService modalService, VariableEditorData defaultValue)
+       public static async Task<(bool, FuzzyVariableDescriptionData)> EditFuzzyVariable(IModalService modalService, FuzzyVariableDescriptionData defaultValue)
         {
             if (modalService == null)
                 throw new NullReferenceException("modalService");
 
             ModalParameters mp = new ModalParameters();
-            mp.Add(nameof(VariableEditorForm.Data), defaultValue);
+            mp.Add(nameof(FuzzyVariableEditorForm.Data), defaultValue);
 
             ModalOptions mo = new ModalOptions();
             mo.DisableBackgroundCancel = true;
             mo.HideCloseButton = true;
 
-            IModalReference result = modalService.Show<VariableEditorForm>("Edycja zmiennej lingwistycznej", mp, mo);
+            IModalReference result = modalService.Show<FuzzyVariableEditorForm>("Edycja zmiennej lingwistycznej", mp, mo);
             ModalResult mr = await result.Result;
             if (mr.Cancelled)
                 return (false, null);
-            return (true, mr.Data as VariableEditorData);
+            return (true, mr.Data as FuzzyVariableDescriptionData);
         }
 
 
-        public static async Task<(bool, ValueEditorData)> EditFuzzyValue(IModalService modalService, ValueEditorData defaultValue)
+        public static async Task<(bool, FuzzyValueDescriptionData)> FuzzyValueDescriptionEditor(IModalService modalService, FuzzyValueDescriptionData defaultValue)
         {
             if (modalService == null)
                 throw new NullReferenceException("modalService");
 
             ModalParameters mp = new ModalParameters();
-            mp.Add(nameof(ValueEditorForm.Data), defaultValue);
+            mp.Add(nameof(FuzzyValueEditorForm.Data), defaultValue);
 
             ModalOptions mo = new ModalOptions();
             mo.DisableBackgroundCancel = true;
             mo.HideCloseButton = true;
 
-            IModalReference result = modalService.Show<ValueEditorForm>("Edycja wartości lingwistycznej", mp, mo);
+            IModalReference result = modalService.Show<FuzzyValueEditorForm>("Edycja wartości lingwistycznej", mp, mo);
             ModalResult mr = await result.Result;
             if (mr.Cancelled)
                 return (false, null);
-            return (true, mr.Data as ValueEditorData);
+            return (true, mr.Data as FuzzyValueDescriptionData);
+        }
+
+
+
+        public static async Task<(bool, FuzzyModelDescriptionData)> FuzzyModelDescriptionEditor(IModalService modalService, FuzzyModelDescriptionData defaultValue)
+        {
+            if (modalService == null)
+                throw new NullReferenceException("modalService");
+
+            ModalParameters mp = new ModalParameters();
+            mp.Add(nameof(FuzzyModelEditorForm.Data), defaultValue);
+
+            ModalOptions mo = new ModalOptions();
+            mo.DisableBackgroundCancel = true;
+            mo.HideCloseButton = true;
+
+            IModalReference result = modalService.Show<FuzzyModelEditorForm>("Edycja opisu modelu", mp, mo);
+            ModalResult mr = await result.Result;
+            if (mr.Cancelled)
+                return (false, null);
+            return (true, mr.Data as FuzzyModelDescriptionData);
         }
 
 

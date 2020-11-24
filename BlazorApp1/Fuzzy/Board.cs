@@ -16,8 +16,21 @@ namespace BlazorApp1.Fuzzy
         public List<FuzzyVariable> Variables => this.variables;
         public List<FuzzyModel> Models => this.models;
 
+        private FuzzyModel selected_model;
+        [JsonIgnore]
+        public FuzzyModel SelectedModel {
+            set => this.selected_model = value;
+            get {
+                if (this.selected_model == null)
+                    this.selected_model = this.models.FirstOrDefault();
+                return this.selected_model;
+            }
+        }
+
+
         public Board()
         {
+            this.selected_model = null;
             this.variables = new List<FuzzyVariable>();
             this.models = new List<FuzzyModel>();
         }
@@ -49,9 +62,22 @@ namespace BlazorApp1.Fuzzy
             return true;
         }
 
-        internal FuzzyModel AddModel(string modelName, string modelDescription)
+        public bool RemoveModel(FuzzyModel model)
         {
-            FuzzyModel fm = new FuzzyModel(this) { Name = modelName, Description = modelDescription };
+
+            if (!this.models.Contains(model))
+                return false;
+
+
+            this.models.Remove(model);
+            //todo: aktualizacja reguł
+
+            return true;
+        }
+
+        public FuzzyModel AddModel(string modelName, string modelDescription)
+        {
+            FuzzyModel fm = new FuzzyModel(this) { Name = modelName, Description = modelDescription, Board = this };
             this.models.Add(fm);
             return fm;
         }

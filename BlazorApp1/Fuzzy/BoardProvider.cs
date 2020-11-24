@@ -12,7 +12,7 @@ namespace BlazorApp1.Fuzzy
         #region static
         private static BoardProvider mp;
         public static BoardProvider Provider => mp;
-        public static Board Model => mp.board;
+        public static Board Board => mp.board;
 
         static BoardProvider()
         {
@@ -128,6 +128,7 @@ namespace BlazorApp1.Fuzzy
 
         }
 
+       
         internal void LoadBoard()
         {
             var settings = new JsonSerializerSettings()

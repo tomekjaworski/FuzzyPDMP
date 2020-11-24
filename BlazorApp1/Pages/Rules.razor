@@ -3,6 +3,7 @@
 @inject IModalService Modal
 @inject Blazored.SessionStorage.ISessionStorageService SessionStorage
 
+<h3>Model <span class="font_weight_bold">@this.selected_model.Name</span> - <span class="font_weight_bold"> @this.selected_model.Description</span></h3>
 
 <div class="container">
     <div class="row">
@@ -47,7 +48,7 @@
                                     <btn-group>
                                         <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">@(premise_expression.Variable?.Name ?? "Wybierz...")</button>
                                         <div class="dropdown-menu">
-                                            @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.BoardProvider.Model.Variables)
+                                            @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.BoardProvider.Board.Variables)
                                             {
                                                 <a class="dropdown-item @(premise_expression.Variable == fvar ? "active ":"")" href="#"
                                                    @onclick="@(()=> { premise_expression.Variable = fvar; })" @onclick:preventDefault>
@@ -106,7 +107,7 @@
                                     <btn-group class="">
                                         <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">@(conclusion_expression.Variable?.Name ?? "Wybierz...") </button>
                                         <div class="dropdown-menu ">
-                                            @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.BoardProvider.Model.Variables)
+                                            @foreach (BlazorApp1.Fuzzy.FuzzyVariable fvar in BlazorApp1.Fuzzy.BoardProvider.Board.Variables)
                                             {
                                                 <a class="dropdown-item @(conclusion_expression.Variable == fvar ? "active ":"")" href="#"
                                                    @onclick="@(()=> { conclusion_expression.Variable = fvar; })" @onclick:preventDefault>

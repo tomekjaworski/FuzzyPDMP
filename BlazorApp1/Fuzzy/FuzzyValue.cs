@@ -11,7 +11,7 @@ namespace BlazorApp1.Fuzzy
 
     public class FuzzyValue
     {
-        public Guid ID { get; private set; }
+        public Guid ID { get; set; }
 
         private MembershipFunctionFamily membership_family;
         private Dictionary<MembershipFunctionFamily, OrderedDictionary> parameters;

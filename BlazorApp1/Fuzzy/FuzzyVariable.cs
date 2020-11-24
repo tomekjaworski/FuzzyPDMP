@@ -11,7 +11,7 @@ namespace BlazorApp1.Fuzzy
 {
     public class FuzzyVariable
     {
-        public Guid ID { get; private set; }
+        public Guid ID { get; set; }
 
         private List<FuzzyValue> values;
 

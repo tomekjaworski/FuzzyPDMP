@@ -689,7 +689,7 @@
             {
               "$id": "63",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "49f487f4-5407-403b-9c52-e11427a6245d",
+              "ID": "96501110-e30c-471e-bc76-b55f2f28c0ff",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
@@ -829,7 +829,7 @@
             {
               "$id": "79",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "835cd0a4-55d2-4c74-91f0-2f3da63abb10",
+              "ID": "0faf1d3b-63f2-4d09-8d5d-9e9cfc8b34a5",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
@@ -880,7 +880,7 @@
             {
               "$id": "84",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "e10177a0-f053-42cb-b3e1-a3757b26b4ee",
+              "ID": "b9e0a451-d18c-4275-b8da-309d1e8fca6a",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
@@ -927,7 +927,7 @@
             {
               "$id": "88",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "02e869fa-0d25-4aa1-a2f9-00c4668dfc69",
+              "ID": "df27fb08-34ff-4d26-8d15-3affbf5b9f53",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
@@ -971,7 +971,7 @@
             {
               "$id": "92",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "f761c0c3-65f7-430d-aa24-6b924d5ade85",
+              "ID": "bf4fe122-6ab7-41f3-8832-992354164447",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -984,7 +984,7 @@
             {
               "$id": "93",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "721d05fc-a840-4095-88e8-5c158279bd37",
+              "ID": "8fe51da1-6e21-4d1b-ab26-d1c52f5c65c9",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -997,7 +997,7 @@
             {
               "$id": "94",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "4f10fc5c-7477-4d25-96db-2c159d6f8c8c",
+              "ID": "d2dd1861-ad5f-4389-a2e3-bcb56d73f2b2",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1010,7 +1010,7 @@
             {
               "$id": "95",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "d9537ab8-9deb-4204-8175-9af5683a6e75",
+              "ID": "dd1ec0a8-e203-4a09-b5a2-a9d81720212c",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1023,7 +1023,7 @@
             {
               "$id": "96",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "23225d20-23bf-433b-a8ac-f5fe1a2f2044",
+              "ID": "2e86a6cf-cc67-48c1-9275-e9b5d9438179",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1036,7 +1036,7 @@
             {
               "$id": "97",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "4f174bca-6109-4a67-ad5a-9c3f1aff34ad",
+              "ID": "3d55fe6b-103d-4322-8b5e-f2d34005851f",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1049,7 +1049,7 @@
             {
               "$id": "98",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "a28133d6-4817-4a78-b4fb-0383531611b2",
+              "ID": "30311862-9cfe-4848-8a47-298ffb85ebd2",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1062,7 +1062,7 @@
             {
               "$id": "99",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "2c2c54e3-8066-4a04-8950-223a5736feb0",
+              "ID": "d71421f6-a003-4161-b4ba-4468f3bcf683",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1075,7 +1075,7 @@
             {
               "$id": "100",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "7404b47b-645a-4df9-91ab-b7106041693f",
+              "ID": "6f7ee695-705a-49c6-b832-4c5db41b3220",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1088,7 +1088,7 @@
             {
               "$id": "101",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "90f0bcf1-7ab8-4bcb-9c5d-0d4945cc926b",
+              "ID": "11a934f1-9f26-4473-b8a9-e93adf8c9c96",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1101,7 +1101,7 @@
             {
               "$id": "102",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "57d1bb9a-f8a7-44d5-9c20-a1d78b872c23",
+              "ID": "8847ce95-74e7-43d1-972e-dbf8fda48f3e",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": []
@@ -1130,7 +1130,7 @@
             {
               "$id": "105",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "698b54cd-88d4-4a8d-bf71-67dcaa8f3c82",
+              "ID": "9fe289a9-ca77-4cc9-8b01-51fa83ad4fcc",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
@@ -1228,7 +1228,7 @@
             {
               "$id": "115",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "9142e72a-0e75-40bf-b86c-a86001f32586",
+              "ID": "90cdf408-5044-47c4-9aab-a97f945484ce",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
@@ -1277,21 +1277,6 @@
               }
             }
           ]
-        }
-      },
-      {
-        "$id": "120",
-        "$type": "BlazorApp1.Fuzzy.FuzzyModel, BlazorApp1",
-        "ID": "8830874c-a4f5-48f9-922b-7e7caf751623",
-        "Name": "Model-714D66BD",
-        "Description": "Description-137612AB",
-        "Board": {
-          "$ref": "1"
-        },
-        "Rules": {
-          "$id": "121",
-          "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1]], System.Private.CoreLib",
-          "$values": []
         }
       }
     ]

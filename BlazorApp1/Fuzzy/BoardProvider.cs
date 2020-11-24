@@ -108,8 +108,8 @@ namespace BlazorApp1.Fuzzy
             _ = r1.AddConclusion(var2_val1);
             _ = r1.AddPremise(var1_val1);
             _feci = r1.AddPremise(var1_val2);
-            _feci = r1.AddPremise(FuzzyConjunctionType.And, var1_val2);
-            _feci = r1.AddPremise(FuzzyConjunctionType.Or, var2_val3);
+            _feci = r1.AddPremise(FuzzyConnectiveType.And, var1_val2);
+            _feci = r1.AddPremise(FuzzyConnectiveType.Or, var2_val3);
 
             FuzzyRule r2 = fm.AddRule();
             r2.AddConclusion(var2_val2);
@@ -117,8 +117,8 @@ namespace BlazorApp1.Fuzzy
 
             FuzzyRule r3 = fm.AddRule();
             _feci = r3.AddPremise(var1_val1);
-            _feci = r3.AddPremise(FuzzyConjunctionType.And, var1_val2);
-            _feci = r3.AddPremise(FuzzyConjunctionType.Or, var2_val3);
+            _feci = r3.AddPremise(FuzzyConnectiveType.And, var1_val2);
+            _feci = r3.AddPremise(FuzzyConnectiveType.Or, var2_val3);
 
             FuzzyRule r4 = fm.AddRule();
             _ = r4.AddPremise(var2_val3);

@@ -2,63 +2,62 @@
 @using BlazorApp1.Fuzzy
 @inject IModalService Modal
 @inject Blazored.SessionStorage.ISessionStorageService SessionStorage
-
 @*<h3>Model <span class="font_weight_bold">@this.selected_model.Name</span> - <span class="font_weight_bold"> @this.selected_model.Description</span></h3>*@
 
 <div class="container">
 
-    @foreach (FuzzyModel fmodel in BoardProvider.Board.Models)
+    @if (!BoardProvider.Board.Models.Any())
     {
         <div class="row">
             <div class="col-md-12">
-                <div class="card mb-4">
-                    <div class="card-header d-flex justify-content-between align-items-center p-2">
-                        <div>
-                            @if (this.selected_model == fmodel)
-                            {
-                                <span class="badge badge-primary p-2 mr-1">Model wybrany</span>
-                            }
-                            <span class="font-weight-bold">@fmodel.Name</span> - <i> @fmodel.Description</i>
-                        </div>
-                        <div>
-                            <button class="btn btn-sm btn-light" @onclick="@((MouseEventArgs e) => OnEditModelDescription(e, fmodel))"><i class="far fa-edit"></i></button>
-                            <button class="btn btn-sm btn-light text-danger" @onclick="@((MouseEventArgs e) => OnRemoveModel(e, fmodel))"><i class="far fa-trash-alt"></i></button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <td>Reguły</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>aaaaaa</td>
-                                        </tr>
-                                        <tr>
-                                            <td>bbb</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ccc</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ddd</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                <p>Brak modeli; dodaj jakiś...</p>
+            </div>
+        </div>
+    }
+    else foreach (FuzzyModel fmodel in BoardProvider.Board.Models)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center p-2">
+                            <div>
+                                @if (this.selected_model == fmodel)
+                                {
+                                    <span class="badge badge-primary p-2 mr-1">Model wybrany</span>
+                                }
+                                <span class="font-weight-bold">@fmodel.Name</span> - <i> @fmodel.Description</i>
                             </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-success" @onclick="@((MouseEventArgs e)=> OnSelectModel(e, fmodel))">Wybierz do edycji</button>
+                            <div>
+                                <button class="btn btn-sm btn-light" @onclick="@((MouseEventArgs e) => OnEditModelDescription(e, fmodel))"><i class="far fa-edit"></i></button>
+                                <button class="btn btn-sm btn-light text-danger" @onclick="@((MouseEventArgs e) => OnRemoveModel(e, fmodel))"><i class="far fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <table class="table table-striped table-sm">
+                                        <thead>
+                                            <tr>
+                                                <td>Reguły:</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (FuzzyRule rule in fmodel.Rules)
+                                            {
+                                                <tr><td>@(new MarkupString(rule.ToHtmlString()))</td></tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-success" @onclick="@((MouseEventArgs e)=> OnSelectModel(e, fmodel))">Wybierz do edycji</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
+        }
     <div class="row">
         <div class="col-md-12">
             <!-- xxxxxxxxxxxxxxxxxxxxxxx -->

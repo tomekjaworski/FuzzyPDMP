@@ -22,20 +22,25 @@ namespace BlazorApp1.Fuzzy
         public FuzzyVariable Variable { get; set; }
 
         [JsonIgnore]
-        public NamedParameter[] MembershipParameters => this.parameters[this.membership_family].Values.OfType<NamedParameter>().ToArray();
+        //public NamedParameter[] MembershipParameters => this.parameters[this.membership_family].Values.OfType<NamedParameter>().ToArray();
+        public OrderedDictionary MembershipParameters => this.parameters[this.membership_family];
 
         public Dictionary<MembershipFunctionFamily, OrderedDictionary> AllParameters => this.parameters;
 
-        [JsonConverter(typeof(StringEnumConverter))] 
+        [JsonConverter(typeof(StringEnumConverter))]
         public MembershipFunctionFamily MembershipType => this.membership_family;
+
+        public bool IsValid => this.InternalValidate();
+
 
         public override string ToString() => $"{Name}: {Description}";
 
-        
 
+        public OrderedDictionary X { get; set; } = new OrderedDictionary();
 
         public FuzzyValue(FuzzyVariable fuzzyVariable, string name, string description, MembershipFunctionFamily membershipFamily)
         {
+            X.Add("A", 123);
             this.ID = Guid.NewGuid();
 
             this.Variable = fuzzyVariable;
@@ -117,6 +122,21 @@ namespace BlazorApp1.Fuzzy
                 }
             }
         }
+
+
+        private bool InternalValidate()
+        {
+            if (string.IsNullOrEmpty(this.Name))
+                return false;
+            if (string.IsNullOrEmpty(this.Description))
+                return false;
+
+            if (!this.ValidateCrispParameters())
+                return false;
+
+            return true;
+        }
+
     }
 }
 

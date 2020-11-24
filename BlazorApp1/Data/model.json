@@ -637,14 +637,241 @@
       {
         "$id": "60",
         "$type": "BlazorApp1.Fuzzy.FuzzyVariable, BlazorApp1",
-        "ID": "15666827-50bb-41fc-922b-11fee6a1290f",
-        "Name": "Value-6585560A",
-        "Description": "Description-3F78075B",
+        "ID": "4a2c5fd3-f57d-46b1-a408-d07cd999dd65",
+        "Name": "Variable-5E412271",
+        "Description": "Description-5ED63C56",
         "Values": {
           "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1]], System.Private.CoreLib",
-          "$values": []
+          "$values": [
+            {
+              "$id": "61",
+              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
+              "ID": "bd68168f-7d21-4964-a2d3-558b4c67b918",
+              "Name": "Value-441C506E",
+              "Description": "Description-63AAEB0B",
+              "Variable": {
+                "$ref": "60"
+              },
+              "AllParameters": {
+                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
+                "Unspecified": {
+                  "$id": "62",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
+                },
+                "Trapezoidal": {
+                  "$id": "63",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
+                  "SuppL": {
+                    "$id": "64",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppL",
+                    "FullName": "Value-441C506E::SuppL",
+                    "Value": 10.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "60"
+                    },
+                    "ParentValue": {
+                      "$ref": "61"
+                    }
+                  },
+                  "KernL": {
+                    "$id": "65",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernL",
+                    "FullName": "Value-441C506E::KernL",
+                    "Value": 20.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "60"
+                    },
+                    "ParentValue": {
+                      "$ref": "61"
+                    }
+                  },
+                  "KernR": {
+                    "$id": "66",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernR",
+                    "FullName": "Value-441C506E::KernR",
+                    "Value": 30.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "60"
+                    },
+                    "ParentValue": {
+                      "$ref": "61"
+                    }
+                  },
+                  "SuppR": {
+                    "$id": "67",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppR",
+                    "FullName": "Value-441C506E::SuppR",
+                    "Value": 40.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "60"
+                    },
+                    "ParentValue": {
+                      "$ref": "61"
+                    }
+                  }
+                }
+              },
+              "MembershipType": "Trapezoidal"
+            },
+            {
+              "$id": "68",
+              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
+              "ID": "57092d7d-3a5c-4123-8736-472cbdf33df5",
+              "Name": "Value-29974B38",
+              "Description": "Description-7E1DBF63",
+              "Variable": {
+                "$ref": "60"
+              },
+              "AllParameters": {
+                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
+                "Trapezoidal": {
+                  "$id": "69",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
+                  "SuppL": {
+                    "$id": "70",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppL",
+                    "FullName": "Value-29974B38::SuppL",
+                    "Value": 25.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "60"
+                    },
+                    "ParentValue": {
+                      "$ref": "68"
+                    }
+                  },
+                  "KernL": {
+                    "$id": "71",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernL",
+                    "FullName": "Value-29974B38::KernL",
+                    "Value": 35.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "60"
+                    },
+                    "ParentValue": {
+                      "$ref": "68"
+                    }
+                  },
+                  "KernR": {
+                    "$id": "72",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernR",
+                    "FullName": "Value-29974B38::KernR",
+                    "Value": 45.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "60"
+                    },
+                    "ParentValue": {
+                      "$ref": "68"
+                    }
+                  },
+                  "SuppR": {
+                    "$id": "73",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppR",
+                    "FullName": "Value-29974B38::SuppR",
+                    "Value": 55.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "60"
+                    },
+                    "ParentValue": {
+                      "$ref": "68"
+                    }
+                  }
+                }
+              },
+              "MembershipType": "Trapezoidal"
+            },
+            {
+              "$id": "74",
+              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
+              "ID": "78cac023-8b48-4ce5-8b84-acc5ca0f6977",
+              "Name": "Value-04836667",
+              "Description": "Description-7916FEA5",
+              "Variable": {
+                "$ref": "60"
+              },
+              "AllParameters": {
+                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
+                "Trapezoidal": {
+                  "$id": "75",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
+                  "SuppL": {
+                    "$id": "76",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppL",
+                    "FullName": "Value-04836667::SuppL",
+                    "Value": 40.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "60"
+                    },
+                    "ParentValue": {
+                      "$ref": "74"
+                    }
+                  },
+                  "KernL": {
+                    "$id": "77",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernL",
+                    "FullName": "Value-04836667::KernL",
+                    "Value": 50.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "60"
+                    },
+                    "ParentValue": {
+                      "$ref": "74"
+                    }
+                  },
+                  "KernR": {
+                    "$id": "78",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernR",
+                    "FullName": "Value-04836667::KernR",
+                    "Value": 60.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "60"
+                    },
+                    "ParentValue": {
+                      "$ref": "74"
+                    }
+                  },
+                  "SuppR": {
+                    "$id": "79",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppR",
+                    "FullName": "Value-04836667::SuppR",
+                    "Value": 70.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "60"
+                    },
+                    "ParentValue": {
+                      "$ref": "74"
+                    }
+                  }
+                }
+              },
+              "MembershipType": "Trapezoidal"
+            }
+          ]
         },
-        "MembershipType": "Unspecified",
+        "MembershipType": "Trapezoidal",
         "Minimum": {
           "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
           "ShortName": "Dmin",
@@ -660,7 +887,7 @@
           "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
           "ShortName": "Dmax",
           "FullName": "Dmax",
-          "Value": 10.0,
+          "Value": 100.0,
           "IsValid": true,
           "ParentVariable": {
             "$ref": "60"
@@ -674,29 +901,29 @@
     "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyModel, BlazorApp1]], System.Private.CoreLib",
     "$values": [
       {
-        "$id": "61",
+        "$id": "80",
         "$type": "BlazorApp1.Fuzzy.FuzzyModel, BlazorApp1",
         "ID": "469d58b3-497e-461f-b18c-a488533b4f50",
         "Name": "nazwa modelu",
-        "Description": "opis",
+        "Description": "opis (Zażółć gęsią jaźń; ZAŻÓŁĆ GĘSIĄ JAŹŃ)",
         "Board": {
           "$ref": "1"
         },
         "Rules": {
-          "$id": "62",
+          "$id": "81",
           "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1]], System.Private.CoreLib",
           "$values": [
             {
-              "$id": "63",
+              "$id": "82",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
               "ID": "96501110-e30c-471e-bc76-b55f2f28c0ff",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "64",
+                    "$id": "83",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "None",
+                    "ConnectiveType": "None",
                     "Value": {
                       "$ref": "3"
                     },
@@ -705,9 +932,9 @@
                     }
                   },
                   {
-                    "$id": "65",
+                    "$id": "84",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
+                    "ConnectiveType": "And",
                     "Value": {
                       "$ref": "10"
                     },
@@ -716,40 +943,15 @@
                     }
                   },
                   {
-                    "$id": "66",
+                    "$id": "85",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": {
-                      "$ref": "10"
-                    },
-                    "Variable": {
-                      "$ref": "2"
-                    }
-                  },
-                  {
-                    "$id": "67",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "Or",
+                    "ConnectiveType": "Or",
                     "Value": {
                       "$ref": "53"
                     },
                     "Variable": {
                       "$ref": "38"
                     }
-                  },
-                  {
-                    "$id": "68",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": null,
-                    "Variable": null
-                  },
-                  {
-                    "$id": "69",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": null,
-                    "Variable": null
                   }
                 ]
               },
@@ -757,186 +959,43 @@
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "70",
+                    "$id": "86",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "None",
+                    "ConnectiveType": "None",
                     "Value": {
-                      "$ref": "39"
+                      "$ref": "61"
                     },
                     "Variable": {
-                      "$ref": "38"
+                      "$ref": "60"
                     }
-                  },
-                  {
-                    "$id": "71",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": null,
-                    "Variable": null
-                  },
-                  {
-                    "$id": "72",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": null,
-                    "Variable": null
-                  },
-                  {
-                    "$id": "73",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": null,
-                    "Variable": null
-                  },
-                  {
-                    "$id": "74",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": null,
-                    "Variable": null
-                  },
-                  {
-                    "$id": "75",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": null,
-                    "Variable": null
-                  },
-                  {
-                    "$id": "76",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": null,
-                    "Variable": null
-                  },
-                  {
-                    "$id": "77",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": null,
-                    "Variable": null
-                  },
-                  {
-                    "$id": "78",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": null,
-                    "Variable": null
                   }
                 ]
               }
             },
             {
-              "$id": "79",
+              "$id": "87",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
               "ID": "0faf1d3b-63f2-4d09-8d5d-9e9cfc8b34a5",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "80",
+                    "$id": "88",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "None",
-                    "Value": null,
-                    "Variable": null
-                  },
-                  {
-                    "$id": "81",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": null,
-                    "Variable": null
-                  }
-                ]
-              },
-              "Conclusion": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": [
-                  {
-                    "$id": "82",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "None",
+                    "ConnectiveType": "None",
                     "Value": {
-                      "$ref": "46"
-                    },
-                    "Variable": {
-                      "$ref": "38"
-                    }
-                  },
-                  {
-                    "$id": "83",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": {
-                      "$ref": "53"
-                    },
-                    "Variable": {
-                      "$ref": "38"
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "$id": "84",
-              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "b9e0a451-d18c-4275-b8da-309d1e8fca6a",
-              "Premise": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": [
-                  {
-                    "$id": "85",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "None",
-                    "Value": {
-                      "$ref": "3"
+                      "$ref": "17"
                     },
                     "Variable": {
                       "$ref": "2"
                     }
                   },
-                  {
-                    "$id": "86",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": {
-                      "$ref": "10"
-                    },
-                    "Variable": {
-                      "$ref": "2"
-                    }
-                  },
-                  {
-                    "$id": "87",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "Or",
-                    "Value": {
-                      "$ref": "53"
-                    },
-                    "Variable": {
-                      "$ref": "38"
-                    }
-                  }
-                ]
-              },
-              "Conclusion": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              }
-            },
-            {
-              "$id": "88",
-              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "df27fb08-34ff-4d26-8d15-3affbf5b9f53",
-              "Premise": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": [
                   {
                     "$id": "89",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "None",
+                    "ConnectiveType": "And",
                     "Value": {
-                      "$ref": "53"
+                      "$ref": "39"
                     },
                     "Variable": {
                       "$ref": "38"
@@ -950,172 +1009,70 @@
                   {
                     "$id": "90",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "None",
+                    "ConnectiveType": "None",
                     "Value": {
-                      "$ref": "17"
+                      "$ref": "68"
+                    },
+                    "Variable": {
+                      "$ref": "60"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "$id": "91",
+              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
+              "ID": "b9e0a451-d18c-4275-b8da-309d1e8fca6a",
+              "Premise": {
+                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$id": "92",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "None",
+                    "Value": {
+                      "$ref": "10"
                     },
                     "Variable": {
                       "$ref": "2"
                     }
                   },
                   {
-                    "$id": "91",
+                    "$id": "93",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
-                    "Value": null,
-                    "Variable": null
+                    "ConnectiveType": "Or",
+                    "Value": {
+                      "$ref": "46"
+                    },
+                    "Variable": {
+                      "$ref": "38"
+                    }
                   }
                 ]
-              }
-            },
-            {
-              "$id": "92",
-              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "bf4fe122-6ab7-41f3-8832-992354164447",
-              "Premise": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
               },
               "Conclusion": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              }
-            },
-            {
-              "$id": "93",
-              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "8fe51da1-6e21-4d1b-ab26-d1c52f5c65c9",
-              "Premise": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              },
-              "Conclusion": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              }
-            },
-            {
-              "$id": "94",
-              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "d2dd1861-ad5f-4389-a2e3-bcb56d73f2b2",
-              "Premise": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              },
-              "Conclusion": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              }
-            },
-            {
-              "$id": "95",
-              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "dd1ec0a8-e203-4a09-b5a2-a9d81720212c",
-              "Premise": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              },
-              "Conclusion": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              }
-            },
-            {
-              "$id": "96",
-              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "2e86a6cf-cc67-48c1-9275-e9b5d9438179",
-              "Premise": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              },
-              "Conclusion": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              }
-            },
-            {
-              "$id": "97",
-              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "3d55fe6b-103d-4322-8b5e-f2d34005851f",
-              "Premise": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              },
-              "Conclusion": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              }
-            },
-            {
-              "$id": "98",
-              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "30311862-9cfe-4848-8a47-298ffb85ebd2",
-              "Premise": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              },
-              "Conclusion": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              }
-            },
-            {
-              "$id": "99",
-              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "d71421f6-a003-4161-b4ba-4468f3bcf683",
-              "Premise": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              },
-              "Conclusion": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              }
-            },
-            {
-              "$id": "100",
-              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "6f7ee695-705a-49c6-b832-4c5db41b3220",
-              "Premise": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              },
-              "Conclusion": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              }
-            },
-            {
-              "$id": "101",
-              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "11a934f1-9f26-4473-b8a9-e93adf8c9c96",
-              "Premise": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              },
-              "Conclusion": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              }
-            },
-            {
-              "$id": "102",
-              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "8847ce95-74e7-43d1-972e-dbf8fda48f3e",
-              "Premise": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
-              },
-              "Conclusion": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": []
+                "$values": [
+                  {
+                    "$id": "94",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "None",
+                    "Value": {
+                      "$ref": "74"
+                    },
+                    "Variable": {
+                      "$ref": "60"
+                    }
+                  }
+                ]
               }
             }
           ]
         }
       },
       {
-        "$id": "103",
+        "$id": "95",
         "$type": "BlazorApp1.Fuzzy.FuzzyModel, BlazorApp1",
         "ID": "00000000-12ce-4746-8496-29861314a386",
         "Name": "nazwa modelu DRUGIEGO",
@@ -1124,20 +1081,20 @@
           "$ref": "1"
         },
         "Rules": {
-          "$id": "104",
+          "$id": "96",
           "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1]], System.Private.CoreLib",
           "$values": [
             {
-              "$id": "105",
+              "$id": "97",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
               "ID": "9fe289a9-ca77-4cc9-8b01-51fa83ad4fcc",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "106",
+                    "$id": "98",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "None",
+                    "ConnectiveType": "None",
                     "Value": {
                       "$ref": "3"
                     },
@@ -1146,9 +1103,9 @@
                     }
                   },
                   {
-                    "$id": "107",
+                    "$id": "99",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
+                    "ConnectiveType": "And",
                     "Value": {
                       "$ref": "10"
                     },
@@ -1157,9 +1114,9 @@
                     }
                   },
                   {
-                    "$id": "108",
+                    "$id": "100",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
+                    "ConnectiveType": "And",
                     "Value": {
                       "$ref": "10"
                     },
@@ -1168,9 +1125,9 @@
                     }
                   },
                   {
-                    "$id": "109",
+                    "$id": "101",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "Or",
+                    "ConnectiveType": "Or",
                     "Value": {
                       "$ref": "53"
                     },
@@ -1179,16 +1136,16 @@
                     }
                   },
                   {
-                    "$id": "110",
+                    "$id": "102",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
+                    "ConnectiveType": "And",
                     "Value": null,
                     "Variable": null
                   },
                   {
-                    "$id": "111",
+                    "$id": "103",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
+                    "ConnectiveType": "And",
                     "Value": null,
                     "Variable": null
                   }
@@ -1198,9 +1155,9 @@
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "112",
+                    "$id": "104",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "None",
+                    "ConnectiveType": "None",
                     "Value": {
                       "$ref": "39"
                     },
@@ -1209,16 +1166,16 @@
                     }
                   },
                   {
-                    "$id": "113",
+                    "$id": "105",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
+                    "ConnectiveType": "And",
                     "Value": null,
                     "Variable": null
                   },
                   {
-                    "$id": "114",
+                    "$id": "106",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
+                    "ConnectiveType": "And",
                     "Value": null,
                     "Variable": null
                   }
@@ -1226,23 +1183,23 @@
               }
             },
             {
-              "$id": "115",
+              "$id": "107",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
               "ID": "90cdf408-5044-47c4-9aab-a97f945484ce",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "116",
+                    "$id": "108",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "None",
+                    "ConnectiveType": "None",
                     "Value": null,
                     "Variable": null
                   },
                   {
-                    "$id": "117",
+                    "$id": "109",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
+                    "ConnectiveType": "And",
                     "Value": null,
                     "Variable": null
                   }
@@ -1252,9 +1209,9 @@
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "118",
+                    "$id": "110",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "None",
+                    "ConnectiveType": "None",
                     "Value": {
                       "$ref": "46"
                     },
@@ -1263,9 +1220,9 @@
                     }
                   },
                   {
-                    "$id": "119",
+                    "$id": "111",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConjunctionType": "And",
+                    "ConnectiveType": "And",
                     "Value": {
                       "$ref": "53"
                     },

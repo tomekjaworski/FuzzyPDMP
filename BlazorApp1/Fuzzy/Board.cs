@@ -70,6 +70,8 @@ namespace BlazorApp1.Fuzzy
 
 
             this.models.Remove(model);
+            if (this.selected_model == model)
+                this.selected_model = null;
             //todo: aktualizacja reguł
 
             return true;

@@ -12,7 +12,7 @@ namespace BlazorApp1.Fuzzy
 
 
         public List<FuzzyRule> Rules { get; set; }
-
+        public bool IsValid => this.InternalValidateModel();
 
         public FuzzyModel(Board board)
         {
@@ -41,6 +41,20 @@ namespace BlazorApp1.Fuzzy
             this.Rules.Add(fr);
             return fr;
         }
+
+
+
+        private bool InternalValidateModel()
+        {
+            if (this.Rules.Count == 0)
+                return false;
+
+            foreach (var rule in this.Rules)
+                if (!rule.IsValid)
+                    return false;
+            return true;
+        }
+
 
         public override string ToString() => $"{Name}:{Description}";
 

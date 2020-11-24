@@ -2,7 +2,7 @@
 
 namespace BlazorApp1.Fuzzy
 {
-    public enum FuzzyConjunctionType
+    public enum FuzzyConnectiveType
     {
         None,
 

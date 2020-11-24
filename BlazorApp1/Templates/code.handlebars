@@ -1,0 +1,67 @@
+﻿#
+# Zbiór modeli wygenerowany przez BlazorApp1
+# Znacznik czasowy generacji: {{CurrentDate}}
+#
+# Zażółć gęsią jaźń ZAŻÓŁĆ GĘSIĄ JAŹŃ
+
+import numpy as np
+import skfuzzy as fuzz
+import matplotlib.pyplot as plt
+from typing import List, Union
+
+{{#each Models}}
+##
+## Model: {{{ModelName}}}
+## Opis:  {{{ModelDescription}}}
+##
+{{#if IsValid}}
+class Model_{{normalize ModelName}}(object):
+{{#each Variables}}
+    x_{{normalize Name}} = None # type: Union[List[float], np.ndarray] # Zmienna: {{{Name}}}
+{{/each}}
+
+    def __init__(self):
+        self.InitDomain()
+        self.InitVariables()
+#       self.ShowVariables()
+
+    def InitDomain(self):
+{{#each Variables}}
+        self.x_{{normalize Name}} = np.arange({{D4 Minimum.Value}}, {{D4 Maximum.Value}}, {{D4 ../XStep}}) # {{{Name}}}: {{{Description}}}
+{{/each}}
+
+    def InitVariables(self):
+{{#each Values}}
+        self.{{normalize Variable.Name}}_{{normalize Name}} = fuzz.trapmf(self.x_{{normalize Variable.Name}}, [{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
+{{/each}}
+
+    def ShowVariables(self):
+        fig, axes = plt.subplots(nrows={{Variables.Length}}, figsize=(8, 9))
+
+{{#each Variables}}{{#each Values}}
+        axes[{{@../index}}].plot(self.x_{{normalize ../Name}}, self.{{normalize ../Name}}_{{normalize Name}}, '{{color @index}}', linewidth=1.5, label='{{{Name}}}'){{/each}}
+        axes[{{@index}}].set_title('{{Description}}')
+        axes[{{@index}}].legend()
+{{/each}}
+
+        # Turn off top/right axes
+        for ax in axes:
+            ax.spines['top'].set_visible(False)
+            ax.spines['right'].set_visible(False)
+            ax.get_xaxis().tick_bottom()
+            ax.get_yaxis().tick_left()
+
+        plt.tight_layout()
+        plt.show()
+{{else}}
+## Model {{ModelName}} jest niedokończony.
+##
+{{/if}}
+
+{{/each}}
+if __name__ == "__main__":
+{{#each Models}}
+{{#unless IsValid}}#{{/unless}}    m{{@Index}} = Model_{{normalize ModelName}}()
+{{#unless IsValid}}#{{/unless}}    m{{@Index}}.ShowVariables()
+
+{{/each}}

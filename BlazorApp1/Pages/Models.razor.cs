@@ -37,6 +37,7 @@ namespace BlazorApp1.Pages
                 return;
 
             BoardProvider.Board.RemoveModel(fmodel);
+            this.selected_model = BoardProvider.Board.SelectedModel;
         }
 
         private void OnSelectModel(MouseEventArgs e, FuzzyModel fmodel)

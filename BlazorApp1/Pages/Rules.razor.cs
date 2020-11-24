@@ -20,19 +20,6 @@ namespace BlazorApp1.Pages
 
         }
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            //Guid model_guid = await SessionStorage.GetItemAsync<Guid>("selected_fuzzy_model");
-            //if (model_guid == Guid.Empty)
-            //    this.selected_model = BoardProvider.Model.Models.FirstOrDefault();
-            //else
-            //    this.selected_model = BoardProvider.Model.GetModelBuGuid(model_guid);
-
-            //if (selected_model == null)
-            //    await SessionStorage.RemoveItemAsync("selected_fuzzy_model");
-            //else
-            //    await SessionStorage.SetItemAsync<Guid>("selected_fuzzy_model", this.selected_model.ID);
-        }
 
         private async Task OnRemovePremiseClicked(FuzzyRule rule, FuzzySubexpression premiseExpression)
         {

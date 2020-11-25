@@ -27,6 +27,13 @@ namespace BlazorApp1
             Console.WriteLine($"Wejście: {System.Reflection.Assembly.GetExecutingAssembly().Location}; PID:{Process.GetCurrentProcess().Id}");
 
             BoardProvider.Provider.LoadBoard();
+            PythonModelGenerator pmg = new PythonModelGenerator();
+            pmg.ApplyBoard(BoardProvider.Board);
+            while (true)
+            {
+                pmg.Run();
+                string pc = pmg.PythonCode;
+            }
 
             cts = new CancellationTokenSource();
             Thread th = new Thread(new ThreadStart(StoreThread));

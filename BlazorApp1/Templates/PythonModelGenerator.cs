@@ -109,15 +109,26 @@ namespace BlazorApp1
                         .Distinct()
                         .SelectMany(@var => var.Values).ToArray();
 
-                FuzzyVariable[] variables = fmodel.Rules
-                    .SelectMany(rule => rule.Premise)
-                    .Union(
-                        fmodel.Rules
-                        .SelectMany(rule => rule.Conclusion)
-                    ).Select(expr => expr.Variable)
-                        .Distinct()
-                        .ToArray();
+                //FuzzyVariable[] variables = fmodel.Rules
+                //    .SelectMany(rule => rule.Premise)
+                //    .Union(
+                //        fmodel.Rules
+                //        .SelectMany(rule => rule.Conclusion)
+                //    ).Select(expr => expr.Variable)
+                //        .Distinct()
+                //        .ToArray();
 
+                FuzzyVariable[] input_variables = fmodel.Rules
+                    .SelectMany(rule => rule.Premise)
+                    .Select(expr => expr.Variable)
+                    .Distinct()
+                    .ToArray();
+
+                FuzzyVariable[] output_variables = fmodel.Rules
+                    .SelectMany(rule => rule.Conclusion)
+                    .Select(x => x.Variable)
+                    .Distinct()
+                    .ToArray();
 
                 models.Add(new
                 {
@@ -125,7 +136,8 @@ namespace BlazorApp1
                     ModelName = fmodel.Name,
                     ModelDescription = fmodel.Description,
                     Values = values,
-                    Variables = variables,
+                    InputVariables = input_variables,
+                    OutputVariables = output_variables,
                     XStep = 0.1,
                 });
 

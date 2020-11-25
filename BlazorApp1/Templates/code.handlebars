@@ -16,8 +16,20 @@ from typing import List, Union
 ##
 {{#if IsValid}}
 class Model_{{normalize ModelName}}(object):
-{{#each Variables}}
-    x_{{normalize Name}} = None # type: Union[List[float], np.ndarray] # Zmienna: {{{Name}}}
+
+    # Zmienne wejściowe
+{{#each InputVariables}}
+    x_input_{{normalize Name}} = None # type: float # Zmienna: {{{Name}}}
+{{/each}}
+
+    # Zmienne wyjściowe
+{{#each OutputVariables}}
+    x_output_{{normalize Name}} = None # type: float # Zmienna: {{{Name}}}
+{{/each}}
+
+    # Wartości
+{{#each Values}}
+    memb_{{normalize Variable.Name}}_{{normalize Name}} = None # type: Union[List[float], np.ndarray] # Zmienna: {{{Name}}}
 {{/each}}
 
     def __init__(self):
@@ -26,21 +38,50 @@ class Model_{{normalize ModelName}}(object):
 #       self.ShowVariables()
 
     def InitDomain(self):
-{{#each Variables}}
+{{#each InputVariables}}
+        self.x_{{normalize Name}} = np.arange({{D4 Minimum.Value}}, {{D4 Maximum.Value}}, {{D4 ../XStep}}) # {{{Name}}}: {{{Description}}}
+{{/each}}
+{{#each OutputVariables}}
         self.x_{{normalize Name}} = np.arange({{D4 Minimum.Value}}, {{D4 Maximum.Value}}, {{D4 ../XStep}}) # {{{Name}}}: {{{Description}}}
 {{/each}}
 
     def InitVariables(self):
+{{#each InputVariables}}
+
+        # Wejście: {{Name}}
 {{#each Values}}
-        self.{{normalize Variable.Name}}_{{normalize Name}} = fuzz.trapmf(self.x_{{normalize Variable.Name}}, [{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
+        self.memb_{{normalize Variable.Name}}_{{normalize Name}} = fuzz.trapmf(self.x_{{normalize Variable.Name}}, [{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
+{{/each}}
 {{/each}}
 
-    def ShowVariables(self):
-        fig, axes = plt.subplots(nrows={{Variables.Length}}, figsize=(8, 9))
+{{#each OutputVariables}}
+        # Wyjście: {{Name}}{{#each Values}}
+        self.memb_{{normalize Variable.Name}}_{{normalize Name}} = fuzz.trapmf(self.x_{{normalize Variable.Name}}, [{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
+{{~/each}}{{/each}}
 
-{{#each Variables}}{{#each Values}}
-        axes[{{@../index}}].plot(self.x_{{normalize ../Name}}, self.{{normalize ../Name}}_{{normalize Name}}, '{{color @index}}', linewidth=1.5, label='{{{Name}}}'){{/each}}
-        axes[{{@index}}].set_title('{{Description}}')
+  def Execute(self, {{#each InputVariables}}{{#if @index}}, {{/if}}input_{{normalize Name}}: float{{/each}}):
+{{#each InputVariables}}
+        self.input_{{normalize Name}} = input_{{normalize Name}}
+{{/each}}
+
+        # Wyznacz poziomy przynależności
+{{~#each InputVariables}}{{#each Values}}
+        level_{{normalize Variable.Name}}_{{normalize Name}} = fuzz.interp_membership(self.x_{{normalize Variable.Name}}, self.memb_{{normalize Variable.Name}}_{{normalize Name}}, self.input_{{normalize Variable.Name}})
+{{~/each}}{{/each}}
+
+
+    def ShowVariables(self):
+        fig, axes = plt.subplots(nrows={{InputVariables.Length}} + {{OutputVariables.Length}}, figsize=(8, 3 * ({{InputVariables.Length}} + {{OutputVariables.Length}})))
+        if not hasattr(axis, "__len__"):
+            axes = [axes]
+{{#each InputVariables}}{{#each Values}}
+        axes[{{@../index}}].plot(self.x_{{normalize ../Name}}, self.memb_{{normalize ../Name}}_{{normalize Name}}, '{{color @index}}', linewidth=1.5, label='{{{Name}}}'){{/each}}
+        axes[{{@index}}].set_title('WE: {{Description}}')
+        axes[{{@index}}].legend()
+{{/each}}
+{{#each OutputVariables}}{{#each Values}}
+        axes[{{@../index}}].plot(self.x_{{normalize ../Name}}, self.memb_{{normalize ../Name}}_{{normalize Name}}, '{{color @index}}', linewidth=1.5, label='{{{Name}}}'){{/each}}
+        axes[{{@index}}].set_title('WY: {{Description}}')
         axes[{{@index}}].legend()
 {{/each}}
 

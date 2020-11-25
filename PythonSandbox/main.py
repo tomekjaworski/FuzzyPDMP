@@ -3,6 +3,43 @@ import numpy as np
 import skfuzzy as fuzz
 import matplotlib.pyplot as plt
 
+
+class FuzzyOperation(object):
+    or_connective = None
+    and_connective = None
+    negation = None
+
+    def __init__(self, or_connective = None, and_connective = None, negation = None):
+        self.or_connective = or_connective or (lambda x, y: x if x > y else y)
+        self.and_connective = and_connective or (lambda x, y: x if x < y else y)
+        self.negation = lambda x: 1 - x
+
+
+    def AND(self, *args):
+        if len(args) == 0:
+            raise ValueError("args")
+
+        v = args[0]
+        for i in range(1, len(args)):
+            v = self.and_connective(v, args[i])
+        return v
+
+    def OR(self, *args):
+        if len(args) == 0:
+            raise ValueError("args")
+
+        v = args[0]
+        for i in range(1, len(args)):
+            v = self.or_connective(v, args[i])
+        return v
+
+    def NOT(self, *args):
+        if len(args) != 1:
+            raise ValueError("args")
+
+        return self.negation(args[0])
+
+
 class Model(object):
 
     input_serv = None # type: float # aaaaa
@@ -84,6 +121,8 @@ class Model(object):
         serv_level_md = fuzz.interp_membership(self.x_serv, self.serv_md, self.input_serv)
         serv_level_hi = fuzz.interp_membership(self.x_serv, self.serv_hi, self.input_serv)
 
+
+
         # Now we take our rules and apply them. Rule 1 concerns bad food OR service.
         # The OR operator means we take the maximum of these two.
         active_rule1 = np.fmax(qual_level_lo, serv_level_lo, serv_level_lo)
@@ -128,6 +167,12 @@ class Model(object):
 
 
 if __name__ == "__main__":
+
+    op = FuzzyOperation()
+    a = op.NOT(1)
+    a = op.AND(1,2,3)
+    a = op.OR(1, 2, 3)
+
     m1 = Model()
     m1.ShowVariables()
     m1.Execute(6.5, 9.8)

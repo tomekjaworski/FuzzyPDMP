@@ -28,7 +28,10 @@ namespace BlazorApp1
 
         private static string GetFullPath(string fileName)
         {
-            return Path.Combine(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]), "..\\..\\..\\Templates", fileName);
+            if (Environment.GetEnvironmentVariable("IDE") == "VS")
+                return Path.Combine(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]), "..\\..\\..\\Templates", fileName);
+            else
+                return Path.Combine(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]), "Templates", fileName);
         }
 
         public void Run()
@@ -61,6 +64,9 @@ namespace BlazorApp1
 
             string NormalizePythonIdentifier(string text)
             {
+                if (string.IsNullOrEmpty(text))
+                    return "(null?)";
+
                 string iconv = "ĘEęeÓOóoĄAąaŚSśsŁLłlŻZżzŹZźzĆCćcŃNńn";
                 string ok = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890_ ";
                 string result = "";
@@ -100,7 +106,7 @@ namespace BlazorApp1
                     continue;
                 }
 
-                FuzzyValue[] values = fmodel.Rules
+                FuzzyValue[] all_values = fmodel.Rules
                     .SelectMany(rule => rule.Premise)
                     .Union(
                         fmodel.Rules
@@ -108,15 +114,6 @@ namespace BlazorApp1
                     ).Select(expr => expr.Variable)
                         .Distinct()
                         .SelectMany(@var => var.Values).ToArray();
-
-                //FuzzyVariable[] variables = fmodel.Rules
-                //    .SelectMany(rule => rule.Premise)
-                //    .Union(
-                //        fmodel.Rules
-                //        .SelectMany(rule => rule.Conclusion)
-                //    ).Select(expr => expr.Variable)
-                //        .Distinct()
-                //        .ToArray();
 
                 FuzzyVariable[] input_variables = fmodel.Rules
                     .SelectMany(rule => rule.Premise)
@@ -135,7 +132,7 @@ namespace BlazorApp1
                     IsValid = fmodel.IsValid,
                     ModelName = fmodel.Name,
                     ModelDescription = fmodel.Description,
-                    Values = values,
+                    AllValues = all_values,
                     InputVariables = input_variables,
                     OutputVariables = output_variables,
                     XStep = 0.1,

@@ -17,19 +17,27 @@ from typing import List, Union
 {{#if IsValid}}
 class Model_{{normalize ModelName}}(object):
 
-    # Zmienne wejściowe
+    # Wartości ostre dla zmiennych wejściowych
 {{#each InputVariables}}
-    x_input_{{normalize Name}} = None # type: float # Zmienna: {{{Name}}}
+    input_{{normalize Name}} = None # type: float # Zmienna: {{{Name}}}
 {{/each}}
 
-    # Zmienne wyjściowe
+    # Wartości ostre dla zmiennych wyjściowych
 {{#each OutputVariables}}
-    x_output_{{normalize Name}} = None # type: float # Zmienna: {{{Name}}}
+    output_{{normalize Name}} = None # type: float # Zmienna: {{{Name}}}
 {{/each}}
 
-    # Wartości
-{{#each Values}}
-    memb_{{normalize Variable.Name}}_{{normalize Name}} = None # type: Union[List[float], np.ndarray] # Zmienna: {{{Name}}}
+    # Dziedziny zmiennych rozmytych
+{{#each InputVariables}}
+    x_{{normalize Name}} = None # type: Union[List[float], np.ndarray]
+{{/each}}
+{{#each OutputVariables}}
+    x_{{normalize Name}} = None # type: Union[List[float], np.ndarray]
+{{/each}}
+
+    # Wartości przynależności
+{{#each AllValues}}
+    memb_{{normalize Variable.Name}}_{{normalize Name}} = None # type: Union[List[float], np.ndarray]
 {{/each}}
 
     def __init__(self):
@@ -49,7 +57,7 @@ class Model_{{normalize ModelName}}(object):
 {{#each InputVariables}}
 
         # Wejście: {{Name}}
-{{#each Values}}
+{{#each AllValues}}
         self.memb_{{normalize Variable.Name}}_{{normalize Name}} = fuzz.trapmf(self.x_{{normalize Variable.Name}}, [{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
 {{/each}}
 {{/each}}
@@ -68,6 +76,13 @@ class Model_{{normalize ModelName}}(object):
 {{~#each InputVariables}}{{#each Values}}
         level_{{normalize Variable.Name}}_{{normalize Name}} = fuzz.interp_membership(self.x_{{normalize Variable.Name}}, self.memb_{{normalize Variable.Name}}_{{normalize Name}}, self.input_{{normalize Variable.Name}})
 {{~/each}}{{/each}}
+
+        # Tutaj wnioskowanie ....
+
+{{~#each OutputVariables}}{{#each Values}}
+        self.output_{{normalize Variable.Name}}_{{normalize Name}} = 123 # todo: ....
+{{~/each}}{{/each}}
+
 
 
     def ShowVariables(self):

@@ -1,72 +1,57 @@
 #
-# Zbiór modeli wygenerowany przez BlazorApp1
-# Znacznik czasowy generacji: 24.11.2020 23:23:23
-#
-# Zażółć gęsią jaźń ZAŻÓŁĆ GĘSIĄ JAŹŃ
-
 import numpy as np
 import skfuzzy as fuzz
 import matplotlib.pyplot as plt
-from typing import List, Union
 
-##
-## Model: nazwa modelu
-## Opis:  opis (Zażółć gęsią jaźń; ZAŻÓŁĆ GĘSIĄ JAŹŃ)
-##
-class Model_NazwaModelu(object):
-    x_Wzrost = None # type: Union[List[float], np.ndarray] # Zmienna: wzrost
-    x_Nazwa3 = None # type: Union[List[float], np.ndarray] # Zmienna: Nazwa 3
-    x_Variable5e412271 = None # type: Union[List[float], np.ndarray] # Zmienna: Variable-5E412271
+class Model(object):
+
+    input_serv = None # type: float # aaaaa
+    input_qual = None  # type: float # aaaaa
 
     def __init__(self):
         self.InitDomain()
         self.InitVariables()
-#       self.ShowVariables()
 
     def InitDomain(self):
-        self.x_Wzrost = np.arange(10.0000, 100.0000, 0.1000) # wzrost: Opis zmiennej Nazwa I
-        self.x_Nazwa3 = np.arange(-40.0000, 40.0000, 0.1000) # Nazwa 3: Opis zmiennej Nazwa III
-        self.x_Variable5e412271 = np.arange(0.0000, 100.0000, 0.1000) # Variable-5E412271: Description-5ED63C56
+        self.x_qual = np.arange(0, 11, 0.1)
+        self.x_serv = np.arange(0, 11, 0.1)
+        self.x_tip  = np.arange(0, 26, 0.1)
 
     def InitVariables(self):
-        self.Wzrost_Malo = fuzz.trapmf(self.x_Wzrost, [0.0000, 0.0000, 25.0000, 40.0000])
-        self.Wzrost_Srednio = fuzz.trapmf(self.x_Wzrost, [25.0000, 40.0000, 55.0000, 70.0000])
-        self.Wzrost_Duzo = fuzz.trapmf(self.x_Wzrost, [55.0000, 70.0000, 110.0000, 110.0000])
-        self.Wzrost_Value51736aad = fuzz.trapmf(self.x_Wzrost, [1.0000, 2.0000, 3.0000, 4.0000])
-        self.Wzrost_Value28276813 = fuzz.trapmf(self.x_Wzrost, [1.0000, 2.0000, 3.0000, 4.0000])
-        self.Nazwa3_Negatywny = fuzz.trapmf(self.x_Nazwa3, [-41.0000, -41.0000, -20.0000, 0.0000])
-        self.Nazwa3_Zerowy = fuzz.trapmf(self.x_Nazwa3, [-20.0000, 0.0000, 0.0000, 20.0000])
-        self.Nazwa3_Pozytywny = fuzz.trapmf(self.x_Nazwa3, [0.0000, 20.0000, 41.0000, 41.0000])
-        self.Variable5e412271_Value441c506e = fuzz.trapmf(self.x_Variable5e412271, [10.0000, 20.0000, 30.0000, 40.0000])
-        self.Variable5e412271_Value29974b38 = fuzz.trapmf(self.x_Variable5e412271, [25.0000, 35.0000, 45.0000, 55.0000])
-        self.Variable5e412271_Value04836667 = fuzz.trapmf(self.x_Variable5e412271, [40.0000, 50.0000, 60.0000, 70.0000])
+        # Generate fuzzy membership functions
+        self.qual_lo = fuzz.trimf(self.x_qual, [0, 0, 5])
+        self.qual_md = fuzz.trimf(self.x_qual, [0, 5, 10])
+        self.qual_hi = fuzz.trimf(self.x_qual, [5, 10, 10])
+        self.serv_lo = fuzz.trimf(self.x_serv, [0, 0, 5])
+        self.serv_md = fuzz.trimf(self.x_serv, [0, 5, 10])
+        self.serv_hi = fuzz.trimf(self.x_serv, [5, 10, 10])
+        self.tip_lo = fuzz.trimf(self.x_tip, [0, 0, 13])
+        self.tip_md = fuzz.trimf(self.x_tip, [0, 13, 25])
+        self.tip_hi = fuzz.trimf(self.x_tip, [13, 25, 25])
 
     def ShowVariables(self):
-        fig, axes = plt.subplots(nrows=3, figsize=(8, 9))
+        fig, (ax0, ax1, ax2) = plt.subplots(nrows=3, figsize=(8, 9))
 
+        ax0.plot(self.x_qual, self.qual_lo, 'b', linewidth=1.5, label='Bad')
+        ax0.plot(self.x_qual, self.qual_md, 'g', linewidth=1.5, label='Decent')
+        ax0.plot(self.x_qual, self.qual_hi, 'r', linewidth=1.5, label='Great')
+        ax0.set_title('Food quality')
+        ax0.legend()
 
-        axes[0].plot(self.x_Wzrost, self.Wzrost_Malo, 'blue', linewidth=1.5, label='Mało')
-        axes[0].plot(self.x_Wzrost, self.Wzrost_Srednio, 'red', linewidth=1.5, label='Średnio')
-        axes[0].plot(self.x_Wzrost, self.Wzrost_Duzo, 'green', linewidth=1.5, label='Dużo')
-        axes[0].plot(self.x_Wzrost, self.Wzrost_Value51736aad, 'black', linewidth=1.5, label='Value-51736AAD')
-        axes[0].plot(self.x_Wzrost, self.Wzrost_Value28276813, 'magenta', linewidth=1.5, label='Value-28276813')
-        axes[0].set_title('Opis zmiennej Nazwa I')
-        axes[0].legend()
+        ax1.plot(self.x_serv, self.serv_lo, 'b', linewidth=1.5, label='Poor')
+        ax1.plot(self.x_serv, self.serv_md, 'g', linewidth=1.5, label='Acceptable')
+        ax1.plot(self.x_serv, self.serv_hi, 'r', linewidth=1.5, label='Amazing')
+        ax1.set_title('Service quality')
+        ax1.legend()
 
-        axes[1].plot(self.x_Nazwa3, self.Nazwa3_Negatywny, 'blue', linewidth=1.5, label='Negatywny')
-        axes[1].plot(self.x_Nazwa3, self.Nazwa3_Zerowy, 'red', linewidth=1.5, label='Zerowy')
-        axes[1].plot(self.x_Nazwa3, self.Nazwa3_Pozytywny, 'green', linewidth=1.5, label='Pozytywny')
-        axes[1].set_title('Opis zmiennej Nazwa III')
-        axes[1].legend()
-
-        axes[2].plot(self.x_Variable5e412271, self.Variable5e412271_Value441c506e, 'blue', linewidth=1.5, label='Value-441C506E')
-        axes[2].plot(self.x_Variable5e412271, self.Variable5e412271_Value29974b38, 'red', linewidth=1.5, label='Value-29974B38')
-        axes[2].plot(self.x_Variable5e412271, self.Variable5e412271_Value04836667, 'green', linewidth=1.5, label='Value-04836667')
-        axes[2].set_title('Description-5ED63C56')
-        axes[2].legend()
+        ax2.plot(self.x_tip, self.tip_lo, 'b', linewidth=1.5, label='Low')
+        ax2.plot(self.x_tip, self.tip_md, 'g', linewidth=1.5, label='Medium')
+        ax2.plot(self.x_tip, self.tip_hi, 'r', linewidth=1.5, label='High')
+        ax2.set_title('Tip amount')
+        ax2.legend()
 
         # Turn off top/right axes
-        for ax in axes:
+        for ax in (ax0, ax1, ax2):
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
             ax.get_xaxis().tick_bottom()
@@ -75,17 +60,75 @@ class Model_NazwaModelu(object):
         plt.tight_layout()
         plt.show()
 
-##
-## Model: nazwa modelu DRUGIEGO
-## Opis:  opis DRUGIEGO!!
-##
-## Model nazwa modelu DRUGIEGO jest niedokończony.
-##
+
+    def SetVariable_qual(self, value: float):
+        self.input_qual = value
+
+    def SetVariable_serv(self, value: float):
+        self.input_serv = value
+
+
+    def Execute(self, input_qual: float, input_serv: float):
+
+        self.input_qual = input_qual
+        self.input_serv = input_serv
+
+        # We need the activation of our fuzzy membership functions at these values.
+        # The exact values 6.5 and 9.8 do not exist on our universes...
+        # This is what fuzz.interp_membership exists for!
+        qual_level_lo = fuzz.interp_membership(self.x_qual, self.qual_lo, self.input_qual)
+        qual_level_md = fuzz.interp_membership(self.x_qual, self.qual_md, self.input_qual)
+        qual_level_hi = fuzz.interp_membership(self.x_qual, self.qual_hi, self.input_qual)
+
+        serv_level_lo = fuzz.interp_membership(self.x_serv, self.serv_lo, self.input_serv)
+        serv_level_md = fuzz.interp_membership(self.x_serv, self.serv_md, self.input_serv)
+        serv_level_hi = fuzz.interp_membership(self.x_serv, self.serv_hi, self.input_serv)
+
+        # Now we take our rules and apply them. Rule 1 concerns bad food OR service.
+        # The OR operator means we take the maximum of these two.
+        active_rule1 = np.fmax(qual_level_lo, serv_level_lo, serv_level_lo)
+
+        # Now we apply this by clipping the top off the corresponding output
+        # membership function with `np.fmin`
+        self.output_tip_lo = np.fmin(active_rule1, self.tip_lo)  # removed entirely to 0
+
+        # For rule 2 we connect acceptable service to medium tipping
+        self.output_tip_md = np.fmin(serv_level_md, self.tip_md)
+
+        # For rule 3 we connect high service OR high food with high tipping
+        active_rule3 = np.fmax(qual_level_hi, serv_level_hi)
+        self.output_tip_hi = np.fmin(active_rule3, self.tip_hi)
+
+    def ShowActivations(self):
+        # Visualize this
+        #fig, ax0 = plt.subplots(figsize=(8, 3))
+        fig, axis = plt.subplots(nrows=1, figsize=(8, 1*3))
+        if not hasattr(axis, "__len__"):
+            axis = [axis]
+
+        tip0 = np.zeros_like(self.x_tip)
+
+        axis[0].fill_between(self.x_tip, tip0, self.output_tip_lo, facecolor='b', alpha=0.7)
+        axis[0].plot(self.x_tip, self.tip_lo, 'b', linewidth=0.5, linestyle='--', )
+        axis[0].fill_between(self.x_tip, tip0, self.output_tip_md, facecolor='g', alpha=0.7)
+        axis[0].plot(self.x_tip, self.tip_md, 'g', linewidth=0.5, linestyle='--')
+        axis[0].fill_between(self.x_tip, tip0, self.output_tip_hi, facecolor='r', alpha=0.7)
+        axis[0].plot(self.x_tip, self.tip_hi, 'r', linewidth=0.5, linestyle='--')
+        axis[0].set_title('Output membership activity')
+
+        # Turn off top/right axes
+        for ax in axis:
+            ax.spines['top'].set_visible(False)
+            ax.spines['right'].set_visible(False)
+            ax.get_xaxis().tick_bottom()
+            ax.get_yaxis().tick_left()
+
+        plt.tight_layout()
+        plt.show()
+
 
 if __name__ == "__main__":
-    m0 = Model_NazwaModelu()
-    m0.ShowVariables()
-
-#    m1 = Model_NazwaModeluDrugiego()
-#    m1.ShowVariables()
-
+    m1 = Model()
+    m1.ShowVariables()
+    m1.Execute(6.5, 9.8)
+    m1.ShowActivations()

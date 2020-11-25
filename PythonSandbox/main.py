@@ -12,33 +12,34 @@ class FuzzyOperation(object):
     def __init__(self, or_connective = None, and_connective = None, negation = None):
         self.or_connective = or_connective or (lambda x, y: x if x > y else y)
         self.and_connective = and_connective or (lambda x, y: x if x < y else y)
-        self.negation = lambda x: 1 - x
+        self.negation = negation or (lambda x: 1 - x)
 
 
-    def AND(self, *args):
-        if len(args) == 0:
+    def And(self, *memberships):
+        if len(memberships) == 0:
             raise ValueError("args")
-        elif len(args) == 1:
-            return self.and_connective(args[0], args[1])
-        v = args[0]
-        for i in range(1, len(args)):
-            v = self.and_connective(v, args[i])
+        elif len(memberships) == 1:
+            return self.and_connective(memberships[0], memberships[1])
+        v = memberships[0]
+        for i in range(1, len(memberships)):
+            v = self.and_connective(v, memberships[i])
         return v
 
-    def OR(self, *args):
-        if len(args) == 0:
+    def Or(self, *memberships):
+        if len(memberships) == 0:
             raise ValueError("args")
-        elif len(args) == 1:
-            return self.or_connective(args[0], args[1])
-        v = args[0]
-        for i in range(1, len(args)):
-            v = self.or_connective(v, args[i])
+        elif len(memberships) == 1:
+            return self.or_connective(memberships[0], memberships[1])
+        v = memberships[0]
+        for i in range(1, len(memberships)):
+            v = self.or_connective(v, memberships[i])
         return v
 
-    def NOT(self, *args):
-        if len(args) != 1:
-            raise ValueError("args")
-        return self.negation(args[0])
+    def Not(self, membership):
+        return self.negation(membership)
+
+    def Inference(self, ):
+        pass
 
 
 class Model(object):

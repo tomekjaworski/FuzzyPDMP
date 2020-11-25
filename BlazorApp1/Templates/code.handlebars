@@ -127,11 +127,14 @@ class Model_{{normalize ModelName}}(object):
         # Reguła {{Comment}}
 {{#each Operations}}
 {{#if Op.IsAnd}}
-        {{Target.Name}} = self.foper.AND({{#if Left.IsFuzzyValue}}level_{{normalize Left.FuzzyValue.Variable.Name}}_{{normalize Left.FuzzyValue.Name}}{{/if}}{{#if Left.IsNamedVariable}}{{Left.Name}}{{/if}}, {{#if Right.IsFuzzyValue}}level_{{normalize Right.FuzzyValue.Variable.Name}}_{{normalize Right.FuzzyValue.Name}}{{/if}}{{#if Right.IsNamedVariable}}{{Right.Name}}{{/if}})
+        {{Target.Name}} = self.foper.And({{#if Left.IsFuzzyValue}}level_{{normalize Left.FuzzyValue.Variable.Name}}_{{normalize Left.FuzzyValue.Name}}{{/if}}{{#if Left.IsNamedVariable}}{{Left.Name}}{{/if}}, {{#if Right.IsFuzzyValue}}level_{{normalize Right.FuzzyValue.Variable.Name}}_{{normalize Right.FuzzyValue.Name}}{{/if}}{{#if Right.IsNamedVariable}}{{Right.Name}}{{/if}})
 {{/if~}}{{#if Op.IsOr}}
-        {{Target.Name}} = self.foper.OR({{#if Left.IsFuzzyValue}}level_{{normalize Left.FuzzyValue.Variable.Name}}_{{normalize Left.FuzzyValue.Name}}{{/if}}{{#if Left.IsNamedVariable}}{{Left.Name}}{{/if}}, {{#if Right.IsFuzzyValue}}level_{{normalize Right.FuzzyValue.Variable.Name}}_{{normalize Right.FuzzyValue.Name}}{{/if}}{{#if Right.IsNamedVariable}}{{Right.Name}}{{/if}})
+        {{Target.Name}} = self.foper.Or({{#if Left.IsFuzzyValue}}level_{{normalize Left.FuzzyValue.Variable.Name}}_{{normalize Left.FuzzyValue.Name}}{{/if}}{{#if Left.IsNamedVariable}}{{Left.Name}}{{/if}}, {{#if Right.IsFuzzyValue}}level_{{normalize Right.FuzzyValue.Variable.Name}}_{{normalize Right.FuzzyValue.Name}}{{/if}}{{#if Right.IsNamedVariable}}{{Right.Name}}{{/if}})
 {{~/if}}{{/each}}
-        rule_{{@index}} = {{FinalToken.Name}}
+        rule{{@index}}_activation = {{FinalToken.Name}}
+{{#each Conclusions}}
+        rule{{@../index}}_{{normalize Variable.Name}}_{{normalize Name}} = self.foper.Inferece(rule{{@../index}}_activation, self.memb_{{normalize Variable.Name}}_{{normalize Name}})
+{{/each}}
 {{/each}}
 
 

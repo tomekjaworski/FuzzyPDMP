@@ -200,7 +200,7 @@ namespace BlazorApp1
                     t.AddRange(tokens);
                     t.Add(new Token() { Type = TokenType.Connective, Connective = FuzzyConnectiveType.Or });
                     t.AddRange(tokens);
-                    t.Add(new Token() { Type = TokenType.Connective, Connective = FuzzyConnectiveType.And});
+                    t.Add(new Token() { Type = TokenType.Connective, Connective = FuzzyConnectiveType.And });
                     t.AddRange(tokens);
                     tokens = t;
 
@@ -250,6 +250,7 @@ namespace BlazorApp1
                         Operations = ops.ToArray(),
                         Comment = fr.ToString(),
                         FinalToken = tokens[0],
+                        Conclusions = fr.Conclusion.Select(x => x.Value)
                     };
                     compiled_rules.Add(compiled_rule);
                 }
@@ -275,4 +276,4 @@ namespace BlazorApp1
             //
         }
     }
-}       
+}

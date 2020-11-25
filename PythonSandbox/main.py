@@ -18,7 +18,8 @@ class FuzzyOperation(object):
     def AND(self, *args):
         if len(args) == 0:
             raise ValueError("args")
-
+        elif len(args) == 1:
+            return self.and_connective(args[0], args[1])
         v = args[0]
         for i in range(1, len(args)):
             v = self.and_connective(v, args[i])
@@ -27,7 +28,8 @@ class FuzzyOperation(object):
     def OR(self, *args):
         if len(args) == 0:
             raise ValueError("args")
-
+        elif len(args) == 1:
+            return self.or_connective(args[0], args[1])
         v = args[0]
         for i in range(1, len(args)):
             v = self.or_connective(v, args[i])
@@ -36,7 +38,6 @@ class FuzzyOperation(object):
     def NOT(self, *args):
         if len(args) != 1:
             raise ValueError("args")
-
         return self.negation(args[0])
 
 

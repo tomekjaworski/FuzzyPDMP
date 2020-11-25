@@ -33,7 +33,6 @@ namespace BlazorApp1
             {
                 pmg.Run();
                 string pc = pmg.PythonCode;
-                break;
             }
 
             cts = new CancellationTokenSource();

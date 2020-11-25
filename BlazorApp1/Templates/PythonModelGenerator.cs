@@ -9,6 +9,56 @@ using HandlebarsDotNet;
 
 namespace BlazorApp1
 {
+
+    public enum TokenType
+    {
+        FuzzyValue,
+        NamedVariable,
+        Connective
+    }
+
+    public class Token
+    {
+        public TokenType Type { get; set; }
+        public FuzzyValue FuzzyValue { get; set; }
+        public FuzzyConnectiveType Connective { get; set; }
+        public string Name { get; internal set; }
+
+        public bool IsFuzzyValue => this.Type == TokenType.FuzzyValue;
+        public bool IsConnective => this.Type == TokenType.Connective;
+        public bool IsNamedVariable => this.Type == TokenType.NamedVariable;
+
+        public bool IsAnd => this.Type == TokenType.Connective && this.Connective == FuzzyConnectiveType.And;
+        public bool IsOr => this.Type == TokenType.Connective && this.Connective == FuzzyConnectiveType.Or;
+
+        public override string ToString() => Type switch
+        {
+            TokenType.NamedVariable => this.Name,
+            TokenType.FuzzyValue => this.FuzzyValue.ToString(),
+            TokenType.Connective => this.Connective.ToString(),
+        };
+    }
+
+
+    class Operation
+    {
+        public Token Target { get; set; }
+        public Token Left { get; set; }
+        public Token Op { get; set; }
+        public Token Right { get; set; }
+
+        public Operation(Token target, Token left, Token op, Token right)
+        {
+            this.Target = target;
+            this.Left = left;
+            this.Op = op;
+            this.Right = right;
+        }
+
+        public override string ToString() => $"{Target} = {Left} {Op} {Right}";
+    }
+
+
     public class PythonModelGenerator
     {
         private Board board;
@@ -33,6 +83,33 @@ namespace BlazorApp1
             else
                 return Path.Combine(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]), "Templates", fileName);
         }
+
+        static string NormalizePythonIdentifier(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return "(null?)";
+
+            string iconv = "ĘEęeÓOóoĄAąaŚSśsŁLłlŻZżzŹZźzĆCćcŃNńn";
+            string ok = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890_ ";
+            string result = "";
+            foreach (char ch in text)
+                if (iconv.IndexOf(ch) % 2 == 0)
+                    result += iconv[iconv.IndexOf(ch) + 1];
+                else
+                    if (ok.IndexOf(ch) != -1)
+                    result += ch;
+            result = string.Join("",
+            result.Split(' ', StringSplitOptions.RemoveEmptyEntries).
+                Select(x =>
+                {
+                    if (!char.IsLetter(x[0]))
+                        return x;
+                    else
+                        return char.ToUpper(x[0]) + x.Substring(1).ToLower();
+                }));
+            return result;
+        }
+
 
         public void Run()
         {
@@ -61,32 +138,6 @@ namespace BlazorApp1
             Handlebars.Configuration.UnresolvedBindingFormatter = "???";
 
             var template = Handlebars.Compile(template_string);
-
-            string NormalizePythonIdentifier(string text)
-            {
-                if (string.IsNullOrEmpty(text))
-                    return "(null?)";
-
-                string iconv = "ĘEęeÓOóoĄAąaŚSśsŁLłlŻZżzŹZźzĆCćcŃNńn";
-                string ok = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890_ ";
-                string result = "";
-                foreach (char ch in text)
-                    if (iconv.IndexOf(ch) % 2 == 0)
-                        result += iconv[iconv.IndexOf(ch) + 1];
-                    else
-                        if (ok.IndexOf(ch) != -1)
-                        result += ch;
-                result = string.Join("",
-                result.Split(' ', StringSplitOptions.RemoveEmptyEntries).
-                    Select(x =>
-                    {
-                        if (!char.IsLetter(x[0]))
-                            return x;
-                        else
-                            return char.ToUpper(x[0]) + x.Substring(1).ToLower();
-                    }));
-                return result;
-            }
 
             Dictionary<string, object> dict = new Dictionary<string, object>();
             dict["CurrentDate"] = DateTime.Now;
@@ -127,6 +178,82 @@ namespace BlazorApp1
                     .Distinct()
                     .ToArray();
 
+
+                List<object> compiled_rules = new List<object>();
+                int id = 1;
+
+                foreach (FuzzyRule fr in fmodel.Rules)
+                {
+                    // Generuj regułe w postaci strumienia tokenów
+                    List<Token> tokens = new List<Token>();
+                    foreach (FuzzySubexpression expr in fr.Premise)
+                    {
+                        if (expr.ConnectiveType == FuzzyConnectiveType.And)
+                            tokens.Add(new Token() { Type = TokenType.Connective, Connective = FuzzyConnectiveType.And });
+                        if (expr.ConnectiveType == FuzzyConnectiveType.Or)
+                            tokens.Add(new Token() { Type = TokenType.Connective, Connective = FuzzyConnectiveType.Or });
+
+                        tokens.Add(new Token() { Type = TokenType.FuzzyValue, FuzzyValue = expr.Value });
+                    }
+
+                    List<Token> t = new List<Token>();
+                    t.AddRange(tokens);
+                    t.Add(new Token() { Type = TokenType.Connective, Connective = FuzzyConnectiveType.Or });
+                    t.AddRange(tokens);
+                    t.Add(new Token() { Type = TokenType.Connective, Connective = FuzzyConnectiveType.And});
+                    t.AddRange(tokens);
+                    tokens = t;
+
+
+                    List<Operation> ops = new List<Operation>();
+                    // Generuj składowe wyrażenia (baardzo uproszczone)
+
+                    bool substitution_occured;
+                    do // AND
+                    {
+                        substitution_occured = false;
+                        for (int i = 1; i < tokens.Count - 1; i++)
+                            if (tokens[i].Type == TokenType.Connective && tokens[i].Connective == FuzzyConnectiveType.And)
+                            {
+                                Token temp = new Token() { Type = TokenType.NamedVariable, Name = $"temp{id++}" };
+                                Operation op = new Operation(temp, tokens[i - 1], tokens[i], tokens[i + 1]);
+                                ops.Add(op);
+                                tokens[i] = temp;
+                                tokens.RemoveAt(i + 1);
+                                tokens.RemoveAt(i - 1);
+                                substitution_occured = true;
+                                i--;
+                            }
+                    } while (substitution_occured);
+
+                    do // OR
+                    {
+                        substitution_occured = false;
+                        for (int i = 1; i < tokens.Count - 1; i++)
+                            if (tokens[i].Type == TokenType.Connective && tokens[i].Connective == FuzzyConnectiveType.Or)
+                            {
+                                Token temp = new Token() { Type = TokenType.NamedVariable, Name = $"temp{id++}" };
+                                Operation op = new Operation(temp, tokens[i - 1], tokens[i], tokens[i + 1]);
+                                ops.Add(op);
+                                tokens[i] = temp;
+                                tokens.RemoveAt(i + 1);
+                                tokens.RemoveAt(i - 1);
+                                substitution_occured = true;
+                                i--;
+                            }
+                    } while (substitution_occured);
+                    Debug.Assert(tokens.Count == 1);
+
+                    var compiled_rule = new
+                    {
+                        Rule = fr,
+                        Operations = ops.ToArray(),
+                        Comment = fr.ToString(),
+                        FinalToken = tokens[0],
+                    };
+                    compiled_rules.Add(compiled_rule);
+                }
+
                 models.Add(new
                 {
                     IsValid = fmodel.IsValid,
@@ -135,6 +262,7 @@ namespace BlazorApp1
                     AllValues = all_values,
                     InputVariables = input_variables,
                     OutputVariables = output_variables,
+                    CompiledRules = compiled_rules,
                     XStep = 0.1,
                 });
 
@@ -147,4 +275,4 @@ namespace BlazorApp1
             //
         }
     }
-}
+}       

@@ -9,6 +9,46 @@ import skfuzzy as fuzz
 import matplotlib.pyplot as plt
 from typing import List, Union
 
+
+class FuzzyOperation(object):
+    or_connective = None
+    and_connective = None
+    negation = None
+
+    def __init__(self, or_connective = None, and_connective = None, negation = None):
+        self.or_connective = or_connective or (lambda x, y: x if x > y else y)
+        self.and_connective = and_connective or (lambda x, y: x if x < y else y)
+        self.negation = lambda x: 1 - x
+
+
+    def AND(self, *args):
+        if len(args) == 0:
+            raise ValueError("args")
+        elif len(args) == 1:
+            return self.and_connective(args[0], args[1])
+        v = args[0]
+        for i in range(1, len(args)):
+            v = self.and_connective(v, args[i])
+        return v
+
+    def OR(self, *args):
+        if len(args) == 0:
+            raise ValueError("args")
+        elif len(args) == 1:
+            return self.or_connective(args[0], args[1])
+        v = args[0]
+        for i in range(1, len(args)):
+            v = self.or_connective(v, args[i])
+        return v
+
+    def NOT(self, *args):
+        if len(args) != 1:
+            raise ValueError("args")
+        return self.negation(args[0])
+
+
+## -------------------------------------------------------------------------
+
 {{#each Models}}
 ##
 ## Model: {{{ModelName}}}
@@ -16,6 +56,7 @@ from typing import List, Union
 ##
 {{#if IsValid}}
 class Model_{{normalize ModelName}}(object):
+    foper = None #type: FuzzyOperation
 
     # Wartości ostre dla zmiennych wejściowych
 {{#each InputVariables}}
@@ -41,6 +82,8 @@ class Model_{{normalize ModelName}}(object):
 {{/each}}
 
     def __init__(self):
+        self.foper = FuzzyOperation()
+
         self.InitDomain()
         self.InitVariables()
 #       self.ShowVariables()
@@ -57,7 +100,7 @@ class Model_{{normalize ModelName}}(object):
 {{#each InputVariables}}
 
         # Wejście: {{Name}}
-{{#each AllValues}}
+{{#each Values}}
         self.memb_{{normalize Variable.Name}}_{{normalize Name}} = fuzz.trapmf(self.x_{{normalize Variable.Name}}, [{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
 {{/each}}
 {{/each}}
@@ -77,7 +120,20 @@ class Model_{{normalize ModelName}}(object):
         level_{{normalize Variable.Name}}_{{normalize Name}} = fuzz.interp_membership(self.x_{{normalize Variable.Name}}, self.memb_{{normalize Variable.Name}}_{{normalize Name}}, self.input_{{normalize Variable.Name}})
 {{~/each}}{{/each}}
 
+        #
         # Tutaj wnioskowanie ....
+{{#each CompiledRules}}
+
+        # Reguła {{Comment}}
+{{#each Operations}}
+{{#if Op.IsAnd}}
+        {{Target.Name}} = self.foper.AND({{#if Left.IsFuzzyValue}}level_{{normalize Left.FuzzyValue.Variable.Name}}_{{normalize Left.FuzzyValue.Name}}{{/if}}{{#if Left.IsNamedVariable}}{{Left.Name}}{{/if}}, {{#if Right.IsFuzzyValue}}level_{{normalize Right.FuzzyValue.Variable.Name}}_{{normalize Right.FuzzyValue.Name}}{{/if}}{{#if Right.IsNamedVariable}}{{Right.Name}}{{/if}})
+{{/if~}}{{#if Op.IsOr}}
+        {{Target.Name}} = self.foper.OR({{#if Left.IsFuzzyValue}}level_{{normalize Left.FuzzyValue.Variable.Name}}_{{normalize Left.FuzzyValue.Name}}{{/if}}{{#if Left.IsNamedVariable}}{{Left.Name}}{{/if}}, {{#if Right.IsFuzzyValue}}level_{{normalize Right.FuzzyValue.Variable.Name}}_{{normalize Right.FuzzyValue.Name}}{{/if}}{{#if Right.IsNamedVariable}}{{Right.Name}}{{/if}})
+{{~/if}}{{/each}}
+        rule_{{@index}} = {{FinalToken.Name}}
+{{/each}}
+
 
 {{~#each OutputVariables}}{{#each Values}}
         self.output_{{normalize Variable.Name}}_{{normalize Name}} = 123 # todo: ....

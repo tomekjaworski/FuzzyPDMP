@@ -14,13 +14,36 @@ namespace BlazorApp1.Fuzzy
         public List<FuzzyRule> Rules { get; set; }
         public bool IsValid => this.InternalValidateModel();
 
-        public FuzzyModel(Board board)
+        private FuzzyModel()
         {
             this.ID = Guid.NewGuid();
             this.Rules = new List<FuzzyRule>();
-            this.Board = board;
+            this.Board = null;
         }
 
+
+        public FuzzyModel(string name, string description)
+            :this()
+        {
+            this.Name  = name;
+            this.Description = description;
+        }
+
+        public FuzzyModel Clone()
+        {
+            FuzzyModel copy = new FuzzyModel()
+            {
+                Name = this.Name,
+                Description = this.Description
+            };
+
+            foreach(FuzzyRule rule in this.Rules)
+            {
+                FuzzyRule rule_copy = rule.Clone();
+                copy.AddRule(rule_copy);
+            }
+            return copy;
+        }
 
         public bool RemoveRule(FuzzyRule rule)
         {
@@ -35,11 +58,10 @@ namespace BlazorApp1.Fuzzy
         }
 
 
-        public FuzzyRule AddRule()
+        public FuzzyRule AddRule(FuzzyRule rule)
         {
-            FuzzyRule fr = new FuzzyRule();
-            this.Rules.Add(fr);
-            return fr;
+            this.Rules.Add(rule);
+            return rule;
         }
 
 

@@ -89,7 +89,7 @@
                                         </btn-group>
 
 
-                                        <button class="btn btn-outline-danger mx-2" @onclick="@(() => OnRemovePremiseClicked(rule, premise_expression))">
+                                        <button class="btn btn-light text-danger mx-2" @onclick="@((MouseEventArgs e) => OnRemovePremiseClicked(e, rule, premise_expression))" title="Usuń przesłankę">
                                             <i class="far fa-trash-alt"></i>
                                         </button>
                                     </div>
@@ -97,7 +97,7 @@
 
                             </div>
                             <div class="card-footer d-flex d-flex-row flex-row-reverse">
-                                <button class="btn btn-success btn-sm" @onclick="@(() => OnAddPremiseClicked(rule))">
+                                <button class="btn btn-success btn-sm" @onclick="@((MouseEventArgs e) => OnAddPremiseClicked(e, rule))" title="Dodaj przesłankę">
                                     <span>Dodaj </span>
                                     <span class="font-weight-bold">przesłankę</span>
                                 </button>
@@ -106,9 +106,10 @@
                         <div class="card">
                             <div class="card-header p-1 px-2 d-flex flex-row">
                                 <div class="font-weight-bold">to...</div>
-                                <button class="btn btn-outline-danger btn-sm ml-auto" @onclick="@(() => OnRemoveRuleClicked(rule))">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
+                                <div class="ml-auto">
+                                    <button class="btn btn-sm btn-light" @onclick="@((MouseEventArgs e) => OnDuplicateRule(e, rule))" title="Klonuj tę regułę"><i class="far fa-clone"></i></button>
+                                    <button class="btn btn-light btn-sm text-danger" @onclick="@((MouseEventArgs e) => OnRemoveRuleClicked(e, rule))" title="Usuń wybraną regułę"><i class="far fa-trash-alt"></i></button>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <!-- CARD BODY -->
@@ -144,7 +145,7 @@
                                                 }
                                             </div>
                                         </btn-group>
-                                        <button class="btn btn-outline-danger mx-2" @onclick="@(() => OnRemoveConclusionClicked(rule, conclusion_expression))">
+                                        <button class="btn btn-light text-danger mx-2" @onclick="@((MouseEventArgs e) => OnRemoveConclusionClicked(e, rule, conclusion_expression))" title="Usuń konkluzję">
                                             <i class="far fa-trash-alt"></i>
                                         </button>
                                         <!-- xxxx -->
@@ -153,7 +154,7 @@
 
                             </div>
                             <div class="card-footer d-flex d-flex-row flex-row-reverse">
-                                <button class="btn btn-success btn-sm" @onclick="@(() => OnAddConclusionClicked(rule))">
+                                <button class="btn btn-success btn-sm" @onclick="@((MouseEventArgs e) => OnAddConclusionClicked(e, rule))" title="Dodaj pustą konkluzję">
                                     Dodaj <span class="font-weight-bold">konkluzję</span>
                                 </button>
                             </div>
@@ -167,7 +168,7 @@
         }
         <row class="row mt-3 ">
             <div class="col-md-12 d-flex flex-row-reverse">
-                <button class="btn btn-success btn-sm d-flex" @onclick="@(()=>this.OnAddRuleClicked())">
+                <button class="btn btn-success btn-sm d-flex" @onclick="@((MouseEventArgs e)=>this.OnAddRuleClicked(e))">
                     Dodaj <span class="font-weight-bold">regułę</span>
                 </button>
             </div>

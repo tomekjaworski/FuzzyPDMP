@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -61,7 +62,7 @@ namespace BlazorApp1.Fuzzy
             this.ResetChartHolder();
 
             this.values = new List<FuzzyValue>();
-            this.membership_family = MembershipFunctionFamily.Unspecified;
+            this.membership_family = MembershipFunctionFamily.Trapezoidal;
 
             this.dmin = new NamedParameter("Dmin", 0, this, null);
             this.dmax = new NamedParameter("Dmax", 10, this, null);
@@ -90,15 +91,39 @@ namespace BlazorApp1.Fuzzy
 
         public override string ToString() => $"{Name}: {Description}";
 
-       
-
         public FuzzyValue AddValue(string name, string description)
         {
-            FuzzyValue val = new FuzzyValue(this, name, description, this.membership_family);
+            FuzzyValue val = new FuzzyValue(this, name, description);
             this.values.Add(val);
+            val.Variable = this;
+
             if (this.ValidateCrispParameters())
                 this.ChartHolder.UpdateChart();
             return val;
+        }
+
+        public FuzzyValue AddValue(FuzzyValue value)
+        {
+            Debug.Assert(value.Variable == null || value.Variable == this);
+            this.values.Add(value);
+            value.Variable = this;
+            if (this.ValidateCrispParameters())
+                this.ChartHolder.UpdateChart();
+            return value;
+        }
+
+        public FuzzyVariable Clone()
+        {
+            FuzzyVariable var_copy = new FuzzyVariable() { Name = this.Name, Description = this.Description, MembershipType = this.MembershipType };
+            var_copy.Minimum.Value = this.Minimum.Value;
+            var_copy.Maximum.Value = this.Maximum.Value;
+
+            foreach (FuzzyValue fv in this.Values)
+            {
+                FuzzyValue val_copy = fv.Clone();
+                var_copy.AddValue(val_copy);
+            }
+            return var_copy;
         }
 
         internal bool RemoveValue(FuzzyValue value)
@@ -133,7 +158,6 @@ namespace BlazorApp1.Fuzzy
 
             return true;
         }
-
 
     }
 }

@@ -42,7 +42,7 @@ namespace BlazorApp1.Fuzzy
         {
             this.board = new Board();
 
-            FuzzyModel fm = board.AddModel("Nazwa", "Opis modelu");
+            FuzzyModel fm = board.AddModel(new FuzzyModel("Nazwa", "Opis modelu"));
 
             var var1 = this.board.AddVariable("Nazwa 1", "Opis zmiennej Nazwa I");
 
@@ -104,23 +104,23 @@ namespace BlazorApp1.Fuzzy
             //
             FuzzySubexpression _feci;
 
-            FuzzyRule r1 = fm.AddRule();
+            FuzzyRule r1 = fm.AddRule(new FuzzyRule());
             _ = r1.AddConclusion(var2_val1);
             _ = r1.AddPremise(var1_val1);
             _feci = r1.AddPremise(var1_val2);
             _feci = r1.AddPremise(FuzzyConnectiveType.And, var1_val2);
             _feci = r1.AddPremise(FuzzyConnectiveType.Or, var2_val3);
 
-            FuzzyRule r2 = fm.AddRule();
+            FuzzyRule r2 = fm.AddRule(new FuzzyRule());
             r2.AddConclusion(var2_val2);
             r2.AddConclusion(var2_val3);
 
-            FuzzyRule r3 = fm.AddRule();
+            FuzzyRule r3 = fm.AddRule(new FuzzyRule());
             _feci = r3.AddPremise(var1_val1);
             _feci = r3.AddPremise(FuzzyConnectiveType.And, var1_val2);
             _feci = r3.AddPremise(FuzzyConnectiveType.Or, var2_val3);
 
-            FuzzyRule r4 = fm.AddRule();
+            FuzzyRule r4 = fm.AddRule(new FuzzyRule());
             _ = r4.AddPremise(var2_val3);
             _ = r4.AddConclusion(var1_val3);
             _ = r4.AddEmptyConclusion();
@@ -144,7 +144,20 @@ namespace BlazorApp1.Fuzzy
                 string json = File.ReadAllText(Path.Combine("data", "model.json"), Encoding.UTF8);
                 this.board = JsonConvert.DeserializeObject<Board>(json, settings);
 
-                Console.WriteLine("Ok.");
+                //Popraw bład serializacji (newtonsoft)
+                foreach (FuzzyVariable fvar in this.board.Variables)
+                    foreach (FuzzyValue fval in fvar.Values)
+                        fval.Variable = fvar;
+                        //foreach(var family2params in fval.AllParameters.Values)
+                        //    foreach(var np in family2params.Values)
+                        //    {
+                        //        NamedParameter p = np as NamedParameter;
+                        //        p.ParentValue = fval;
+                        //        p.ParentVariable = fvar;
+                        //    }
+
+
+                        Console.WriteLine("Ok.");
 
             } catch(Exception ex)
             {

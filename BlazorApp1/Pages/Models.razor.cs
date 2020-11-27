@@ -10,11 +10,19 @@ namespace BlazorApp1.Pages
 {
     public partial class Models
     {
-        FuzzyModel selected_model = new FuzzyModel(null);
+        FuzzyModel selected_model = null;
 
         public Models()
         {
             this.selected_model = BoardProvider.Board.SelectedModel;
+        }
+
+        private async Task OnDuplicateModel(MouseEventArgs e, FuzzyModel fmodel)
+        {
+            FuzzyModel fm = fmodel.Clone();
+            fm.Name += " (kopia)";
+            fm.Description += " (kopia)";
+            BoardProvider.Board.AddModel(fm);
         }
 
         private async Task OnEditModelDescription(MouseEventArgs e, FuzzyModel fmodel)
@@ -27,7 +35,6 @@ namespace BlazorApp1.Pages
             {
                 fmodel.Description = out_data.Description;
                 fmodel.Name = out_data.Name;
-                //value.Variable.ChartHolder.UpdateChart();
             }
         }
 
@@ -49,10 +56,10 @@ namespace BlazorApp1.Pages
         private void OnAddModel(MouseEventArgs e)
         {
             Random rnd = new Random();
-            BoardProvider.Board.AddModel(
+            BoardProvider.Board.AddModel(new FuzzyModel(
                 $"Model-{rnd.Next():X08}",
                 $"Description-{rnd.Next():X08}"
-                );
+                ));
         }
     }
 }

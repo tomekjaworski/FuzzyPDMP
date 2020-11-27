@@ -24,73 +24,76 @@
               },
               "AllParameters": {
                 "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
-                "Unspecified": {
-                  "$id": "4",
-                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
-                },
                 "Trapezoidal": {
-                  "$id": "5",
+                  "$id": "4",
                   "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
                   "SuppL": {
-                    "$id": "6",
+                    "$id": "5",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppL",
-                    "FullName": "SuppL",
+                    "FullName": "Mało::SuppL",
                     "Value": 0.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "3"
+                    }
                   },
                   "KernL": {
-                    "$id": "7",
+                    "$id": "6",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernL",
-                    "FullName": "KernL",
+                    "FullName": "Mało::KernL",
                     "Value": 0.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "3"
+                    }
                   },
                   "KernR": {
-                    "$id": "8",
+                    "$id": "7",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernR",
-                    "FullName": "KernR",
+                    "FullName": "Mało::KernR",
                     "Value": 25.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "3"
+                    }
                   },
                   "SuppR": {
-                    "$id": "9",
+                    "$id": "8",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppR",
-                    "FullName": "SuppR",
+                    "FullName": "Mało::SuppR",
                     "Value": 40.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "3"
+                    }
                   }
+                },
+                "Unspecified": {
+                  "$id": "9",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
                 }
               },
               "MembershipType": "Trapezoidal",
-              "IsValid": true,
-              "X": {
-                "$id": "10",
-                "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
-                "A": 123
-              }
+              "IsValid": true
             },
             {
-              "$id": "11",
+              "$id": "10",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
               "ID": "cbefe481-5467-41ba-bd6c-64f11cf2545e",
               "Name": "Średnio",
@@ -100,73 +103,76 @@
               },
               "AllParameters": {
                 "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
-                "Unspecified": {
-                  "$id": "12",
-                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
-                },
                 "Trapezoidal": {
-                  "$id": "13",
+                  "$id": "11",
                   "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
                   "SuppL": {
-                    "$id": "14",
+                    "$id": "12",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppL",
-                    "FullName": "SuppL",
+                    "FullName": "Średnio::SuppL",
                     "Value": 25.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "10"
+                    }
                   },
                   "KernL": {
-                    "$id": "15",
+                    "$id": "13",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernL",
-                    "FullName": "KernL",
+                    "FullName": "Średnio::KernL",
                     "Value": 40.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "10"
+                    }
                   },
                   "KernR": {
-                    "$id": "16",
+                    "$id": "14",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernR",
-                    "FullName": "KernR",
+                    "FullName": "Średnio::KernR",
                     "Value": 55.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "10"
+                    }
                   },
                   "SuppR": {
-                    "$id": "17",
+                    "$id": "15",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppR",
-                    "FullName": "SuppR",
+                    "FullName": "Średnio::SuppR",
                     "Value": 70.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "10"
+                    }
                   }
+                },
+                "Unspecified": {
+                  "$id": "16",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
                 }
               },
               "MembershipType": "Trapezoidal",
-              "IsValid": true,
-              "X": {
-                "$id": "18",
-                "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
-                "A": 123
-              }
+              "IsValid": true
             },
             {
-              "$id": "19",
+              "$id": "17",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
               "ID": "4ea8b4af-7ab0-4387-ac25-075bb383e2a9",
               "Name": "Dużo",
@@ -176,73 +182,76 @@
               },
               "AllParameters": {
                 "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
-                "Unspecified": {
-                  "$id": "20",
-                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
-                },
                 "Trapezoidal": {
-                  "$id": "21",
+                  "$id": "18",
                   "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
                   "SuppL": {
-                    "$id": "22",
+                    "$id": "19",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppL",
-                    "FullName": "SuppL",
+                    "FullName": "Dużo::SuppL",
                     "Value": 55.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "17"
+                    }
                   },
                   "KernL": {
-                    "$id": "23",
+                    "$id": "20",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernL",
-                    "FullName": "KernL",
+                    "FullName": "Dużo::KernL",
                     "Value": 70.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "17"
+                    }
                   },
                   "KernR": {
-                    "$id": "24",
+                    "$id": "21",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernR",
-                    "FullName": "KernR",
+                    "FullName": "Dużo::KernR",
                     "Value": 110.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "17"
+                    }
                   },
                   "SuppR": {
-                    "$id": "25",
+                    "$id": "22",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppR",
-                    "FullName": "SuppR",
+                    "FullName": "Dużo::SuppR",
                     "Value": 110.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "17"
+                    }
                   }
+                },
+                "Unspecified": {
+                  "$id": "23",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
                 }
               },
               "MembershipType": "Trapezoidal",
-              "IsValid": true,
-              "X": {
-                "$id": "26",
-                "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
-                "A": 123
-              }
+              "IsValid": true
             },
             {
-              "$id": "27",
+              "$id": "24",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
               "ID": "2696b58b-00ea-4d18-8afc-06e0fe9166b8",
               "Name": "Value-51736AAD",
@@ -252,73 +261,76 @@
               },
               "AllParameters": {
                 "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
-                "Unspecified": {
-                  "$id": "28",
-                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
-                },
                 "Trapezoidal": {
-                  "$id": "29",
+                  "$id": "25",
                   "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
                   "SuppL": {
-                    "$id": "30",
+                    "$id": "26",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppL",
-                    "FullName": "SuppL",
+                    "FullName": "Value-51736AAD::SuppL",
                     "Value": 1.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "24"
+                    }
                   },
                   "KernL": {
-                    "$id": "31",
+                    "$id": "27",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernL",
-                    "FullName": "KernL",
+                    "FullName": "Value-51736AAD::KernL",
                     "Value": 2.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "24"
+                    }
                   },
                   "KernR": {
-                    "$id": "32",
+                    "$id": "28",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernR",
-                    "FullName": "KernR",
+                    "FullName": "Value-51736AAD::KernR",
                     "Value": 3.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "24"
+                    }
                   },
                   "SuppR": {
-                    "$id": "33",
+                    "$id": "29",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppR",
-                    "FullName": "SuppR",
+                    "FullName": "Value-51736AAD::SuppR",
                     "Value": 4.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "24"
+                    }
                   }
+                },
+                "Unspecified": {
+                  "$id": "30",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
                 }
               },
               "MembershipType": "Trapezoidal",
-              "IsValid": true,
-              "X": {
-                "$id": "34",
-                "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
-                "A": 123
-              }
+              "IsValid": true
             },
             {
-              "$id": "35",
+              "$id": "31",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
               "ID": "71a4c226-fbfc-4b9d-8049-d63118dd1059",
               "Name": "Value-28276813",
@@ -328,70 +340,73 @@
               },
               "AllParameters": {
                 "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
-                "Unspecified": {
-                  "$id": "36",
-                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
-                },
                 "Trapezoidal": {
-                  "$id": "37",
+                  "$id": "32",
                   "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
                   "SuppL": {
-                    "$id": "38",
+                    "$id": "33",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppL",
-                    "FullName": "SuppL",
-                    "Value": 1.0,
+                    "FullName": "Value-28276813::SuppL",
+                    "Value": 10.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "31"
+                    }
                   },
                   "KernL": {
-                    "$id": "39",
+                    "$id": "34",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernL",
-                    "FullName": "KernL",
-                    "Value": 2.0,
+                    "FullName": "Value-28276813::KernL",
+                    "Value": 20.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "31"
+                    }
                   },
                   "KernR": {
-                    "$id": "40",
+                    "$id": "35",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernR",
-                    "FullName": "KernR",
-                    "Value": 3.0,
+                    "FullName": "Value-28276813::KernR",
+                    "Value": 30.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "31"
+                    }
                   },
                   "SuppR": {
-                    "$id": "41",
+                    "$id": "36",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppR",
-                    "FullName": "SuppR",
-                    "Value": 4.0,
+                    "FullName": "Value-28276813::SuppR",
+                    "Value": 40.0,
                     "IsValid": true,
                     "ParentVariable": {
                       "$ref": "2"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "31"
+                    }
                   }
+                },
+                "Unspecified": {
+                  "$id": "37",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
                 }
               },
               "MembershipType": "Trapezoidal",
-              "IsValid": true,
-              "X": {
-                "$id": "42",
-                "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
-                "A": 123
-              }
+              "IsValid": true
             }
           ]
         },
@@ -421,7 +436,7 @@
         "IsValid": true
       },
       {
-        "$id": "43",
+        "$id": "38",
         "$type": "BlazorApp1.Fuzzy.FuzzyVariable, BlazorApp1",
         "ID": "639f0dd6-ec1b-4e9b-8f4a-779a54c1f8a6",
         "Name": "Nazwa 3",
@@ -430,96 +445,174 @@
           "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1]], System.Private.CoreLib",
           "$values": [
             {
-              "$id": "44",
+              "$id": "39",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
               "ID": "71806a6d-0f98-4db8-8c2c-6b95e7d9282a",
               "Name": "Negatywny",
               "Description": "Opis wartości Negatywny",
               "Variable": {
-                "$ref": "43"
+                "$ref": "38"
               },
               "AllParameters": {
                 "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
-                "Unspecified": {
-                  "$id": "45",
-                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
-                },
                 "Trapezoidal": {
-                  "$id": "46",
+                  "$id": "40",
                   "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
                   "SuppL": {
-                    "$id": "47",
+                    "$id": "41",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppL",
-                    "FullName": "SuppL",
+                    "FullName": "Negatywny::SuppL",
                     "Value": -41.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "43"
+                      "$ref": "38"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "39"
+                    }
                   },
                   "KernL": {
-                    "$id": "48",
+                    "$id": "42",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernL",
-                    "FullName": "KernL",
+                    "FullName": "Negatywny::KernL",
                     "Value": -41.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "43"
+                      "$ref": "38"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "39"
+                    }
                   },
                   "KernR": {
-                    "$id": "49",
+                    "$id": "43",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernR",
-                    "FullName": "KernR",
+                    "FullName": "Negatywny::KernR",
                     "Value": -20.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "43"
+                      "$ref": "38"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "39"
+                    }
                   },
                   "SuppR": {
-                    "$id": "50",
+                    "$id": "44",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppR",
-                    "FullName": "SuppR",
+                    "FullName": "Negatywny::SuppR",
                     "Value": 0.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "43"
+                      "$ref": "38"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "39"
+                    }
                   }
+                },
+                "Unspecified": {
+                  "$id": "45",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
                 }
               },
               "MembershipType": "Trapezoidal",
-              "IsValid": true,
-              "X": {
-                "$id": "51",
-                "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
-                "A": 123
-              }
+              "IsValid": true
             },
             {
-              "$id": "52",
+              "$id": "46",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
               "ID": "c97ba3d6-301b-4631-a340-1694bceea5f1",
               "Name": "Zerowy",
               "Description": "Opis wartości Zerowy",
               "Variable": {
-                "$ref": "43"
+                "$ref": "38"
               },
               "AllParameters": {
                 "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
-                "Unspecified": {
-                  "$id": "53",
-                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
+                "Trapezoidal": {
+                  "$id": "47",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
+                  "SuppL": {
+                    "$id": "48",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppL",
+                    "FullName": "Zerowy::SuppL",
+                    "Value": -20.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "38"
+                    },
+                    "ParentValue": {
+                      "$ref": "46"
+                    }
+                  },
+                  "KernL": {
+                    "$id": "49",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernL",
+                    "FullName": "Zerowy::KernL",
+                    "Value": 0.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "38"
+                    },
+                    "ParentValue": {
+                      "$ref": "46"
+                    }
+                  },
+                  "KernR": {
+                    "$id": "50",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernR",
+                    "FullName": "Zerowy::KernR",
+                    "Value": 0.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "38"
+                    },
+                    "ParentValue": {
+                      "$ref": "46"
+                    }
+                  },
+                  "SuppR": {
+                    "$id": "51",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppR",
+                    "FullName": "Zerowy::SuppR",
+                    "Value": 20.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "38"
+                    },
+                    "ParentValue": {
+                      "$ref": "46"
+                    }
+                  }
                 },
+                "Unspecified": {
+                  "$id": "52",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
+                }
+              },
+              "MembershipType": "Trapezoidal",
+              "IsValid": true
+            },
+            {
+              "$id": "53",
+              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
+              "ID": "b128ad29-7c7a-4a9e-925c-30049b2ebef3",
+              "Name": "Pozytywny",
+              "Description": "Opis wartości Pozytywny",
+              "Variable": {
+                "$ref": "38"
+              },
+              "AllParameters": {
+                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
                 "Trapezoidal": {
                   "$id": "54",
                   "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
@@ -527,135 +620,66 @@
                     "$id": "55",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppL",
-                    "FullName": "SuppL",
-                    "Value": -20.0,
+                    "FullName": "Pozytywny::SuppL",
+                    "Value": 0.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "43"
+                      "$ref": "38"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "53"
+                    }
                   },
                   "KernL": {
                     "$id": "56",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernL",
-                    "FullName": "KernL",
-                    "Value": 0.0,
+                    "FullName": "Pozytywny::KernL",
+                    "Value": 20.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "43"
+                      "$ref": "38"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "53"
+                    }
                   },
                   "KernR": {
                     "$id": "57",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernR",
-                    "FullName": "KernR",
-                    "Value": 0.0,
+                    "FullName": "Pozytywny::KernR",
+                    "Value": 41.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "43"
+                      "$ref": "38"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "53"
+                    }
                   },
                   "SuppR": {
                     "$id": "58",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppR",
-                    "FullName": "SuppR",
-                    "Value": 20.0,
+                    "FullName": "Pozytywny::SuppR",
+                    "Value": 41.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "43"
+                      "$ref": "38"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "53"
+                    }
                   }
-                }
-              },
-              "MembershipType": "Trapezoidal",
-              "IsValid": true,
-              "X": {
-                "$id": "59",
-                "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
-                "A": 123
-              }
-            },
-            {
-              "$id": "60",
-              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
-              "ID": "b128ad29-7c7a-4a9e-925c-30049b2ebef3",
-              "Name": "Pozytywny",
-              "Description": "Opis wartości Pozytywny",
-              "Variable": {
-                "$ref": "43"
-              },
-              "AllParameters": {
-                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
-                "Unspecified": {
-                  "$id": "61",
-                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
                 },
-                "Trapezoidal": {
-                  "$id": "62",
-                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
-                  "SuppL": {
-                    "$id": "63",
-                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
-                    "ShortName": "SuppL",
-                    "FullName": "SuppL",
-                    "Value": 0.0,
-                    "IsValid": true,
-                    "ParentVariable": {
-                      "$ref": "43"
-                    },
-                    "ParentValue": null
-                  },
-                  "KernL": {
-                    "$id": "64",
-                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
-                    "ShortName": "KernL",
-                    "FullName": "KernL",
-                    "Value": 20.0,
-                    "IsValid": true,
-                    "ParentVariable": {
-                      "$ref": "43"
-                    },
-                    "ParentValue": null
-                  },
-                  "KernR": {
-                    "$id": "65",
-                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
-                    "ShortName": "KernR",
-                    "FullName": "KernR",
-                    "Value": 41.0,
-                    "IsValid": true,
-                    "ParentVariable": {
-                      "$ref": "43"
-                    },
-                    "ParentValue": null
-                  },
-                  "SuppR": {
-                    "$id": "66",
-                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
-                    "ShortName": "SuppR",
-                    "FullName": "SuppR",
-                    "Value": 41.0,
-                    "IsValid": true,
-                    "ParentVariable": {
-                      "$ref": "43"
-                    },
-                    "ParentValue": null
-                  }
+                "Unspecified": {
+                  "$id": "59",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
                 }
               },
               "MembershipType": "Trapezoidal",
-              "IsValid": true,
-              "X": {
-                "$id": "67",
-                "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
-                "A": 123
-              }
+              "IsValid": true
             }
           ]
         },
@@ -667,7 +691,7 @@
           "Value": -40.0,
           "IsValid": true,
           "ParentVariable": {
-            "$ref": "43"
+            "$ref": "38"
           },
           "ParentValue": null
         },
@@ -678,14 +702,14 @@
           "Value": 40.0,
           "IsValid": true,
           "ParentVariable": {
-            "$ref": "43"
+            "$ref": "38"
           },
           "ParentValue": null
         },
         "IsValid": true
       },
       {
-        "$id": "68",
+        "$id": "60",
         "$type": "BlazorApp1.Fuzzy.FuzzyVariable, BlazorApp1",
         "ID": "4a2c5fd3-f57d-46b1-a408-d07cd999dd65",
         "Name": "Variable-5E412271",
@@ -694,232 +718,241 @@
           "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1]], System.Private.CoreLib",
           "$values": [
             {
-              "$id": "69",
+              "$id": "61",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
               "ID": "bd68168f-7d21-4964-a2d3-558b4c67b918",
               "Name": "Value-441C506E",
               "Description": "Description-63AAEB0B",
               "Variable": {
-                "$ref": "68"
+                "$ref": "60"
               },
               "AllParameters": {
                 "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
-                "Unspecified": {
-                  "$id": "70",
-                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
-                },
                 "Trapezoidal": {
-                  "$id": "71",
+                  "$id": "62",
                   "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
                   "SuppL": {
-                    "$id": "72",
+                    "$id": "63",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppL",
-                    "FullName": "SuppL",
+                    "FullName": "Value-441C506E::SuppL",
                     "Value": 10.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "61"
+                    }
                   },
                   "KernL": {
-                    "$id": "73",
+                    "$id": "64",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernL",
-                    "FullName": "KernL",
+                    "FullName": "Value-441C506E::KernL",
                     "Value": 20.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "61"
+                    }
                   },
                   "KernR": {
-                    "$id": "74",
+                    "$id": "65",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernR",
-                    "FullName": "KernR",
+                    "FullName": "Value-441C506E::KernR",
                     "Value": 30.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "61"
+                    }
                   },
                   "SuppR": {
-                    "$id": "75",
+                    "$id": "66",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppR",
-                    "FullName": "SuppR",
+                    "FullName": "Value-441C506E::SuppR",
                     "Value": 40.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "61"
+                    }
                   }
+                },
+                "Unspecified": {
+                  "$id": "67",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
                 }
               },
               "MembershipType": "Trapezoidal",
-              "IsValid": true,
-              "X": {
-                "$id": "76",
-                "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
-                "A": 123
-              }
+              "IsValid": true
             },
             {
-              "$id": "77",
+              "$id": "68",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
               "ID": "57092d7d-3a5c-4123-8736-472cbdf33df5",
               "Name": "Value-29974B38",
               "Description": "Description-7E1DBF63",
               "Variable": {
-                "$ref": "68"
+                "$ref": "60"
               },
               "AllParameters": {
                 "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
-                "Unspecified": {
-                  "$id": "78",
-                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
-                },
                 "Trapezoidal": {
-                  "$id": "79",
+                  "$id": "69",
                   "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
                   "SuppL": {
-                    "$id": "80",
+                    "$id": "70",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppL",
-                    "FullName": "SuppL",
+                    "FullName": "Value-29974B38::SuppL",
                     "Value": 25.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "68"
+                    }
                   },
                   "KernL": {
-                    "$id": "81",
+                    "$id": "71",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernL",
-                    "FullName": "KernL",
+                    "FullName": "Value-29974B38::KernL",
                     "Value": 35.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "68"
+                    }
                   },
                   "KernR": {
-                    "$id": "82",
+                    "$id": "72",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernR",
-                    "FullName": "KernR",
+                    "FullName": "Value-29974B38::KernR",
                     "Value": 45.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "68"
+                    }
                   },
                   "SuppR": {
-                    "$id": "83",
+                    "$id": "73",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppR",
-                    "FullName": "SuppR",
+                    "FullName": "Value-29974B38::SuppR",
                     "Value": 55.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "68"
+                    }
                   }
+                },
+                "Unspecified": {
+                  "$id": "74",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
                 }
               },
               "MembershipType": "Trapezoidal",
-              "IsValid": true,
-              "X": {
-                "$id": "84",
-                "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
-                "A": 123
-              }
+              "IsValid": true
             },
             {
-              "$id": "85",
+              "$id": "75",
               "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
               "ID": "78cac023-8b48-4ce5-8b84-acc5ca0f6977",
               "Name": "Value-04836667",
               "Description": "Description-7916FEA5",
               "Variable": {
-                "$ref": "68"
+                "$ref": "60"
               },
               "AllParameters": {
                 "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
-                "Unspecified": {
-                  "$id": "86",
-                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
-                },
                 "Trapezoidal": {
-                  "$id": "87",
+                  "$id": "76",
                   "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
                   "SuppL": {
-                    "$id": "88",
+                    "$id": "77",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppL",
-                    "FullName": "SuppL",
+                    "FullName": "Value-04836667::SuppL",
                     "Value": 40.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "75"
+                    }
                   },
                   "KernL": {
-                    "$id": "89",
+                    "$id": "78",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernL",
-                    "FullName": "KernL",
+                    "FullName": "Value-04836667::KernL",
                     "Value": 50.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "75"
+                    }
                   },
                   "KernR": {
-                    "$id": "90",
+                    "$id": "79",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "KernR",
-                    "FullName": "KernR",
+                    "FullName": "Value-04836667::KernR",
                     "Value": 60.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "75"
+                    }
                   },
                   "SuppR": {
-                    "$id": "91",
+                    "$id": "80",
                     "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
                     "ShortName": "SuppR",
-                    "FullName": "SuppR",
+                    "FullName": "Value-04836667::SuppR",
                     "Value": 70.0,
                     "IsValid": true,
                     "ParentVariable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
-                    "ParentValue": null
+                    "ParentValue": {
+                      "$ref": "75"
+                    }
                   }
+                },
+                "Unspecified": {
+                  "$id": "81",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
                 }
               },
               "MembershipType": "Trapezoidal",
-              "IsValid": true,
-              "X": {
-                "$id": "92",
-                "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
-                "A": 123
-              }
+              "IsValid": true
             }
           ]
         },
@@ -931,7 +964,7 @@
           "Value": 0.0,
           "IsValid": true,
           "ParentVariable": {
-            "$ref": "68"
+            "$ref": "60"
           },
           "ParentValue": null
         },
@@ -942,7 +975,917 @@
           "Value": 100.0,
           "IsValid": true,
           "ParentVariable": {
-            "$ref": "68"
+            "$ref": "60"
+          },
+          "ParentValue": null
+        },
+        "IsValid": true
+      },
+      {
+        "$id": "82",
+        "$type": "BlazorApp1.Fuzzy.FuzzyVariable, BlazorApp1",
+        "ID": "ef14e023-3909-4c0a-a9be-85303bb3908f",
+        "Name": "Value-7086194B",
+        "Description": "Description-46B46634",
+        "Values": {
+          "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1]], System.Private.CoreLib",
+          "$values": [
+            {
+              "$id": "83",
+              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
+              "ID": "b6b1cdeb-89dd-4589-bc96-9bad0d2730ab",
+              "Name": "x",
+              "Description": "Description-672F757E",
+              "Variable": {
+                "$ref": "82"
+              },
+              "AllParameters": {
+                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
+                "Trapezoidal": {
+                  "$id": "84",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
+                  "SuppL": {
+                    "$id": "85",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppL",
+                    "FullName": "x::SuppL",
+                    "Value": 1.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "82"
+                    },
+                    "ParentValue": {
+                      "$ref": "83"
+                    }
+                  },
+                  "KernL": {
+                    "$id": "86",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernL",
+                    "FullName": "x::KernL",
+                    "Value": 2.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "82"
+                    },
+                    "ParentValue": {
+                      "$ref": "83"
+                    }
+                  },
+                  "KernR": {
+                    "$id": "87",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernR",
+                    "FullName": "x::KernR",
+                    "Value": 3.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "82"
+                    },
+                    "ParentValue": {
+                      "$ref": "83"
+                    }
+                  },
+                  "SuppR": {
+                    "$id": "88",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppR",
+                    "FullName": "x::SuppR",
+                    "Value": 4.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "82"
+                    },
+                    "ParentValue": {
+                      "$ref": "83"
+                    }
+                  }
+                },
+                "Unspecified": {
+                  "$id": "89",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
+                }
+              },
+              "MembershipType": "Trapezoidal",
+              "IsValid": true
+            },
+            {
+              "$id": "90",
+              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
+              "ID": "4ed311f9-b869-42dd-bf71-95b0d0339775",
+              "Name": "Value-359023DD",
+              "Description": "Description-3185F678",
+              "Variable": {
+                "$ref": "82"
+              },
+              "AllParameters": {
+                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
+                "Trapezoidal": {
+                  "$id": "91",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
+                  "SuppL": {
+                    "$id": "92",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppL",
+                    "FullName": "Value-359023DD::SuppL",
+                    "Value": 10.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "82"
+                    },
+                    "ParentValue": {
+                      "$ref": "90"
+                    }
+                  },
+                  "KernL": {
+                    "$id": "93",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernL",
+                    "FullName": "Value-359023DD::KernL",
+                    "Value": 20.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "82"
+                    },
+                    "ParentValue": {
+                      "$ref": "90"
+                    }
+                  },
+                  "KernR": {
+                    "$id": "94",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernR",
+                    "FullName": "Value-359023DD::KernR",
+                    "Value": 30.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "82"
+                    },
+                    "ParentValue": {
+                      "$ref": "90"
+                    }
+                  },
+                  "SuppR": {
+                    "$id": "95",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppR",
+                    "FullName": "Value-359023DD::SuppR",
+                    "Value": 40.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "82"
+                    },
+                    "ParentValue": {
+                      "$ref": "90"
+                    }
+                  }
+                },
+                "Unspecified": {
+                  "$id": "96",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
+                }
+              },
+              "MembershipType": "Trapezoidal",
+              "IsValid": true
+            },
+            {
+              "$id": "97",
+              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
+              "ID": "51b7da44-4dac-40a1-a800-5f236783fcd3",
+              "Name": "Value-359023DD (kopia)",
+              "Description": "Description-3185F678 (kopia)",
+              "Variable": {
+                "$ref": "82"
+              },
+              "AllParameters": {
+                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
+                "Trapezoidal": {
+                  "$id": "98",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
+                  "SuppL": {
+                    "$id": "99",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppL",
+                    "FullName": "Value-359023DD (kopia)::SuppL",
+                    "Value": 10.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "82"
+                    },
+                    "ParentValue": {
+                      "$ref": "97"
+                    }
+                  },
+                  "KernL": {
+                    "$id": "100",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernL",
+                    "FullName": "Value-359023DD (kopia)::KernL",
+                    "Value": 20.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "82"
+                    },
+                    "ParentValue": {
+                      "$ref": "97"
+                    }
+                  },
+                  "KernR": {
+                    "$id": "101",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernR",
+                    "FullName": "Value-359023DD (kopia)::KernR",
+                    "Value": 30.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "82"
+                    },
+                    "ParentValue": {
+                      "$ref": "97"
+                    }
+                  },
+                  "SuppR": {
+                    "$id": "102",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppR",
+                    "FullName": "Value-359023DD (kopia)::SuppR",
+                    "Value": 40.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "82"
+                    },
+                    "ParentValue": {
+                      "$ref": "97"
+                    }
+                  }
+                },
+                "Unspecified": {
+                  "$id": "103",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
+                }
+              },
+              "MembershipType": "Trapezoidal",
+              "IsValid": true
+            }
+          ]
+        },
+        "MembershipType": "Trapezoidal",
+        "Minimum": {
+          "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+          "ShortName": "Dmin",
+          "FullName": "Dmin",
+          "Value": 0.0,
+          "IsValid": true,
+          "ParentVariable": {
+            "$ref": "82"
+          },
+          "ParentValue": null
+        },
+        "Maximum": {
+          "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+          "ShortName": "Dmax",
+          "FullName": "Dmax",
+          "Value": 50.0,
+          "IsValid": true,
+          "ParentVariable": {
+            "$ref": "82"
+          },
+          "ParentValue": null
+        },
+        "IsValid": true
+      },
+      {
+        "$id": "104",
+        "$type": "BlazorApp1.Fuzzy.FuzzyVariable, BlazorApp1",
+        "ID": "30c0b94a-c253-4872-86d0-bd7c568385e2",
+        "Name": "Variable-43693D14",
+        "Description": "Description-7019C5F5",
+        "Values": {
+          "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1]], System.Private.CoreLib",
+          "$values": [
+            {
+              "$id": "105",
+              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
+              "ID": "b99afc23-158d-4870-9ab2-4e365898a1a0",
+              "Name": "Value-68609F7C",
+              "Description": "Description-2DCE63AC",
+              "Variable": {
+                "$ref": "104"
+              },
+              "AllParameters": {
+                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
+                "Trapezoidal": {
+                  "$id": "106",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
+                  "SuppL": {
+                    "$id": "107",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppL",
+                    "FullName": "Value-68609F7C::SuppL",
+                    "Value": 1.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "104"
+                    },
+                    "ParentValue": {
+                      "$ref": "105"
+                    }
+                  },
+                  "KernL": {
+                    "$id": "108",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernL",
+                    "FullName": "Value-68609F7C::KernL",
+                    "Value": 2.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "104"
+                    },
+                    "ParentValue": {
+                      "$ref": "105"
+                    }
+                  },
+                  "KernR": {
+                    "$id": "109",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernR",
+                    "FullName": "Value-68609F7C::KernR",
+                    "Value": 3.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "104"
+                    },
+                    "ParentValue": {
+                      "$ref": "105"
+                    }
+                  },
+                  "SuppR": {
+                    "$id": "110",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppR",
+                    "FullName": "Value-68609F7C::SuppR",
+                    "Value": 5.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "104"
+                    },
+                    "ParentValue": {
+                      "$ref": "105"
+                    }
+                  }
+                },
+                "Unspecified": {
+                  "$id": "111",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized"
+                }
+              },
+              "MembershipType": "Trapezoidal",
+              "IsValid": true
+            },
+            {
+              "$id": "112",
+              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
+              "ID": "2a9ba1e1-4856-4a19-be0a-229bb56a9f51",
+              "Name": "Value-49CF202B",
+              "Description": "Description-207221BE",
+              "Variable": {
+                "$ref": "104"
+              },
+              "AllParameters": {
+                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
+                "Trapezoidal": {
+                  "$id": "113",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
+                  "SuppL": {
+                    "$id": "114",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppL",
+                    "FullName": "Value-49CF202B::SuppL",
+                    "Value": 1.5,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "104"
+                    },
+                    "ParentValue": {
+                      "$ref": "112"
+                    }
+                  },
+                  "KernL": {
+                    "$id": "115",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernL",
+                    "FullName": "Value-49CF202B::KernL",
+                    "Value": 3.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "104"
+                    },
+                    "ParentValue": {
+                      "$ref": "112"
+                    }
+                  },
+                  "KernR": {
+                    "$id": "116",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernR",
+                    "FullName": "Value-49CF202B::KernR",
+                    "Value": 6.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "104"
+                    },
+                    "ParentValue": {
+                      "$ref": "112"
+                    }
+                  },
+                  "SuppR": {
+                    "$id": "117",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppR",
+                    "FullName": "Value-49CF202B::SuppR",
+                    "Value": 10.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "104"
+                    },
+                    "ParentValue": {
+                      "$ref": "112"
+                    }
+                  }
+                }
+              },
+              "MembershipType": "Trapezoidal",
+              "IsValid": true
+            },
+            {
+              "$id": "118",
+              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
+              "ID": "fb5352d4-29dd-4d84-8e11-763963939be7",
+              "Name": "Value-68609F7C (kopia)",
+              "Description": "Description-2DCE63AC (kopia)",
+              "Variable": {
+                "$ref": "104"
+              },
+              "AllParameters": {
+                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
+                "Trapezoidal": {
+                  "$id": "119",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
+                  "SuppL": {
+                    "$id": "120",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppL",
+                    "FullName": "Value-68609F7C (kopia)::SuppL",
+                    "Value": 1.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "104"
+                    },
+                    "ParentValue": {
+                      "$ref": "118"
+                    }
+                  },
+                  "KernL": {
+                    "$id": "121",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernL",
+                    "FullName": "Value-68609F7C (kopia)::KernL",
+                    "Value": 2.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "104"
+                    },
+                    "ParentValue": {
+                      "$ref": "118"
+                    }
+                  },
+                  "KernR": {
+                    "$id": "122",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernR",
+                    "FullName": "Value-68609F7C (kopia)::KernR",
+                    "Value": 3.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "104"
+                    },
+                    "ParentValue": {
+                      "$ref": "118"
+                    }
+                  },
+                  "SuppR": {
+                    "$id": "123",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppR",
+                    "FullName": "Value-68609F7C (kopia)::SuppR",
+                    "Value": 6.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "104"
+                    },
+                    "ParentValue": {
+                      "$ref": "118"
+                    }
+                  }
+                }
+              },
+              "MembershipType": "Trapezoidal",
+              "IsValid": true
+            }
+          ]
+        },
+        "MembershipType": "Trapezoidal",
+        "Minimum": {
+          "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+          "ShortName": "Dmin",
+          "FullName": "Dmin",
+          "Value": 0.0,
+          "IsValid": true,
+          "ParentVariable": {
+            "$ref": "104"
+          },
+          "ParentValue": null
+        },
+        "Maximum": {
+          "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+          "ShortName": "Dmax",
+          "FullName": "Dmax",
+          "Value": 20.0,
+          "IsValid": true,
+          "ParentVariable": {
+            "$ref": "104"
+          },
+          "ParentValue": null
+        },
+        "IsValid": true
+      },
+      {
+        "$id": "124",
+        "$type": "BlazorApp1.Fuzzy.FuzzyVariable, BlazorApp1",
+        "ID": "8a45756e-bf0b-403a-bd48-e4e2ae153eb6",
+        "Name": "Variable-03988BD9",
+        "Description": "Description-5D93E1C2",
+        "Values": {
+          "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1]], System.Private.CoreLib",
+          "$values": [
+            {
+              "$id": "125",
+              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
+              "ID": "5ac24602-dd1f-4af1-8bc0-6c588475c13c",
+              "Name": "Value-42D9F5DA",
+              "Description": "Description-25173D3E",
+              "Variable": {
+                "$ref": "124"
+              },
+              "AllParameters": {
+                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
+                "Trapezoidal": {
+                  "$id": "126",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
+                  "SuppL": {
+                    "$id": "127",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppL",
+                    "FullName": "Value-42D9F5DA::SuppL",
+                    "Value": 1.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "124"
+                    },
+                    "ParentValue": {
+                      "$ref": "125"
+                    }
+                  },
+                  "KernL": {
+                    "$id": "128",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernL",
+                    "FullName": "Value-42D9F5DA::KernL",
+                    "Value": 2.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "124"
+                    },
+                    "ParentValue": {
+                      "$ref": "125"
+                    }
+                  },
+                  "KernR": {
+                    "$id": "129",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernR",
+                    "FullName": "Value-42D9F5DA::KernR",
+                    "Value": 3.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "124"
+                    },
+                    "ParentValue": {
+                      "$ref": "125"
+                    }
+                  },
+                  "SuppR": {
+                    "$id": "130",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppR",
+                    "FullName": "Value-42D9F5DA::SuppR",
+                    "Value": 8.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "124"
+                    },
+                    "ParentValue": {
+                      "$ref": "125"
+                    }
+                  }
+                }
+              },
+              "MembershipType": "Trapezoidal",
+              "IsValid": true
+            },
+            {
+              "$id": "131",
+              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
+              "ID": "e18e8e0d-c3ea-4281-b715-4819ba2fca10",
+              "Name": "Value-42D9F5DA (kopia)",
+              "Description": "Description-25173D3E (kopia)",
+              "Variable": {
+                "$ref": "124"
+              },
+              "AllParameters": {
+                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
+                "Trapezoidal": {
+                  "$id": "132",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
+                  "SuppL": {
+                    "$id": "133",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppL",
+                    "FullName": "Value-42D9F5DA (kopia)::SuppL",
+                    "Value": 1.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "124"
+                    },
+                    "ParentValue": {
+                      "$ref": "131"
+                    }
+                  },
+                  "KernL": {
+                    "$id": "134",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernL",
+                    "FullName": "Value-42D9F5DA (kopia)::KernL",
+                    "Value": 2.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "124"
+                    },
+                    "ParentValue": {
+                      "$ref": "131"
+                    }
+                  },
+                  "KernR": {
+                    "$id": "135",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernR",
+                    "FullName": "Value-42D9F5DA (kopia)::KernR",
+                    "Value": 3.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "124"
+                    },
+                    "ParentValue": {
+                      "$ref": "131"
+                    }
+                  },
+                  "SuppR": {
+                    "$id": "136",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppR",
+                    "FullName": "Value-42D9F5DA (kopia)::SuppR",
+                    "Value": 4.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "124"
+                    },
+                    "ParentValue": {
+                      "$ref": "131"
+                    }
+                  }
+                }
+              },
+              "MembershipType": "Trapezoidal",
+              "IsValid": true
+            }
+          ]
+        },
+        "MembershipType": "Trapezoidal",
+        "Minimum": {
+          "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+          "ShortName": "Dmin",
+          "FullName": "Dmin",
+          "Value": -5.0,
+          "IsValid": true,
+          "ParentVariable": {
+            "$ref": "124"
+          },
+          "ParentValue": null
+        },
+        "Maximum": {
+          "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+          "ShortName": "Dmax",
+          "FullName": "Dmax",
+          "Value": 15.0,
+          "IsValid": true,
+          "ParentVariable": {
+            "$ref": "124"
+          },
+          "ParentValue": null
+        },
+        "IsValid": true
+      },
+      {
+        "$id": "137",
+        "$type": "BlazorApp1.Fuzzy.FuzzyVariable, BlazorApp1",
+        "ID": "1f837897-d9d8-4117-9537-d92c8678fbb2",
+        "Name": "Variable-03988BD9 (kopia)",
+        "Description": "Description-5D93E1C2 (kopia)",
+        "Values": {
+          "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1]], System.Private.CoreLib",
+          "$values": [
+            {
+              "$id": "138",
+              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
+              "ID": "3ef600cc-f1c9-4f02-b328-73cdd710f217",
+              "Name": "Value-42D9F5DA (kopia)",
+              "Description": "Description-25173D3E (kopia)",
+              "Variable": {
+                "$ref": "137"
+              },
+              "AllParameters": {
+                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
+                "Trapezoidal": {
+                  "$id": "139",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
+                  "SuppL": {
+                    "$id": "140",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppL",
+                    "FullName": "Value-42D9F5DA (kopia)::SuppL",
+                    "Value": 1.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "137"
+                    },
+                    "ParentValue": {
+                      "$ref": "138"
+                    }
+                  },
+                  "KernL": {
+                    "$id": "141",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernL",
+                    "FullName": "Value-42D9F5DA (kopia)::KernL",
+                    "Value": 2.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "137"
+                    },
+                    "ParentValue": {
+                      "$ref": "138"
+                    }
+                  },
+                  "KernR": {
+                    "$id": "142",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernR",
+                    "FullName": "Value-42D9F5DA (kopia)::KernR",
+                    "Value": 3.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "137"
+                    },
+                    "ParentValue": {
+                      "$ref": "138"
+                    }
+                  },
+                  "SuppR": {
+                    "$id": "143",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppR",
+                    "FullName": "Value-42D9F5DA (kopia)::SuppR",
+                    "Value": 8.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "137"
+                    },
+                    "ParentValue": {
+                      "$ref": "138"
+                    }
+                  }
+                }
+              },
+              "MembershipType": "Trapezoidal",
+              "IsValid": true
+            },
+            {
+              "$id": "144",
+              "$type": "BlazorApp1.Fuzzy.FuzzyValue, BlazorApp1",
+              "ID": "fa01075a-1885-4b66-b3fe-ebf832a5428a",
+              "Name": "Value-42D9F5DA (kopia) (kopia)",
+              "Description": "Description-25173D3E (kopia) (kopia)",
+              "Variable": {
+                "$ref": "137"
+              },
+              "AllParameters": {
+                "$type": "System.Collections.Generic.Dictionary`2[[BlazorApp1.Fuzzy.MembershipFunctionFamily, BlazorApp1],[System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized]], System.Private.CoreLib",
+                "Trapezoidal": {
+                  "$id": "145",
+                  "$type": "System.Collections.Specialized.OrderedDictionary, System.Collections.Specialized",
+                  "SuppL": {
+                    "$id": "146",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppL",
+                    "FullName": "Value-42D9F5DA (kopia) (kopia)::SuppL",
+                    "Value": -5.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "137"
+                    },
+                    "ParentValue": {
+                      "$ref": "144"
+                    }
+                  },
+                  "KernL": {
+                    "$id": "147",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernL",
+                    "FullName": "Value-42D9F5DA (kopia) (kopia)::KernL",
+                    "Value": 3.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "137"
+                    },
+                    "ParentValue": {
+                      "$ref": "144"
+                    }
+                  },
+                  "KernR": {
+                    "$id": "148",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "KernR",
+                    "FullName": "Value-42D9F5DA (kopia) (kopia)::KernR",
+                    "Value": 5.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "137"
+                    },
+                    "ParentValue": {
+                      "$ref": "144"
+                    }
+                  },
+                  "SuppR": {
+                    "$id": "149",
+                    "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+                    "ShortName": "SuppR",
+                    "FullName": "Value-42D9F5DA (kopia) (kopia)::SuppR",
+                    "Value": 6.0,
+                    "IsValid": true,
+                    "ParentVariable": {
+                      "$ref": "137"
+                    },
+                    "ParentValue": {
+                      "$ref": "144"
+                    }
+                  }
+                }
+              },
+              "MembershipType": "Trapezoidal",
+              "IsValid": true
+            }
+          ]
+        },
+        "MembershipType": "Trapezoidal",
+        "Minimum": {
+          "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+          "ShortName": "Dmin",
+          "FullName": "Dmin",
+          "Value": -10.0,
+          "IsValid": true,
+          "ParentVariable": {
+            "$ref": "137"
+          },
+          "ParentValue": null
+        },
+        "Maximum": {
+          "$type": "BlazorApp1.Fuzzy.NamedParameter, BlazorApp1",
+          "ShortName": "Dmax",
+          "FullName": "Dmax",
+          "Value": 15.0,
+          "IsValid": true,
+          "ParentVariable": {
+            "$ref": "137"
           },
           "ParentValue": null
         },
@@ -954,7 +1897,7 @@
     "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyModel, BlazorApp1]], System.Private.CoreLib",
     "$values": [
       {
-        "$id": "93",
+        "$id": "150",
         "$type": "BlazorApp1.Fuzzy.FuzzyModel, BlazorApp1",
         "ID": "469d58b3-497e-461f-b18c-a488533b4f50",
         "Name": "nazwa modelu",
@@ -963,18 +1906,18 @@
           "$ref": "1"
         },
         "Rules": {
-          "$id": "94",
+          "$id": "151",
           "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1]], System.Private.CoreLib",
           "$values": [
             {
-              "$id": "95",
+              "$id": "152",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
               "ID": "96501110-e30c-471e-bc76-b55f2f28c0ff",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "96",
+                    "$id": "153",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
                     "Value": {
@@ -986,11 +1929,11 @@
                     "IsValid": true
                   },
                   {
-                    "$id": "97",
+                    "$id": "154",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
                     "Value": {
-                      "$ref": "11"
+                      "$ref": "10"
                     },
                     "Variable": {
                       "$ref": "2"
@@ -998,14 +1941,14 @@
                     "IsValid": true
                   },
                   {
-                    "$id": "98",
+                    "$id": "155",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "Or",
                     "Value": {
-                      "$ref": "60"
+                      "$ref": "53"
                     },
                     "Variable": {
-                      "$ref": "43"
+                      "$ref": "38"
                     },
                     "IsValid": true
                   }
@@ -1015,14 +1958,14 @@
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "99",
+                    "$id": "156",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
                     "Value": {
-                      "$ref": "69"
+                      "$ref": "61"
                     },
                     "Variable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
                     "IsValid": true
                   }
@@ -1031,18 +1974,18 @@
               "IsValid": true
             },
             {
-              "$id": "100",
+              "$id": "157",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
               "ID": "0faf1d3b-63f2-4d09-8d5d-9e9cfc8b34a5",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "101",
+                    "$id": "158",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
                     "Value": {
-                      "$ref": "19"
+                      "$ref": "17"
                     },
                     "Variable": {
                       "$ref": "2"
@@ -1050,14 +1993,14 @@
                     "IsValid": true
                   },
                   {
-                    "$id": "102",
+                    "$id": "159",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
                     "Value": {
-                      "$ref": "44"
+                      "$ref": "39"
                     },
                     "Variable": {
-                      "$ref": "43"
+                      "$ref": "38"
                     },
                     "IsValid": true
                   }
@@ -1067,26 +2010,26 @@
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "103",
+                    "$id": "160",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
                     "Value": {
-                      "$ref": "77"
+                      "$ref": "68"
                     },
                     "Variable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
                     "IsValid": true
                   },
                   {
-                    "$id": "104",
+                    "$id": "161",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
                     "Value": {
-                      "$ref": "69"
+                      "$ref": "61"
                     },
                     "Variable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
                     "IsValid": true
                   }
@@ -1095,18 +2038,18 @@
               "IsValid": true
             },
             {
-              "$id": "105",
+              "$id": "162",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
               "ID": "b9e0a451-d18c-4275-b8da-309d1e8fca6a",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "106",
+                    "$id": "163",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
                     "Value": {
-                      "$ref": "11"
+                      "$ref": "10"
                     },
                     "Variable": {
                       "$ref": "2"
@@ -1114,14 +2057,14 @@
                     "IsValid": true
                   },
                   {
-                    "$id": "107",
+                    "$id": "164",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "Or",
                     "Value": {
-                      "$ref": "52"
+                      "$ref": "46"
                     },
                     "Variable": {
-                      "$ref": "43"
+                      "$ref": "38"
                     },
                     "IsValid": true
                   }
@@ -1131,38 +2074,166 @@
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "108",
+                    "$id": "165",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
                     "Value": {
-                      "$ref": "85"
+                      "$ref": "75"
                     },
                     "Variable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
                     "IsValid": true
                   },
                   {
-                    "$id": "109",
+                    "$id": "166",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
                     "Value": {
-                      "$ref": "69"
+                      "$ref": "61"
                     },
                     "Variable": {
-                      "$ref": "68"
+                      "$ref": "60"
                     },
                     "IsValid": true
                   },
                   {
-                    "$id": "110",
+                    "$id": "167",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
                     "Value": {
-                      "$ref": "77"
+                      "$ref": "68"
                     },
                     "Variable": {
+                      "$ref": "60"
+                    },
+                    "IsValid": true
+                  }
+                ]
+              },
+              "IsValid": true
+            },
+            {
+              "$id": "168",
+              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
+              "ID": "704da9dc-9323-47bc-8c72-68a129e20b15",
+              "Premise": {
+                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$id": "169",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "None",
+                    "Value": {
+                      "$ref": "3"
+                    },
+                    "Variable": {
+                      "$ref": "2"
+                    },
+                    "IsValid": true
+                  },
+                  {
+                    "$id": "170",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
+                    "Value": {
+                      "$ref": "10"
+                    },
+                    "Variable": {
+                      "$ref": "2"
+                    },
+                    "IsValid": true
+                  },
+                  {
+                    "$id": "171",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "Or",
+                    "Value": {
+                      "$ref": "53"
+                    },
+                    "Variable": {
+                      "$ref": "38"
+                    },
+                    "IsValid": true
+                  }
+                ]
+              },
+              "Conclusion": {
+                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$id": "172",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "None",
+                    "Value": {
+                      "$ref": "61"
+                    },
+                    "Variable": {
+                      "$ref": "60"
+                    },
+                    "IsValid": true
+                  }
+                ]
+              },
+              "IsValid": true
+            },
+            {
+              "$id": "173",
+              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
+              "ID": "42c79996-0c44-4775-8d4b-a730e83b952b",
+              "Premise": {
+                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$id": "174",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "None",
+                    "Value": {
+                      "$ref": "3"
+                    },
+                    "Variable": {
+                      "$ref": "2"
+                    },
+                    "IsValid": true
+                  },
+                  {
+                    "$id": "175",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
+                    "Value": {
+                      "$ref": "10"
+                    },
+                    "Variable": {
+                      "$ref": "2"
+                    },
+                    "IsValid": true
+                  },
+                  {
+                    "$id": "176",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "Or",
+                    "Value": {
+                      "$ref": "53"
+                    },
+                    "Variable": {
+                      "$ref": "38"
+                    },
+                    "IsValid": true
+                  }
+                ]
+              },
+              "Conclusion": {
+                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$id": "177",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "None",
+                    "Value": {
                       "$ref": "68"
+                    },
+                    "Variable": {
+                      "$ref": "60"
                     },
                     "IsValid": true
                   }
@@ -1175,7 +2246,7 @@
         "IsValid": true
       },
       {
-        "$id": "111",
+        "$id": "178",
         "$type": "BlazorApp1.Fuzzy.FuzzyModel, BlazorApp1",
         "ID": "00000000-12ce-4746-8496-29861314a386",
         "Name": "nazwa modelu DRUGIEGO",
@@ -1184,18 +2255,18 @@
           "$ref": "1"
         },
         "Rules": {
-          "$id": "112",
+          "$id": "179",
           "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1]], System.Private.CoreLib",
           "$values": [
             {
-              "$id": "113",
+              "$id": "180",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
               "ID": "9fe289a9-ca77-4cc9-8b01-51fa83ad4fcc",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "114",
+                    "$id": "181",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
                     "Value": {
@@ -1207,11 +2278,11 @@
                     "IsValid": true
                   },
                   {
-                    "$id": "115",
+                    "$id": "182",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
                     "Value": {
-                      "$ref": "11"
+                      "$ref": "10"
                     },
                     "Variable": {
                       "$ref": "2"
@@ -1219,11 +2290,11 @@
                     "IsValid": true
                   },
                   {
-                    "$id": "116",
+                    "$id": "183",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
                     "Value": {
-                      "$ref": "11"
+                      "$ref": "10"
                     },
                     "Variable": {
                       "$ref": "2"
@@ -1231,19 +2302,19 @@
                     "IsValid": true
                   },
                   {
-                    "$id": "117",
+                    "$id": "184",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "Or",
                     "Value": {
-                      "$ref": "60"
+                      "$ref": "53"
                     },
                     "Variable": {
-                      "$ref": "43"
+                      "$ref": "38"
                     },
                     "IsValid": true
                   },
                   {
-                    "$id": "118",
+                    "$id": "185",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
                     "Value": null,
@@ -1251,7 +2322,7 @@
                     "IsValid": false
                   },
                   {
-                    "$id": "119",
+                    "$id": "186",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
                     "Value": null,
@@ -1264,19 +2335,19 @@
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "120",
+                    "$id": "187",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
                     "Value": {
-                      "$ref": "44"
+                      "$ref": "39"
                     },
                     "Variable": {
-                      "$ref": "43"
+                      "$ref": "38"
                     },
                     "IsValid": true
                   },
                   {
-                    "$id": "121",
+                    "$id": "188",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
                     "Value": null,
@@ -1284,7 +2355,7 @@
                     "IsValid": false
                   },
                   {
-                    "$id": "122",
+                    "$id": "189",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
                     "Value": null,
@@ -1296,14 +2367,14 @@
               "IsValid": false
             },
             {
-              "$id": "123",
+              "$id": "190",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
               "ID": "90cdf408-5044-47c4-9aab-a97f945484ce",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "124",
+                    "$id": "191",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
                     "Value": null,
@@ -1311,7 +2382,7 @@
                     "IsValid": false
                   },
                   {
-                    "$id": "125",
+                    "$id": "192",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
                     "Value": null,
@@ -1324,26 +2395,207 @@
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "126",
+                    "$id": "193",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
                     "Value": {
-                      "$ref": "52"
+                      "$ref": "46"
                     },
                     "Variable": {
-                      "$ref": "43"
+                      "$ref": "38"
                     },
                     "IsValid": true
                   },
                   {
-                    "$id": "127",
+                    "$id": "194",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
                     "Value": {
-                      "$ref": "60"
+                      "$ref": "53"
                     },
                     "Variable": {
-                      "$ref": "43"
+                      "$ref": "38"
+                    },
+                    "IsValid": true
+                  }
+                ]
+              },
+              "IsValid": false
+            }
+          ]
+        },
+        "IsValid": false
+      },
+      {
+        "$id": "195",
+        "$type": "BlazorApp1.Fuzzy.FuzzyModel, BlazorApp1",
+        "ID": "a4f81807-0e72-4a19-9a0c-3a66f9e7c96d",
+        "Name": "nazwa modelu DRUGIEGO",
+        "Description": "opis DRUGIEGO!!",
+        "Board": {
+          "$ref": "1"
+        },
+        "Rules": {
+          "$id": "196",
+          "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1]], System.Private.CoreLib",
+          "$values": [
+            {
+              "$id": "197",
+              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
+              "ID": "d6a65fce-732f-483b-ac71-d4ef387114d0",
+              "Premise": {
+                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$id": "198",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "None",
+                    "Value": {
+                      "$ref": "3"
+                    },
+                    "Variable": {
+                      "$ref": "2"
+                    },
+                    "IsValid": true
+                  },
+                  {
+                    "$id": "199",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
+                    "Value": {
+                      "$ref": "10"
+                    },
+                    "Variable": {
+                      "$ref": "2"
+                    },
+                    "IsValid": true
+                  },
+                  {
+                    "$id": "200",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
+                    "Value": {
+                      "$ref": "10"
+                    },
+                    "Variable": {
+                      "$ref": "2"
+                    },
+                    "IsValid": true
+                  },
+                  {
+                    "$id": "201",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "Or",
+                    "Value": {
+                      "$ref": "53"
+                    },
+                    "Variable": {
+                      "$ref": "38"
+                    },
+                    "IsValid": true
+                  },
+                  {
+                    "$id": "202",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
+                    "Value": null,
+                    "Variable": null,
+                    "IsValid": false
+                  },
+                  {
+                    "$id": "203",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
+                    "Value": null,
+                    "Variable": null,
+                    "IsValid": false
+                  }
+                ]
+              },
+              "Conclusion": {
+                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$id": "204",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "None",
+                    "Value": {
+                      "$ref": "39"
+                    },
+                    "Variable": {
+                      "$ref": "38"
+                    },
+                    "IsValid": true
+                  },
+                  {
+                    "$id": "205",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
+                    "Value": null,
+                    "Variable": null,
+                    "IsValid": false
+                  },
+                  {
+                    "$id": "206",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
+                    "Value": null,
+                    "Variable": null,
+                    "IsValid": false
+                  }
+                ]
+              },
+              "IsValid": false
+            },
+            {
+              "$id": "207",
+              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
+              "ID": "a455d4b6-e592-4f98-8aac-13bce1c2efe5",
+              "Premise": {
+                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$id": "208",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "None",
+                    "Value": null,
+                    "Variable": null,
+                    "IsValid": false
+                  },
+                  {
+                    "$id": "209",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
+                    "Value": null,
+                    "Variable": null,
+                    "IsValid": false
+                  }
+                ]
+              },
+              "Conclusion": {
+                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$id": "210",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "None",
+                    "Value": {
+                      "$ref": "46"
+                    },
+                    "Variable": {
+                      "$ref": "38"
+                    },
+                    "IsValid": true
+                  },
+                  {
+                    "$id": "211",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
+                    "Value": {
+                      "$ref": "53"
+                    },
+                    "Variable": {
+                      "$ref": "38"
                     },
                     "IsValid": true
                   }

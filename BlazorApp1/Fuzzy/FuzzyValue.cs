@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 
@@ -19,7 +21,28 @@ namespace BlazorApp1.Fuzzy
 
         public string Name { get; set; }
         public string Description { get; set; }
-        public FuzzyVariable Variable { get; set; }
+
+        private FuzzyVariable variable;
+        public FuzzyVariable Variable { get => this.variable; 
+            set {
+                this.variable = value;
+                if (value == null)
+                    return;
+
+                if (this.parameters != null)
+                    foreach (OrderedDictionary od in this.parameters.Values)
+                    {
+                        foreach (NamedParameter np in (od.Values))
+                        {
+                            np.ParentValue = this;
+                            np.ParentVariable = this.variable;
+                        }
+                    }
+
+                this.SetMembershipType(value.MembershipType);
+
+            }
+        }
 
         [JsonIgnore]
         //public NamedParameter[] MembershipParameters => this.parameters[this.membership_family].Values.OfType<NamedParameter>().ToArray();
@@ -35,21 +58,14 @@ namespace BlazorApp1.Fuzzy
 
         public override string ToString() => $"{Name}: {Description}";
 
-
-        public OrderedDictionary X { get; set; } = new OrderedDictionary();
-
-        public FuzzyValue(FuzzyVariable fuzzyVariable, string name, string description, MembershipFunctionFamily membershipFamily)
+        public FuzzyValue(FuzzyVariable fuzzyVariable, string name, string description)
         {
-            X.Add("A", 123);
-            this.ID = Guid.NewGuid();
-
-            this.Variable = fuzzyVariable;
-
+            this.parameters = new Dictionary<MembershipFunctionFamily, OrderedDictionary>();
             this.Name = name;
             this.Description = description;
 
-            this.parameters = new Dictionary<MembershipFunctionFamily, OrderedDictionary>();
-            this.SetMembershipType(membershipFamily);
+            this.ID = Guid.NewGuid();
+            this.Variable = fuzzyVariable;
         }
 
         public NamedParameter GetParameter(string parameterName)
@@ -137,6 +153,21 @@ namespace BlazorApp1.Fuzzy
             return true;
         }
 
+
+        public FuzzyValue Clone()
+        {
+            FuzzyValue copy = new FuzzyValue(this.Variable, this.Name, this.Description);
+            foreach (var family in this.parameters)
+                foreach(DictionaryEntry par in family.Value)
+                {
+                    NamedParameter np = par.Value as NamedParameter;
+                    string param_name = par.Key as string;
+                    Debug.Assert(np.ShortName == param_name);
+
+                    (copy.AllParameters[family.Key][np.ShortName] as NamedParameter).Value = np.Value;
+                }
+            return copy;
+        }
     }
 }
 

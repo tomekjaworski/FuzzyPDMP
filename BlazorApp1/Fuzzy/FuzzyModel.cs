@@ -29,7 +29,7 @@ namespace BlazorApp1.Fuzzy
             this.Description = description;
         }
 
-        public FuzzyModel CreateCopy()
+        public FuzzyModel Clone()
         {
             FuzzyModel copy = new FuzzyModel()
             {
@@ -39,7 +39,7 @@ namespace BlazorApp1.Fuzzy
 
             foreach(FuzzyRule rule in this.Rules)
             {
-                FuzzyRule rule_copy = rule.CreateCopy();
+                FuzzyRule rule_copy = rule.Clone();
                 copy.AddRule(rule_copy);
             }
             return copy;

@@ -70,7 +70,7 @@ namespace BlazorApp1.Pages
         private async Task OnDuplicateRule(MouseEventArgs e, FuzzyRule rule)
         {
             // todo:  implementacja
-            FuzzyRule copy = rule.CreateCopy();
+            FuzzyRule copy = rule.Clone();
             this.selected_model.AddRule(copy);
         }
     }

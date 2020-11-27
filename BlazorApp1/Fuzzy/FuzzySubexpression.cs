@@ -83,7 +83,7 @@ namespace BlazorApp1.Fuzzy
                 return $"<span class=\"\" style=\"color:#0000FF\">{sconn}</span> {this.Value?.Variable?.Name ?? "..."} <span style=\"color:#008000\">jest</span> {this.Value?.Name ?? "..." }";
         }
 
-        public FuzzySubexpression CreateCopy()
+        public FuzzySubexpression Clone()
         {
             FuzzySubexpression copy = new FuzzySubexpression();
             copy.fuzzy_value = this.fuzzy_value;

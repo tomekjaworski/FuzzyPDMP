@@ -102,17 +102,17 @@ namespace BlazorApp1.Fuzzy
         }
 
 
-        public FuzzyRule CreateCopy()
+        public FuzzyRule Clone()
         {
             FuzzyRule copy = new FuzzyRule();
             foreach (FuzzySubexpression fs in this.premise)
             {
-                FuzzySubexpression fs_copy = fs.CreateCopy();
+                FuzzySubexpression fs_copy = fs.Clone();
                 copy.premise.Add(fs_copy);
             }
             foreach (FuzzySubexpression fs in this.conclusion)
             {
-                FuzzySubexpression fs_copy = fs.CreateCopy();
+                FuzzySubexpression fs_copy = fs.Clone();
                 copy.conclusion.Add(fs_copy);
             }
             return copy;

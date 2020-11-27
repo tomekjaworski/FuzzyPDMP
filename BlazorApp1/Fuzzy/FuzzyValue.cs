@@ -154,7 +154,7 @@ namespace BlazorApp1.Fuzzy
         }
 
 
-        public FuzzyValue CreateCopy()
+        public FuzzyValue Clone()
         {
             FuzzyValue copy = new FuzzyValue(this.Variable, this.Name, this.Description);
             foreach (var family in this.parameters)

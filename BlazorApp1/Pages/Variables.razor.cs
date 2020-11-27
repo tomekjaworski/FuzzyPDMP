@@ -94,7 +94,7 @@ namespace BlazorApp1.Pages
 
         private void OnDuplicateVariable(MouseEventArgs e, FuzzyVariable variable)
         {
-            FuzzyVariable copy = variable.CreateCopy();
+            FuzzyVariable copy = variable.Clone();
             copy.Name += " (kopia)";
             copy.Description += " (kopia)";
 
@@ -108,7 +108,7 @@ namespace BlazorApp1.Pages
 
         private void OnDuplicateValue(MouseEventArgs e, FuzzyVariable variable, FuzzyValue value)
         {
-            FuzzyValue copy = value.CreateCopy();
+            FuzzyValue copy = value.Clone();
             copy.Name += " (kopia)";
             copy.Description += " (kopia)";
 

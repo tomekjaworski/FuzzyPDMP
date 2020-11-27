@@ -144,6 +144,9 @@ namespace BlazorApp1
 
             List<object> models = new List<object>();
             dict["Models"] = models;
+            int temp_variable_id = 1;
+            int rule_id = 1;
+
             foreach (FuzzyModel fmodel in BoardProvider.Board.Models)
             {
                 if (!fmodel.IsValid)
@@ -178,9 +181,9 @@ namespace BlazorApp1
                     .Distinct()
                     .ToArray();
 
-
+                List<object> rule_value_connection = new List<object>();
                 List<object> compiled_rules = new List<object>();
-                int id = 1;
+                Dictionary<FuzzyValue, List<object> > value2rule = new Dictionary<FuzzyValue, List<object>>();
 
                 foreach (FuzzyRule fr in fmodel.Rules)
                 {
@@ -215,7 +218,7 @@ namespace BlazorApp1
                         for (int i = 1; i < tokens.Count - 1; i++)
                             if (tokens[i].Type == TokenType.Connective && tokens[i].Connective == FuzzyConnectiveType.And)
                             {
-                                Token temp = new Token() { Type = TokenType.NamedVariable, Name = $"temp{id++}" };
+                                Token temp = new Token() { Type = TokenType.NamedVariable, Name = $"temp{temp_variable_id++}" };
                                 Operation op = new Operation(temp, tokens[i - 1], tokens[i], tokens[i + 1]);
                                 ops.Add(op);
                                 tokens[i] = temp;
@@ -232,7 +235,7 @@ namespace BlazorApp1
                         for (int i = 1; i < tokens.Count - 1; i++)
                             if (tokens[i].Type == TokenType.Connective && tokens[i].Connective == FuzzyConnectiveType.Or)
                             {
-                                Token temp = new Token() { Type = TokenType.NamedVariable, Name = $"temp{id++}" };
+                                Token temp = new Token() { Type = TokenType.NamedVariable, Name = $"temp{temp_variable_id++}" };
                                 Operation op = new Operation(temp, tokens[i - 1], tokens[i], tokens[i + 1]);
                                 ops.Add(op);
                                 tokens[i] = temp;
@@ -247,12 +250,29 @@ namespace BlazorApp1
                     var compiled_rule = new
                     {
                         Rule = fr,
+                        RuleID = rule_id++,
                         Operations = ops.ToArray(),
                         Comment = fr.ToString(),
                         FinalToken = tokens[0],
                         Conclusions = fr.Conclusion.Select(x => x.Value)
                     };
                     compiled_rules.Add(compiled_rule);
+
+
+                    foreach(FuzzyValue conclusion_value in fr.Conclusion.Select(c=>c.Value))
+                    {
+                        if (!value2rule.ContainsKey(conclusion_value))
+                            value2rule[conclusion_value] = new List<object>();
+
+                        var conn = new
+                        {
+                            Rule = compiled_rule.Rule,
+                            RuleID = compiled_rule.RuleID,
+                            ConcludedValue = conclusion_value
+                        };
+                        value2rule[conclusion_value].Add(conn);
+                    }
+
                 }
 
                 models.Add(new
@@ -264,7 +284,8 @@ namespace BlazorApp1
                     InputVariables = input_variables,
                     OutputVariables = output_variables,
                     CompiledRules = compiled_rules,
-                    XStep = 0.1,
+
+                    OutputValueToRuleAssociation = value2rule
                 });
 
             }

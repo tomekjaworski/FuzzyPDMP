@@ -8,50 +8,108 @@ import numpy as np
 import skfuzzy as fuzz
 import matplotlib.pyplot as plt
 from typing import List, Union
+from typing import Callable
 
 
 class FuzzyOperation(object):
-    or_connective = None
-    and_connective = None
-    negation = None
+    or_connective = None # type: Callable[[float, float], float]
+    and_connective = None # type: Callable[[float, float], float]
+    negation = None # type: Callable[[float], float]
 
     def __init__(self, or_connective = None, and_connective = None, negation = None):
         self.or_connective = or_connective or (lambda x, y: x if x > y else y)
         self.and_connective = and_connective or (lambda x, y: x if x < y else y)
-        self.negation = lambda x: 1 - x
+        self.negation = negation or (lambda x: 1 - x)
 
 
-    def AND(self, *args):
-        if len(args) == 0:
-            raise ValueError("args")
-        elif len(args) == 1:
-            return self.and_connective(args[0], args[1])
-        v = args[0]
-        for i in range(1, len(args)):
-            v = self.and_connective(v, args[i])
+    def And(self, *memberships: float):
+        if len(memberships) < 2:
+            raise ValueError("*memberships")
+        elif len(memberships) == 2:
+            return self.and_connective(memberships[0], memberships[1])
+        v = memberships[0]
+        for i in range(1, len(memberships)):
+            v = self.and_connective(v, memberships[i])
         return v
 
-    def OR(self, *args):
-        if len(args) == 0:
-            raise ValueError("args")
-        elif len(args) == 1:
-            return self.or_connective(args[0], args[1])
-        v = args[0]
-        for i in range(1, len(args)):
-            v = self.or_connective(v, args[i])
+    def Or(self, *memberships: float):
+        if len(memberships) < 2:
+            raise ValueError("*memberships")
+        elif len(memberships) == 2:
+            return self.or_connective(memberships[0], memberships[1])
+        v = memberships[0]
+        for i in range(1, len(memberships)):
+            v = self.or_connective(v, memberships[i])
         return v
 
-    def NOT(self, *args):
-        if len(args) != 1:
-            raise ValueError("args")
-        return self.negation(args[0])
+    def Not(self, membership: float) -> float:
+        return self.negation(membership)
 
+    def Inference(self, activation: float, fuzzyValue: np.ndarray) -> np.ndarray:
+        output = np.fmin(activation, fuzzyValue)
+        return output
+
+    def NeutralUnion(self, domain: np.ndarray) -> np.ndarray:
+        if not isinstance(domain, np.ndarray):
+            raise TypeError("domain")
+
+        if len(domain) == 0:
+            raise ValueError("domain")
+
+        output = np.zeros(domain.shape)
+        return output
+
+    def Union(self, fuzzyValue1: np.ndarray, fuzzyValue2: np.ndarray) -> np.ndarray:
+        if not isinstance(fuzzyValue1, np.ndarray):
+            raise TypeError("fuzzyValue1")
+        if not isinstance(fuzzyValue2, np.ndarray):
+            raise TypeError("fuzzyValue1")
+
+        if len(fuzzyValue1) != len(fuzzyValue2):
+            raise ValueError("len(fuzzyValue1) != len(fuzzyValue2)")
+
+        output = np.fmax(fuzzyValue1, fuzzyValue2)
+        return output
+
+    def NeutralAggregate(self, domain: np.ndarray) -> np.ndarray:
+        if not isinstance(domain, np.ndarray):
+            raise TypeError("domain")
+
+        if len(domain) == 0:
+            raise ValueError("domain")
+
+        output = np.zeros(domain.shape)
+        return output
+
+    def Aggregation(self, fuzzyValue1: np.ndarray, fuzzyValue2: np.ndarray) -> np.ndarray:
+        if not isinstance(fuzzyValue1, np.ndarray):
+            raise TypeError("fuzzyValue1")
+        if not isinstance(fuzzyValue2, np.ndarray):
+            raise TypeError("fuzzyValue1")
+
+        if len(fuzzyValue1) != len(fuzzyValue2):
+            raise ValueError("len(fuzzyValue1) != len(fuzzyValue2)")
+
+        output = np.fmax(fuzzyValue1, fuzzyValue2)
+        return output
+
+    def Centroid(self, domain: np.ndarray, aggregatedVariable: np.ndarray) -> float:
+        if not isinstance(domain, np.ndarray):
+            raise TypeError("domain")
+        if not isinstance(aggregatedVariable, np.ndarray):
+            raise TypeError("aggregatedVariable")
+
+        if len(domain) != len(aggregatedVariable):
+            raise ValueError("len(domain) != len(aggregatedVariable)")
+
+        output = fuzz.defuzz(domain, aggregatedVariable, 'centroid')
+        return output
 
 ## -------------------------------------------------------------------------
 
 {{#each Models}}
 ##
-## Model: {{{ModelName}}}
+## Model: '{{{ModelName}}}'
 ## Opis:  {{{ModelDescription}}}
 ##
 {{#if IsValid}}
@@ -89,11 +147,12 @@ class Model_{{normalize ModelName}}(object):
 #       self.ShowVariables()
 
     def InitDomain(self):
+        x_step = 0.01
 {{#each InputVariables}}
-        self.x_{{normalize Name}} = np.arange({{D4 Minimum.Value}}, {{D4 Maximum.Value}}, {{D4 ../XStep}}) # {{{Name}}}: {{{Description}}}
+        self.x_{{normalize Name}} = np.arange({{D4 Minimum.Value}}, {{D4 Maximum.Value}}, x_step) # {{{Name}}}: {{{Description}}}
 {{/each}}
 {{#each OutputVariables}}
-        self.x_{{normalize Name}} = np.arange({{D4 Minimum.Value}}, {{D4 Maximum.Value}}, {{D4 ../XStep}}) # {{{Name}}}: {{{Description}}}
+        self.x_{{normalize Name}} = np.arange({{D4 Minimum.Value}}, {{D4 Maximum.Value}}, x_step) # {{{Name}}}: {{{Description}}}
 {{/each}}
 
     def InitVariables(self):
@@ -110,7 +169,7 @@ class Model_{{normalize ModelName}}(object):
         self.memb_{{normalize Variable.Name}}_{{normalize Name}} = fuzz.trapmf(self.x_{{normalize Variable.Name}}, [{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
 {{~/each}}{{/each}}
 
-  def Execute(self, {{#each InputVariables}}{{#if @index}}, {{/if}}input_{{normalize Name}}: float{{/each}}):
+    def Execute(self, {{#each InputVariables}}{{#if @index}}, {{/if}}input_{{normalize Name}}: float{{/each}}):
 {{#each InputVariables}}
         self.input_{{normalize Name}} = input_{{normalize Name}}
 {{/each}}
@@ -124,6 +183,7 @@ class Model_{{normalize ModelName}}(object):
         # Tutaj wnioskowanie ....
 {{#each CompiledRules}}
 
+        #
         # Reguła {{Comment}}
 {{#each Operations}}
 {{#if Op.IsAnd}}
@@ -131,35 +191,60 @@ class Model_{{normalize ModelName}}(object):
 {{/if~}}{{#if Op.IsOr}}
         {{Target.Name}} = self.foper.Or({{#if Left.IsFuzzyValue}}level_{{normalize Left.FuzzyValue.Variable.Name}}_{{normalize Left.FuzzyValue.Name}}{{/if}}{{#if Left.IsNamedVariable}}{{Left.Name}}{{/if}}, {{#if Right.IsFuzzyValue}}level_{{normalize Right.FuzzyValue.Variable.Name}}_{{normalize Right.FuzzyValue.Name}}{{/if}}{{#if Right.IsNamedVariable}}{{Right.Name}}{{/if}})
 {{~/if}}{{/each}}
-        rule{{@index}}_activation = {{FinalToken.Name}}
+        rule{{RuleID}}_activation = {{FinalToken.Name}}
 {{#each Conclusions}}
-        rule{{@../index}}_{{normalize Variable.Name}}_{{normalize Name}} = self.foper.Inferece(rule{{@../index}}_activation, self.memb_{{normalize Variable.Name}}_{{normalize Name}})
+        rule{{../RuleID}}_{{normalize Variable.Name}}_{{normalize Name}} = self.foper.Inference(rule{{../RuleID}}_activation, self.memb_{{normalize Variable.Name}}_{{normalize Name}})
 {{/each}}
 {{/each}}
 
+        #
+        # Agregacja wyników wnioskowania w ramach tych samych wartości lingwistycznych zmiennych wyjściowych
+{{#each OutputValueToRuleAssociation}}
+{{#each this}}
+{{#if @first}}
+        conclusion = self.foper.NeutralUnion(self.x_{{normalize ConcludedValue.Variable.Name}})
+{{/if}}
+        conclusion = self.foper.Union(conclusion, rule{{RuleID}}_{{normalize ConcludedValue.Variable.Name}}_{{normalize ConcludedValue.Name}})
+{{#if @last}}
+        self.conclusion_{{normalize ConcludedValue.Variable.Name}}_{{normalize ConcludedValue.Name}} = conclusion
+{{/if}}
+{{/each}}
+{{/each}}
 
-{{~#each OutputVariables}}{{#each Values}}
-        self.output_{{normalize Variable.Name}}_{{normalize Name}} = 123 # todo: ....
-{{~/each}}{{/each}}
+        #
+        # Wyostrzanie zmiennych wyjściowych
+{{#each OutputVariables}}
+{{#each Values}}
+{{#if @first}}
+        aggregate = self.foper.NeutralAggregate(self.x_{{normalize ../Name}})
+{{/if}}
+        aggregate = self.foper.Aggregation(aggregate, self.conclusion_{{normalize ../Name}}_{{normalize Name}})
+{{/each}}
+        self.__aggregated_{{normalize Name}} = aggregate
+        self.output_{{normalize Name}} = self.foper.Centroid(self.x_{{normalize Name}}, aggregate)
+{{/each}}
+
+        #
+        # przygotowanie słownika wyników
+        result = dict({{#each OutputVariables}}{{normalize Name}} = self.output_{{normalize Name}}{{#unless @last}}, {{/unless}}{{/each}})
+        return result
 
 
-
-    def ShowVariables(self):
+    def ShowAllVariables(self):
         fig, axes = plt.subplots(nrows={{InputVariables.Length}} + {{OutputVariables.Length}}, figsize=(8, 3 * ({{InputVariables.Length}} + {{OutputVariables.Length}})))
-        if not hasattr(axis, "__len__"):
+        if not hasattr(axes, "__len__"):
             axes = [axes]
 {{#each InputVariables}}{{#each Values}}
         axes[{{@../index}}].plot(self.x_{{normalize ../Name}}, self.memb_{{normalize ../Name}}_{{normalize Name}}, '{{color @index}}', linewidth=1.5, label='{{{Name}}}'){{/each}}
-        axes[{{@index}}].set_title('WE: {{Description}}')
+        axes[{{@index}}].set_title('WE: {{{Description}}}')
         axes[{{@index}}].legend()
 {{/each}}
 {{#each OutputVariables}}{{#each Values}}
-        axes[{{@../index}}].plot(self.x_{{normalize ../Name}}, self.memb_{{normalize ../Name}}_{{normalize Name}}, '{{color @index}}', linewidth=1.5, label='{{{Name}}}'){{/each}}
-        axes[{{@index}}].set_title('WY: {{Description}}')
-        axes[{{@index}}].legend()
+        axes[{{../../InputVariables.Length}}+{{@../index}}].plot(self.x_{{normalize ../Name}}, self.memb_{{normalize ../Name}}_{{normalize Name}}, '{{color @index}}', linewidth=1.5, label='{{{Name}}}'){{/each}}
+        axes[{{../InputVariables.Length}}+{{@index}}].set_title('WY: {{{Description}}}')
+        axes[{{../InputVariables.Length}}+{{@index}}].legend()
 {{/each}}
 
-        # Turn off top/right axes
         for ax in axes:
             ax.spines['top'].set_visible(False)
             ax.spines['right'].set_visible(False)
@@ -168,15 +253,46 @@ class Model_{{normalize ModelName}}(object):
 
         plt.tight_layout()
         plt.show()
+
+
+    def ShowActivations(self):
+        fig, axes = plt.subplots(nrows={{OutputVariables.Length}}, figsize=(8, 3 * {{OutputVariables.Length}}))
+        if not hasattr(axes, "__len__"):
+            axes = [axes]
+
+        {{#each OutputVariables}}
+        {{#each Values}}
+        axes[{{@../index}}].fill_between(self.x_{{normalize ../Name}}, np.zeros_like(self.x_{{normalize ../Name}}), self.conclusion_{{normalize ../Name}}_{{normalize Name}}, facecolor='{{color @index}}', alpha=0.5)
+        axes[{{@../index}}].plot(self.x_{{normalize ../Name}}, self.memb_{{normalize ../Name}}_{{normalize Name}}, '{{color @index}}', linewidth=0.5, linestyle='--', )
+        {{/each}}
+
+        memb = fuzz.interp_membership(self.x_{{normalize Name}}, self.__aggregated_{{normalize Name}}, self.output_{{normalize Name}})
+        axes[{{@index}}].plot([self.output_{{normalize Name}}]*2, [0, memb], 'k', linewidth=3, alpha=0.9)
+        axes[{{@index}}].set_title('{{{Description}}}')
+        {{/each}}
+
+        for ax in axes:
+            ax.spines['top'].set_visible(False)
+            ax.spines['right'].set_visible(False)
+            ax.get_xaxis().tick_bottom()
+            ax.get_yaxis().tick_left()
+
+        plt.tight_layout()
+        plt.show()
+
 {{else}}
-## Model {{ModelName}} jest niedokończony.
+## Model '{{ModelName}}' jest niedokończony.
 ##
 {{/if}}
 
 {{/each}}
 if __name__ == "__main__":
 {{#each Models}}
-{{#unless IsValid}}#{{/unless}}    m{{@Index}} = Model_{{normalize ModelName}}()
-{{#unless IsValid}}#{{/unless}}    m{{@Index}}.ShowVariables()
-
+{{#unless IsValid}}"""{{/unless}}
+    m{{@Index}} = Model_{{normalize ModelName}}()
+    m{{@Index}}.ShowAllVariables()
+    m{{@Index}}_result = m{{@Index}}.Execute({{#each InputVariables}}{{#if @index}}, {{/if}}np.random.choice(m{{@../index}}.x_{{normalize Name}}){{/each}})
+    m{{@Index}}.ShowActivations()
+    print(f"{{normalize ModelName}}: { m{{@Index}}_result }")
+{{#unless IsValid}}"""{{/unless}}
 {{/each}}

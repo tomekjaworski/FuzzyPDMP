@@ -1077,20 +1077,32 @@
                       "$ref": "68"
                     },
                     "IsValid": true
+                  },
+                  {
+                    "$id": "104",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
+                    "Value": {
+                      "$ref": "69"
+                    },
+                    "Variable": {
+                      "$ref": "68"
+                    },
+                    "IsValid": true
                   }
                 ]
               },
               "IsValid": true
             },
             {
-              "$id": "104",
+              "$id": "105",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
               "ID": "b9e0a451-d18c-4275-b8da-309d1e8fca6a",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "105",
+                    "$id": "106",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
                     "Value": {
@@ -1102,7 +1114,7 @@
                     "IsValid": true
                   },
                   {
-                    "$id": "106",
+                    "$id": "107",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "Or",
                     "Value": {
@@ -1119,11 +1131,35 @@
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "107",
+                    "$id": "108",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
                     "Value": {
                       "$ref": "85"
+                    },
+                    "Variable": {
+                      "$ref": "68"
+                    },
+                    "IsValid": true
+                  },
+                  {
+                    "$id": "109",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
+                    "Value": {
+                      "$ref": "69"
+                    },
+                    "Variable": {
+                      "$ref": "68"
+                    },
+                    "IsValid": true
+                  },
+                  {
+                    "$id": "110",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
+                    "Value": {
+                      "$ref": "77"
                     },
                     "Variable": {
                       "$ref": "68"
@@ -1139,7 +1175,7 @@
         "IsValid": true
       },
       {
-        "$id": "108",
+        "$id": "111",
         "$type": "BlazorApp1.Fuzzy.FuzzyModel, BlazorApp1",
         "ID": "00000000-12ce-4746-8496-29861314a386",
         "Name": "nazwa modelu DRUGIEGO",
@@ -1148,18 +1184,18 @@
           "$ref": "1"
         },
         "Rules": {
-          "$id": "109",
+          "$id": "112",
           "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1]], System.Private.CoreLib",
           "$values": [
             {
-              "$id": "110",
+              "$id": "113",
               "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
               "ID": "9fe289a9-ca77-4cc9-8b01-51fa83ad4fcc",
               "Premise": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "111",
+                    "$id": "114",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
                     "Value": {
@@ -1171,68 +1207,35 @@
                     "IsValid": true
                   },
                   {
-                    "$id": "112",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConnectiveType": "And",
-                    "Value": {
-                      "$ref": "11"
-                    },
-                    "Variable": {
-                      "$ref": "2"
-                    },
-                    "IsValid": true
-                  },
-                  {
-                    "$id": "113",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConnectiveType": "And",
-                    "Value": {
-                      "$ref": "11"
-                    },
-                    "Variable": {
-                      "$ref": "2"
-                    },
-                    "IsValid": true
-                  },
-                  {
-                    "$id": "114",
-                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConnectiveType": "Or",
-                    "Value": {
-                      "$ref": "60"
-                    },
-                    "Variable": {
-                      "$ref": "43"
-                    },
-                    "IsValid": true
-                  },
-                  {
                     "$id": "115",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
-                    "Value": null,
-                    "Variable": null,
-                    "IsValid": false
+                    "Value": {
+                      "$ref": "11"
+                    },
+                    "Variable": {
+                      "$ref": "2"
+                    },
+                    "IsValid": true
                   },
                   {
                     "$id": "116",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
-                    "Value": null,
-                    "Variable": null,
-                    "IsValid": false
-                  }
-                ]
-              },
-              "Conclusion": {
-                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
-                "$values": [
+                    "Value": {
+                      "$ref": "11"
+                    },
+                    "Variable": {
+                      "$ref": "2"
+                    },
+                    "IsValid": true
+                  },
                   {
                     "$id": "117",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
-                    "ConnectiveType": "None",
+                    "ConnectiveType": "Or",
                     "Value": {
-                      "$ref": "44"
+                      "$ref": "60"
                     },
                     "Variable": {
                       "$ref": "43"
@@ -1257,19 +1260,25 @@
                   }
                 ]
               },
-              "IsValid": false
-            },
-            {
-              "$id": "120",
-              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
-              "ID": "90cdf408-5044-47c4-9aab-a97f945484ce",
-              "Premise": {
+              "Conclusion": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "121",
+                    "$id": "120",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
+                    "Value": {
+                      "$ref": "44"
+                    },
+                    "Variable": {
+                      "$ref": "43"
+                    },
+                    "IsValid": true
+                  },
+                  {
+                    "$id": "121",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
                     "Value": null,
                     "Variable": null,
                     "IsValid": false
@@ -1284,11 +1293,38 @@
                   }
                 ]
               },
+              "IsValid": false
+            },
+            {
+              "$id": "123",
+              "$type": "BlazorApp1.Fuzzy.FuzzyRule, BlazorApp1",
+              "ID": "90cdf408-5044-47c4-9aab-a97f945484ce",
+              "Premise": {
+                "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
+                "$values": [
+                  {
+                    "$id": "124",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "None",
+                    "Value": null,
+                    "Variable": null,
+                    "IsValid": false
+                  },
+                  {
+                    "$id": "125",
+                    "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
+                    "ConnectiveType": "And",
+                    "Value": null,
+                    "Variable": null,
+                    "IsValid": false
+                  }
+                ]
+              },
               "Conclusion": {
                 "$type": "System.Collections.Generic.List`1[[BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1]], System.Private.CoreLib",
                 "$values": [
                   {
-                    "$id": "123",
+                    "$id": "126",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "None",
                     "Value": {
@@ -1300,7 +1336,7 @@
                     "IsValid": true
                   },
                   {
-                    "$id": "124",
+                    "$id": "127",
                     "$type": "BlazorApp1.Fuzzy.FuzzySubexpression, BlazorApp1",
                     "ConnectiveType": "And",
                     "Value": {

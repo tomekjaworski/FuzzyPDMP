@@ -17,6 +17,11 @@ namespace BlazorApp1.Pages
             this.selected_model = BoardProvider.Board.SelectedModel;
         }
 
+        private async Task OnDuplicateModel(MouseEventArgs e, FuzzyModel fmodel)
+        {
+            //todo: implementacja
+        }
+
         private async Task OnEditModelDescription(MouseEventArgs e, FuzzyModel fmodel)
         {
             var in_data = new FuzzyModelDescriptionData(fmodel.Name, fmodel.Description);

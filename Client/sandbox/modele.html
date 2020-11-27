@@ -20,6 +20,7 @@
                 <span class="font-weight-bold">@this.selected_model.Name</span> - <i> @this.selected_model.Description</i>
               </div>
               <div>
+                <button class="btn btn-sm btn-light" onclick="@((MouseEventArgs e) => OnEditModelDescription(e, fmodel))" title="Wykonaj kopię tego modelu"><i class="far fa-copy"></i></button>
                 <button class="btn btn-sm btn-light" onclick="@((MouseEventArgs e) => OnEditVariableDescription(e, variable))"><i class="far fa-edit"></i></button>
                 <button class="btn btn-sm btn-light text-danger" onclick="@((MouseEventArgs e) => OnRemoveVariable(e, variable))"><i class="far fa-trash-alt"></i></button>
               </div>

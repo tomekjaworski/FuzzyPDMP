@@ -75,17 +75,44 @@ namespace BlazorApp1.Pages
         private void OnAddValue(MouseEventArgs e, FuzzyVariable variable)
         {
             Random rnd = new Random();
-            variable.AddValue(
-                $"Value-{rnd.Next():X08}",
+            FuzzyValue fv = new FuzzyValue(variable, $"Value-{rnd.Next():X08}",
                 $"Description-{rnd.Next():X08}");
+            variable.AddValue(fv);
         }
 
         private void OnAddVariable(MouseEventArgs e)
         {
             Random rnd = new Random();
-            BoardProvider.Board.AddVariable(
-                $"Value-{rnd.Next():X08}",
-                $"Description-{rnd.Next():X08}");
+            FuzzyVariable fv = new FuzzyVariable()
+            {
+                Name = $"Variable-{rnd.Next():X08}",
+                Description = $"Description-{rnd.Next():X08}"
+            };
+            BoardProvider.Board.AddVariable(fv);
+        }
+
+
+        private void OnDuplicateVariable(MouseEventArgs e, FuzzyVariable variable)
+        {
+            FuzzyVariable copy = variable.CreateCopy();
+            copy.Name += " (kopia)";
+            copy.Description += " (kopia)";
+
+            foreach(FuzzyValue value in copy.Values)
+            {
+                value.Name += " (kopia)";
+                value.Description += " (kopia)";
+            }
+            BoardProvider.Board.AddVariable(copy);
+        }
+
+        private void OnDuplicateValue(MouseEventArgs e, FuzzyVariable variable, FuzzyValue value)
+        {
+            FuzzyValue copy = value.CreateCopy();
+            copy.Name += " (kopia)";
+            copy.Description += " (kopia)";
+
+            variable.AddValue(copy);
         }
     }
 }

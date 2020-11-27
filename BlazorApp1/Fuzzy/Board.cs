@@ -45,6 +45,15 @@ namespace BlazorApp1.Fuzzy
             return @var;
         }
 
+        public FuzzyVariable AddVariable(FuzzyVariable variable)
+        {
+            this.variables.Add(variable);
+            if (variable.ValidateCrispParameters())
+                variable.ChartHolder.UpdateChart();
+
+            return variable;
+        }
+
         internal FuzzyModel GetModelBuGuid(Guid modelGuid)
         {
             return this.models.Where(x => x.ID == modelGuid).FirstOrDefault();
@@ -83,5 +92,6 @@ namespace BlazorApp1.Fuzzy
             this.models.Add(fm);
             return fm;
         }
+
     }
 }

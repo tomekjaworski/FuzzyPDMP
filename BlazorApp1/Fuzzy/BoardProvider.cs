@@ -145,15 +145,16 @@ namespace BlazorApp1.Fuzzy
                 this.board = JsonConvert.DeserializeObject<Board>(json, settings);
 
                 //Popraw bład serializacji (newtonsoft)
-                foreach(FuzzyVariable fvar in this.board.Variables)
+                foreach (FuzzyVariable fvar in this.board.Variables)
                     foreach (FuzzyValue fval in fvar.Values)
-                        foreach(var family2params in fval.AllParameters.Values)
-                            foreach(var np in family2params.Values)
-                            {
-                                NamedParameter p = np as NamedParameter;
-                                p.ParentValue = fval;
-                                p.ParentVariable = fvar;
-                            }
+                        fval.Variable = fvar;
+                        //foreach(var family2params in fval.AllParameters.Values)
+                        //    foreach(var np in family2params.Values)
+                        //    {
+                        //        NamedParameter p = np as NamedParameter;
+                        //        p.ParentValue = fval;
+                        //        p.ParentVariable = fvar;
+                        //    }
 
 
                         Console.WriteLine("Ok.");

@@ -1,6 +1,6 @@
 #
 # Zbiór modeli wygenerowany przez BlazorApp1
-# Znacznik czasowy generacji: 27.11.2020 11:12:09
+# Znacznik czasowy generacji: 27.11.2020 11:52:59
 #
 # Zażółć gęsią jaźń ZAŻÓŁĆ GĘSIĄ JAŹŃ
 

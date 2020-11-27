@@ -13,6 +13,11 @@ namespace BlazorApp1.Fuzzy
         [JsonConverter(typeof(StringEnumConverter))]
         public FuzzyConnectiveType ConnectiveType { get; set; }
 
+        private FuzzySubexpression()
+        {
+            // 
+        }
+
         public FuzzyValue Value {
             get => this.fuzzy_value;
             set {
@@ -76,6 +81,16 @@ namespace BlazorApp1.Fuzzy
                 return $"{this.Value?.Variable?.Name ?? "..." } <span style=\"color:#008000\">jest</span> {this.Value?.Name ?? "..."}";
             else
                 return $"<span class=\"\" style=\"color:#0000FF\">{sconn}</span> {this.Value?.Variable?.Name ?? "..."} <span style=\"color:#008000\">jest</span> {this.Value?.Name ?? "..." }";
+        }
+
+        public FuzzySubexpression CreateCopy()
+        {
+            FuzzySubexpression copy = new FuzzySubexpression();
+            copy.fuzzy_value = this.fuzzy_value;
+            copy.fuzzy_variable = this.fuzzy_variable;
+            copy.ConnectiveType = this.ConnectiveType;
+
+            return copy;
         }
     }
 }

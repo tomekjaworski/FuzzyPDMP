@@ -35,11 +35,10 @@ namespace BlazorApp1.Fuzzy
         }
 
 
-        public FuzzyRule AddRule()
+        public FuzzyRule AddRule(FuzzyRule rule)
         {
-            FuzzyRule fr = new FuzzyRule();
-            this.Rules.Add(fr);
-            return fr;
+            this.Rules.Add(rule);
+            return rule;
         }
 
 

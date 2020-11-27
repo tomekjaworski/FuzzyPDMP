@@ -54,7 +54,8 @@ namespace BlazorApp1.Pages
         private void OnAddRuleClicked(MouseEventArgs e)
         {
             Board m = BoardProvider.Board;
-            this.selected_model.AddRule();
+            FuzzyRule fr = new FuzzyRule();
+            this.selected_model.AddRule(fr);
         }
 
         private async Task OnRemoveRuleClicked(MouseEventArgs e, FuzzyRule rule)
@@ -69,6 +70,8 @@ namespace BlazorApp1.Pages
         private async Task OnDuplicateRule(MouseEventArgs e, FuzzyRule rule)
         {
             // todo:  implementacja
+            FuzzyRule copy = rule.CreateCopy();
+            this.selected_model.AddRule(copy);
         }
     }
 }

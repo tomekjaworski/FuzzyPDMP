@@ -112,9 +112,18 @@ namespace BlazorApp1.Fuzzy
             return value;
         }
 
-        internal FuzzyVariable CreateCopy()
+        public FuzzyVariable CreateCopy()
         {
-            throw new NotImplementedException();
+            FuzzyVariable var_copy = new FuzzyVariable() { Name = this.Name, Description = this.Description, MembershipType = this.MembershipType };
+            var_copy.Minimum.Value = this.Minimum.Value;
+            var_copy.Maximum.Value = this.Maximum.Value;
+
+            foreach (FuzzyValue fv in this.Values)
+            {
+                FuzzyValue val_copy = fv.CreateCopy();
+                var_copy.AddValue(val_copy);
+            }
+            return var_copy;
         }
 
         internal bool RemoveValue(FuzzyValue value)

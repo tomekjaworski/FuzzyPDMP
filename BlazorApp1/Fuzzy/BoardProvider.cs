@@ -104,23 +104,23 @@ namespace BlazorApp1.Fuzzy
             //
             FuzzySubexpression _feci;
 
-            FuzzyRule r1 = fm.AddRule();
+            FuzzyRule r1 = fm.AddRule(new FuzzyRule());
             _ = r1.AddConclusion(var2_val1);
             _ = r1.AddPremise(var1_val1);
             _feci = r1.AddPremise(var1_val2);
             _feci = r1.AddPremise(FuzzyConnectiveType.And, var1_val2);
             _feci = r1.AddPremise(FuzzyConnectiveType.Or, var2_val3);
 
-            FuzzyRule r2 = fm.AddRule();
+            FuzzyRule r2 = fm.AddRule(new FuzzyRule());
             r2.AddConclusion(var2_val2);
             r2.AddConclusion(var2_val3);
 
-            FuzzyRule r3 = fm.AddRule();
+            FuzzyRule r3 = fm.AddRule(new FuzzyRule());
             _feci = r3.AddPremise(var1_val1);
             _feci = r3.AddPremise(FuzzyConnectiveType.And, var1_val2);
             _feci = r3.AddPremise(FuzzyConnectiveType.Or, var2_val3);
 
-            FuzzyRule r4 = fm.AddRule();
+            FuzzyRule r4 = fm.AddRule(new FuzzyRule());
             _ = r4.AddPremise(var2_val3);
             _ = r4.AddConclusion(var1_val3);
             _ = r4.AddEmptyConclusion();

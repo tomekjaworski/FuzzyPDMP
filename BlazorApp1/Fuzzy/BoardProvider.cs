@@ -144,7 +144,19 @@ namespace BlazorApp1.Fuzzy
                 string json = File.ReadAllText(Path.Combine("data", "model.json"), Encoding.UTF8);
                 this.board = JsonConvert.DeserializeObject<Board>(json, settings);
 
-                Console.WriteLine("Ok.");
+                //Popraw bład serializacji (newtonsoft)
+                foreach(FuzzyVariable fvar in this.board.Variables)
+                    foreach (FuzzyValue fval in fvar.Values)
+                        foreach(var family2params in fval.AllParameters.Values)
+                            foreach(var np in family2params.Values)
+                            {
+                                NamedParameter p = np as NamedParameter;
+                                p.ParentValue = fval;
+                                p.ParentVariable = fvar;
+                            }
+
+
+                        Console.WriteLine("Ok.");
 
             } catch(Exception ex)
             {

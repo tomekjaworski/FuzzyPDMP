@@ -13,7 +13,7 @@ namespace BlazorApp1.Pages
 {
     public partial class Rules
     {
-        FuzzyModel selected_model = new FuzzyModel(null);
+        FuzzyModel selected_model = null;
 
         protected override void OnInitialized()
         {

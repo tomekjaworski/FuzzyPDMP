@@ -42,7 +42,7 @@ namespace BlazorApp1.Fuzzy
         {
             this.board = new Board();
 
-            FuzzyModel fm = board.AddModel("Nazwa", "Opis modelu");
+            FuzzyModel fm = board.AddModel(new FuzzyModel("Nazwa", "Opis modelu"));
 
             var var1 = this.board.AddVariable("Nazwa 1", "Opis zmiennej Nazwa I");
 

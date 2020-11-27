@@ -17,7 +17,7 @@ namespace BlazorApp1.Pages
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            foreach (FuzzyVariable fvar in ModelProvider.Model.Variables)
+            foreach (FuzzyVariable fvar in BoardProvider.Board.Variables)
             {
                 fvar.ResetChartHolder();
                 fvar.ChartHolder.UpdateChart();
@@ -26,9 +26,9 @@ namespace BlazorApp1.Pages
 
         private async Task OnEditVariableDescription(MouseEventArgs e, FuzzyVariable variable)
         {
-            var in_data = new VariableEditorData(variable.Name, variable.Description);
+            var in_data = new FuzzyVariableDescriptionData(variable.Name, variable.Description);
 
-            (bool result, VariableEditorData out_data) = await Modals.FuzzyEditors.EditFuzzyVariable(this.Modal, in_data);
+            (bool result, FuzzyVariableDescriptionData out_data) = await Modals.FuzzyEditors.EditFuzzyVariable(this.Modal, in_data);
 
             if (result)
             {
@@ -41,9 +41,9 @@ namespace BlazorApp1.Pages
 
         private async Task OnEditValueDescription(MouseEventArgs e, FuzzyValue value)
         {
-            var in_data = new ValueEditorData(value.Name, value.Description);
+            var in_data = new FuzzyValueDescriptionData(value.Name, value.Description);
 
-            (bool result, ValueEditorData out_data) = await Modals.FuzzyEditors.EditFuzzyValue(this.Modal, in_data);
+            (bool result, FuzzyValueDescriptionData out_data) = await Modals.FuzzyEditors.FuzzyValueDescriptionEditor(this.Modal, in_data);
 
             if (result)
             {
@@ -58,7 +58,7 @@ namespace BlazorApp1.Pages
             if (!await MessageBox.OkCancel(this.Modal, "Pytanie", $"Czy chcesz <b>usunąć</b> zmienną lingwistyczną {variable.Name}?<br/>Usunięcie zmiennej nie spowoduje usunięcia reguł związanych z tą zmienną"))
                 return;
 
-            ModelProvider.Model.RemoveVariable(variable);
+            BoardProvider.Board.RemoveVariable(variable);
         }
 
 
@@ -83,7 +83,7 @@ namespace BlazorApp1.Pages
         private void OnAddVariable(MouseEventArgs e)
         {
             Random rnd = new Random();
-            ModelProvider.Model.AddVariable(
+            BoardProvider.Board.AddVariable(
                 $"Value-{rnd.Next():X08}",
                 $"Description-{rnd.Next():X08}");
         }

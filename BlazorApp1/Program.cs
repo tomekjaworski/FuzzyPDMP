@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BlazorApp1.Fuzzy;
+using Highlight;
+using Highlight.Engines;
+
+
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -24,7 +26,15 @@ namespace BlazorApp1
             Console.WriteLine($"Katalog roboczy: {Directory.GetCurrentDirectory()}");
             Console.WriteLine($"Wejście: {System.Reflection.Assembly.GetExecutingAssembly().Location}; PID:{Process.GetCurrentProcess().Id}");
 
-            ModelProvider.Provider.LoadModel();
+            BoardProvider.Provider.LoadBoard();
+            PythonModelGenerator pmg = new PythonModelGenerator();
+            pmg.ApplyBoard(BoardProvider.Board);
+            while (true)
+            {
+                pmg.Run();
+                string pc = pmg.PythonCode;
+                //break;
+            }
 
             cts = new CancellationTokenSource();
             Thread th = new Thread(new ThreadStart(StoreThread));
@@ -32,7 +42,7 @@ namespace BlazorApp1
             CreateHostBuilder(args).Build().Run();
             cts.Cancel();
             th.Join();
-            ModelProvider.Provider.StoreModel();
+            BoardProvider.Provider.StoreBoard();
         }
 
         private static CancellationTokenSource cts;
@@ -48,7 +58,7 @@ namespace BlazorApp1
                     continue;
 
                 last_store = now;
-                ModelProvider.Provider.StoreModel(); // todo: threadsafe
+                BoardProvider.Provider.StoreBoard(); // todo: threadsafe
             }
         }
 
@@ -58,7 +68,7 @@ namespace BlazorApp1
 
             hb.ConfigureWebHostDefaults(webBuilder =>
             {
-                
+
                 //webBuilder.UseUrls("http://*:11000");
                 webBuilder.UseStartup<Startup>();
             });

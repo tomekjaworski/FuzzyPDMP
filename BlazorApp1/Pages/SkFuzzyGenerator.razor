@@ -1,0 +1,21 @@
+﻿@page "/SkFuzzyGenerator"
+@using BlazorMonaco
+@using BlazorMonaco.Bridge
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="p-1 d-flex justify-content-end">
+                <button class="btn btn-success btn-sm" @onclick="@((MouseEventArgs e)=>this.OnGenerateCode(e))">
+                    Generuj klasy <span class="font-italics">skfuzzy</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- xxxxxxxxxxxxxxxxxxxxxxxxxx -->
+    <div class="border mt-2">
+        <MonacoEditor ConstructionOptions="EditorConstructionOptions" @ref="_editor" />
+    </div>
+    <!-- xxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+</div>

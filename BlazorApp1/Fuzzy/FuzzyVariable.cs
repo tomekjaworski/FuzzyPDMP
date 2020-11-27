@@ -11,7 +11,7 @@ namespace BlazorApp1.Fuzzy
 {
     public class FuzzyVariable
     {
-        public Guid ID { get; private set; }
+        public Guid ID { get; set; }
 
         private List<FuzzyValue> values;
 
@@ -41,7 +41,7 @@ namespace BlazorApp1.Fuzzy
             get {
                 List<NamedParameter> pars = new List<NamedParameter>();
                 pars.AddRange(new[] { this.dmin, this.dmax });
-                pars.AddRange(this.values.SelectMany(x => x.MembershipParameters));
+                pars.AddRange(this.values.SelectMany(x => x.MembershipParameters.Values.OfType<NamedParameter>()));
                 return pars.ToArray();
             }
         }
@@ -52,8 +52,9 @@ namespace BlazorApp1.Fuzzy
         [JsonIgnore]
         public ChartHolder ChartHolder { get; set; }
 
+        public bool IsValid => this.InternalValidate();
 
-
+     
         public FuzzyVariable()
         {
             this.ID = Guid.NewGuid();
@@ -113,6 +114,25 @@ namespace BlazorApp1.Fuzzy
             return true;
         }
 
+        private bool InternalValidate()
+        {
+            if (string.IsNullOrEmpty(this.Name))
+                return false;
+            if (string.IsNullOrEmpty(this.Description))
+                return false;
+
+            if (this.values.Count == 0)
+                return false;
+
+            if (!this.ValidateCrispParameters())
+                return false;
+
+            foreach (FuzzyValue fv in this.values)
+                if (!fv.IsValid)
+                    return false;
+
+            return true;
+        }
 
 
     }

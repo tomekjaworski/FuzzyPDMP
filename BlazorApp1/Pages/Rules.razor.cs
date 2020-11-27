@@ -4,11 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlazorApp1.Modals;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Http;
+using System.Diagnostics;
 
 namespace BlazorApp1.Pages
 {
     public partial class Rules
-    { 
+    {
+        FuzzyModel selected_model = new FuzzyModel(null);
+
+        protected override void OnInitialized()
+        {
+            this.selected_model = BoardProvider.Board.SelectedModel;
+
+        }
+
+
         private async Task OnRemovePremiseClicked(FuzzyRule rule, FuzzySubexpression premiseExpression)
         {
             string representation = premiseExpression.Value == null ? "" : $"<p class=\"font-weight-light bg-light rounded\">{premiseExpression}</p>";
@@ -40,8 +52,8 @@ namespace BlazorApp1.Pages
 
         private void OnAddRuleClicked()
         {
-            Model m = ModelProvider.Model;
-            m.AddRule();
+            Board m = BoardProvider.Board;
+            this.selected_model.AddRule();
         }
 
         private async Task OnRemoveRuleClicked(FuzzyRule rule)
@@ -49,8 +61,8 @@ namespace BlazorApp1.Pages
             if (!await MessageBox.OkCancel(this.Modal, "Pytanie", $"Czy chcesz usunąć wybraną <b>regułę</b>?<p class=\"font-weight-light bg-light rounded\">{rule}</p>"))
                 return;
 
-            Model m = ModelProvider.Model;
-            m.RemoveRule(rule);
+            Board m = BoardProvider.Board;
+            this.selected_model.RemoveRule(rule);
         }
     }
 }

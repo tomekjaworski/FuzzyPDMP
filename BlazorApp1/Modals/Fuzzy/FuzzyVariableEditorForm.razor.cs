@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace BlazorApp1.Modals
 {
-    public partial class VariableEditorForm
+    public partial class FuzzyVariableEditorForm
     {
         [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; }
         
-        [Parameter] public VariableEditorData Data { get; set; }
+        [Parameter] public FuzzyVariableDescriptionData Data { get; set; }
 
         void OkClicked()
         {
-            BlazoredModal.Close(ModalResult.Ok<VariableEditorData>(Data));
+            BlazoredModal.Close(ModalResult.Ok<FuzzyVariableDescriptionData>(Data));
         }
 
         void CancelClicked()

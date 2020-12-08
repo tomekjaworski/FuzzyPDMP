@@ -20,8 +20,8 @@ namespace BlazorApp1.Pages
         private async Task OnDuplicateModel(MouseEventArgs e, FuzzyModel fmodel)
         {
             FuzzyModel fm = fmodel.Clone();
-            fm.Name += " (kopia)";
-            fm.Description += " (kopia)";
+            //fm.Name += " (kopia)";
+            //fm.Description += " (kopia)";
             BoardProvider.Board.AddModel(fm);
         }
 

@@ -1,0 +1,178 @@
+﻿@page "/Rules"
+@using WebFuzzyEditor.Fuzzy
+@inject IModalService Modal
+@inject Blazored.SessionStorage.ISessionStorageService SessionStorage
+
+<div class="container">
+
+    @if (this.selected_model == null)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <p>Brak wybranego modelu; wybierz model w zakładce <i>Modele</i>...</p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Model <span class="font_weight_bold">@this.selected_model.Name</span> - <span class="font_weight_bold"> @this.selected_model.Description</span></h4>
+            </div>
+        </div>
+
+        @foreach (FuzzyRule rule in this.selected_model.Rules)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- XXXXXXXXXXXXXXXXXX -->
+                    <div class="card-group mb-4">
+                        <div class="card">
+                            <div class="card-header p-1 px-2 d-flex flex-row">
+                                <div class="font-weight-bold">Jeżeli...</div>
+                                <button class="btn btn-outline-danger btn-sm ml-auto " style="visibility:hidden">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+
+                                @foreach (FuzzySubexpression premise_expression in rule.Premise)
+                                {
+                                    <div class="d-flex d-flex-row mb-1">
+                                        <btn-group style=@(premise_expression.ConnectiveType == FuzzyConnectiveType.None ? "display:none" : "display:block")>
+                                            <button class="btn dropdown-toggle btn-light" data-toggle="dropdown"> @(premise_expression.ConnectiveType == FuzzyConnectiveType.None ? "??" : premise_expression.ConnectiveType.GetEnumDescription()) </button>
+                                            <div class="dropdown-menu">
+                                                @foreach (Enum item in Enum.GetValues(typeof(FuzzyConnectiveType)))
+                                                {
+                                                    if ((FuzzyConnectiveType)item == FuzzyConnectiveType.None)
+                                                        continue;
+
+                                                    <a class="dropdown-item @(premise_expression.ConnectiveType == (FuzzyConnectiveType)item ? "active" : "")"
+                                                       href="#"
+                                                       @onclick="@(() => { premise_expression.ConnectiveType = (FuzzyConnectiveType)item; })"
+                                                       @onclick:preventDefault>@(((FuzzyConnectiveType)item).GetEnumDescription())</a>
+                                                }
+
+
+                                            </div>
+                                        </btn-group>
+
+
+                                        <btn-group>
+                                            <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">@(premise_expression.Variable?.Name ?? "Wybierz...")</button>
+                                            <div class="dropdown-menu">
+                                                @foreach (WebFuzzyEditor.Fuzzy.FuzzyVariable fvar in WebFuzzyEditor.Fuzzy.BoardProvider.Board.Variables)
+                                                {
+                                                    <a class="dropdown-item @(premise_expression.Variable == fvar ? "active " : "")" href="#"
+                                                       @onclick="@(() => { premise_expression.Variable = fvar; })" @onclick:preventDefault>
+                                                        <b>@fvar.Name</b> - @fvar.Description
+                                                    </a>
+                                                }
+                                            </div>
+                                        </btn-group>
+
+
+
+                                        <div class="text-center px-3 w-100"> jest </div>
+
+
+                                        <btn-group>
+                                            <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown">@(premise_expression.Value?.Name ?? "Wybierz...")</button>
+                                            <div class="dropdown-menu">
+                                                @if (premise_expression.Variable != null)
+                                                    foreach (FuzzyValue fval in premise_expression.Variable.Values)
+                                                    {
+                                                        <a class="dropdown-item" href="#" @onclick="@(() => { premise_expression.Value = fval; })" @onclick:preventDefault><b>@fval.Name</b> - @fval.Description</a>
+                                                    }
+                                            </div>
+                                        </btn-group>
+
+
+                                        <button class="btn btn-light text-danger mx-2" @onclick="@((MouseEventArgs e) => OnRemovePremiseClicked(e, rule, premise_expression))" title="Usuń przesłankę">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                }
+
+                            </div>
+                            <div class="card-footer d-flex d-flex-row flex-row-reverse">
+                                <button class="btn btn-success btn-sm" @onclick="@((MouseEventArgs e) => OnAddPremiseClicked(e, rule))" title="Dodaj przesłankę">
+                                    <span>Dodaj </span>
+                                    <span class="font-weight-bold">przesłankę</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header p-1 px-2 d-flex flex-row">
+                                <div class="font-weight-bold">to...</div>
+                                <div class="ml-auto">
+                                    <button class="btn btn-sm btn-light" @onclick="@((MouseEventArgs e) => OnDuplicateRule(e, rule))" title="Klonuj tę regułę"><i class="far fa-clone"></i></button>
+                                    <button class="btn btn-light btn-sm text-danger" @onclick="@((MouseEventArgs e) => OnRemoveRuleClicked(e, rule))" title="Usuń wybraną regułę"><i class="far fa-trash-alt"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <!-- CARD BODY -->
+                                @foreach (FuzzySubexpression conclusion_expression in rule.Conclusion)
+                                {
+
+                                    <div class="d-flex d-flex-row mb-1">
+                                        <div class="py-1 pr-2"> @(conclusion_expression.ConnectiveType != FuzzyConnectiveType.None ? conclusion_expression.ConnectiveType.GetEnumDescription() : "") </div>
+                                        <!-- xxxx -->
+                                        <btn-group class="">
+                                            <button class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">@(conclusion_expression.Variable?.Name ?? "Wybierz...") </button>
+                                            <div class="dropdown-menu ">
+                                                @foreach (WebFuzzyEditor.Fuzzy.FuzzyVariable fvar in WebFuzzyEditor.Fuzzy.BoardProvider.Board.Variables)
+                                                {
+                                                    <a class="dropdown-item @(conclusion_expression.Variable == fvar ? "active " : "")" href="#"
+                                                       @onclick="@(() => { conclusion_expression.Variable = fvar; })" @onclick:preventDefault>
+                                                        <b>@fvar.Name</b> - @fvar.Description
+                                                    </a>
+                                                }
+                                            </div>
+                                        </btn-group>
+                                        <div class="p-1 w-100 text-center"> jest </div>
+                                        <btn-group class="">
+                                            <button class="btn dropdown-toggle btn-outline-secondary" data-toggle="dropdown" aria-expanded="false">@(conclusion_expression.Value?.Name ?? "Wybierz...")</button>
+                                            <div class="dropdown-menu">
+                                                @if (conclusion_expression.Variable != null)
+                                                {
+                                                    foreach (FuzzyValue fval in conclusion_expression.Variable.Values)
+                                                    {
+                                                        <a class="dropdown-item" href="#" @onclick="@(() => { conclusion_expression.Value = fval; })"
+                                                           @onclick:preventDefault><b>@fval.Name</b> - @fval.Description</a>
+                                                    }
+                                                }
+                                            </div>
+                                        </btn-group>
+                                        <button class="btn btn-light text-danger mx-2" @onclick="@((MouseEventArgs e) => OnRemoveConclusionClicked(e, rule, conclusion_expression))" title="Usuń konkluzję">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                        <!-- xxxx -->
+                                    </div>
+                                }
+
+                            </div>
+                            <div class="card-footer d-flex d-flex-row flex-row-reverse">
+                                <button class="btn btn-success btn-sm" @onclick="@((MouseEventArgs e) => OnAddConclusionClicked(e, rule))" title="Dodaj pustą konkluzję">
+                                    Dodaj <span class="font-weight-bold">konkluzję</span>
+                                </button>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <!-- XXXXXXXXXXXXXXXXXXX -->
+                </div>
+            </div>
+        }
+        <row class="row mt-3 ">
+            <div class="col-md-12 d-flex flex-row-reverse">
+                <button class="btn btn-success btn-sm d-flex" @onclick="@((MouseEventArgs e)=>this.OnAddRuleClicked(e))">
+                    Dodaj <span class="font-weight-bold">regułę</span>
+                </button>
+            </div>
+        </row>
+
+    }
+</div>

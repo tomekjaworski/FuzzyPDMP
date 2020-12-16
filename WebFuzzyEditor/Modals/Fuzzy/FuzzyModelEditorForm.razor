@@ -1,0 +1,18 @@
+﻿@namespace WebFuzzyEditor.Modals
+
+<div>
+    <div>Wprowadź lub zmień opis modelu:</div>
+
+    <div class="form-group">
+        <label for="name">Nazwa modelu:</label>
+        <input type="text" class="form-control form-control-sm" placeholder="Wprowadź nazwę..." id="name" @bind="Data.Name">
+    </div>
+    <div class="form-group">
+        <label for="desc">Opis modelu:</label>
+        <input type="text" class="form-control form-control-sm" placeholder="Wprowadź opis..." id="desc" @bind="Data.Description">
+    </div>
+
+    <button @onclick="OkClicked" class="btn btn-primary">Zatwierdź</button>
+    <button @onclick="CancelClicked" class="btn btn-secondary">Anuluj</button>
+    @*<button @onclick="TestClicked" class="btn btn-secondary">Test</button>*@
+</div>

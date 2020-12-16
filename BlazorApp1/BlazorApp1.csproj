@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>a41588c3-f880-46ba-abef-d76f8ef828f2</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +22,7 @@
     <PackageReference Include="ChartJs.Blazor" Version="1.1.0" />
     <PackageReference Include="Handlebars.Net" Version="1.11.5" />
     <PackageReference Include="Highlight" Version="4.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="RazorComponentsPreview" Version="0.6.0" />
     <PackageReference Include="System.Collections" Version="4.3.0" />

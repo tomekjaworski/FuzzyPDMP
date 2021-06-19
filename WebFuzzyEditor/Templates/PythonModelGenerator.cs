@@ -90,7 +90,7 @@ namespace WebFuzzyEditor
                 return Path.Combine(Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]), "Templates", fileName);
         }
 
-        static string NormalizePythonIdentifier(string text)
+        public static string NormalizePythonIdentifier(string text)
         {
             if (string.IsNullOrEmpty(text))
                 return "(null?)";

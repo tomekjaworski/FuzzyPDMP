@@ -1,6 +1,6 @@
 ﻿#
 # Zbiór modeli wygenerowany przez WebFuzzyEditor
-# Szablon generatora: code_anfis.handlebards ( ANFIS )
+# Szablon generatora: code_classic.handlebards ( CLASSIC )
 # Znacznik czasowy generacji: {{CurrentDate}}
 #
 # Zażółć gęsią jaźń ZAŻÓŁĆ GĘSIĄ JAŹŃ
@@ -117,12 +117,12 @@ class FuzzyOperation(object):
 class Model_{{normalize ModelName}}(object):
     foper = None #type: FuzzyOperation
 
-    # Wartości ostre dla zmiennych wejściowych
+    # Wartości ostre dla zmiennych wejsciowych
 {{#each InputVariables}}
     input_{{normalize Name}} = None # type: float # Zmienna: {{{Name}}}
 {{/each}}
 
-    # Wartości ostre dla zmiennych wyjściowych
+    # Wartości ostre dla zmiennych wyjsciowych
 {{#each OutputVariables}}
     output_{{normalize Name}} = None # type: float # Zmienna: {{{Name}}}
 {{/each}}
@@ -135,19 +135,24 @@ class Model_{{normalize ModelName}}(object):
     x_{{normalize Name}} = None # type: Union[List[float], np.ndarray]
 {{/each}}
 
-    # Wartości przynależności
+    # Wartości przynalezności
 {{#each AllValues}}
-    memb_{{normalize Variable.Name}}_{{normalize Name}} = None # type: Union[List[float], np.ndarray]
+    memb_{{NormalizedVariableValueName}} = None # type: Union[List[float], np.ndarray]
+{{/each}}
+
+{{#each AllValues}}
+    memb_{{NormalizedVariableValueName}}_parameters = None # type: np.ndarray
 {{/each}}
 
     def __init__(self):
         self.foper = FuzzyOperation()
 
-        self.InitDomain()
-        self.InitVariables()
+        self.InitializeDomain()
+        self.InitializeParameters()
+        self.InitializeVariables()
 #       self.ShowVariables()
 
-    def InitDomain(self):
+    def InitializeDomain(self):
         x_step = 0.01
 {{#each InputVariables}}
         self.x_{{normalize Name}} = np.arange({{D4 Minimum.Value}}, {{D4 Maximum.Value}}, x_step) # {{{Name}}}: {{{Description}}}
@@ -156,28 +161,58 @@ class Model_{{normalize ModelName}}(object):
         self.x_{{normalize Name}} = np.arange({{D4 Minimum.Value}}, {{D4 Maximum.Value}}, x_step) # {{{Name}}}: {{{Description}}}
 {{/each}}
 
-    def InitVariables(self):
+    #
+    #
+    def InitializeParameters(self):
 {{#each InputVariables}}
 
-        # Wejście: {{Name}}
+        # Wejscie: {{Name}}{{#each Values}}
+        self.memb_{{NormalizedVariableValueName}}_parameters = np.array([{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
+{{~/each}}
+{{/each}}
+
+
+{{#each OutputVariables}}
+        # Wyjscie: {{Name}}{{#each Values}}
+        self.memb_{{NormalizedVariableValueName}}_parameters = np.array([{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
+{{~/each}}{{/each}}
+
+    #
+    #
+    def GetParametersAsVector(self) -> np.ndarray:
+        values = np.hstack(({{#each AllValues}}{{#if @index}}, {{/if}}self.memb_{{NormalizedVariableValueName}}_parameters{{/each}}))
+        return values
+
+    def SetParametersAsVector(self, parameters: np.ndarray):
+        mat = parameters.reshape(({{AllValues.Length}}, 4))
+        {{#each AllValues}}{{#if @index}}, {{/if}}self.memb_{{NormalizedVariableValueName}}_parameters{{/each}} = mat
+
+    #
+    #
+    def InitializeVariables(self):
+{{#each InputVariables}}
+
+        # Wejscie: {{Name}}
 {{#each Values}}
-        self.memb_{{normalize Variable.Name}}_{{normalize Name}} = fuzz.trapmf(self.x_{{normalize Variable.Name}}, [{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
+        self.memb_{{NormalizedVariableValueName}} = fuzz.trapmf(self.x_{{normalize Variable.Name}}, self.memb_{{NormalizedVariableValueName}}_parameters)
 {{/each}}
 {{/each}}
 
 {{#each OutputVariables}}
         # Wyjście: {{Name}}{{#each Values}}
-        self.memb_{{normalize Variable.Name}}_{{normalize Name}} = fuzz.trapmf(self.x_{{normalize Variable.Name}}, [{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
+        self.memb_{{NormalizedVariableValueName}} = fuzz.trapmf(self.x_{{normalize Variable.Name}}, [{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
 {{~/each}}{{/each}}
 
+	#
+	#
     def Execute(self, {{#each InputVariables}}{{#if @index}}, {{/if}}input_{{normalize Name}}: float{{/each}}):
 {{#each InputVariables}}
         self.input_{{normalize Name}} = input_{{normalize Name}}
 {{/each}}
 
-        # Wyznacz poziomy przynależności
+        # Wyznacz poziomy przynalezności
 {{~#each InputVariables}}{{#each Values}}
-        level_{{normalize Variable.Name}}_{{normalize Name}} = fuzz.interp_membership(self.x_{{normalize Variable.Name}}, self.memb_{{normalize Variable.Name}}_{{normalize Name}}, self.input_{{normalize Variable.Name}})
+        level_{{NormalizedVariableValueName}} = fuzz.interp_membership(self.x_{{normalize Variable.Name}}, self.memb_{{NormalizedVariableValueName}}, self.input_{{normalize Variable.Name}})
 {{~/each}}{{/each}}
 
         #
@@ -185,12 +220,12 @@ class Model_{{normalize ModelName}}(object):
 {{#each CompiledRules}}
 
         #
-        # Reguła {{Comment}}
+        # Regula {{Comment}}
 {{#each Operations}}
 {{#if Op.IsAnd}}
-{{Target.Name}} = self.foper.And({{#if Left.IsFuzzyValue}}level_{{normalize Left.FuzzyValue.Variable.Name}}_{{normalize Left.FuzzyValue.Name}}{{/if}}{{#if Left.IsNamedVariable}}{{Left.Name}}{{/if}}, {{#if Right.IsFuzzyValue}}level_{{normalize Right.FuzzyValue.Variable.Name}}_{{normalize Right.FuzzyValue.Name}}{{/if}}{{#if Right.IsNamedVariable}}{{Right.Name}}{{/if}})
+        {{Target.Name}} = self.foper.And({{#if Left.IsFuzzyValue}}level_{{normalize Left.FuzzyValue.Variable.Name}}_{{normalize Left.FuzzyValue.Name}}{{/if}}{{#if Left.IsNamedVariable}}{{Left.Name}}{{/if}}, {{#if Right.IsFuzzyValue}}level_{{normalize Right.FuzzyValue.Variable.Name}}_{{normalize Right.FuzzyValue.Name}}{{/if}}{{#if Right.IsNamedVariable}}{{Right.Name}}{{/if}})
 {{/if~}}{{#if Op.IsOr}}
-{{Target.Name}} = self.foper.Or({{#if Left.IsFuzzyValue}}level_{{normalize Left.FuzzyValue.Variable.Name}}_{{normalize Left.FuzzyValue.Name}}{{/if}}{{#if Left.IsNamedVariable}}{{Left.Name}}{{/if}}, {{#if Right.IsFuzzyValue}}level_{{normalize Right.FuzzyValue.Variable.Name}}_{{normalize Right.FuzzyValue.Name}}{{/if}}{{#if Right.IsNamedVariable}}{{Right.Name}}{{/if}})
+        {{Target.Name}} = self.foper.Or({{#if Left.IsFuzzyValue}}level_{{normalize Left.FuzzyValue.Variable.Name}}_{{normalize Left.FuzzyValue.Name}}{{/if}}{{#if Left.IsNamedVariable}}{{Left.Name}}{{/if}}, {{#if Right.IsFuzzyValue}}level_{{normalize Right.FuzzyValue.Variable.Name}}_{{normalize Right.FuzzyValue.Name}}{{/if}}{{#if Right.IsNamedVariable}}{{Right.Name}}{{/if}})
 {{~/if}}{{/each}}
         rule{{RuleID}}_activation = {{FinalToken.Name}}
 {{#each Conclusions}}
@@ -199,7 +234,7 @@ class Model_{{normalize ModelName}}(object):
 {{/each}}
 
         #
-        # Agregacja wyników wnioskowania w ramach tych samych wartości lingwistycznych zmiennych wyjściowych
+        # Agregacja wynik?w wnioskowania w ramach tych samych wartości lingwistycznych zmiennych wyjsciowych
 {{#each OutputValueToRuleAssociation}}
 {{#each this}}
 {{#if @first}}
@@ -213,7 +248,7 @@ class Model_{{normalize ModelName}}(object):
 {{/each}}
 
         #
-        # Wyostrzanie zmiennych wyjściowych
+        # Wyostrzanie zmiennych wyjsciowych
 {{#each OutputVariables}}
 {{#each Values}}
 {{#if @first}}
@@ -226,7 +261,7 @@ class Model_{{normalize ModelName}}(object):
 {{/each}}
 
         #
-        # przygotowanie słownika wyników
+        # przygotowanie slownika wynik?w
         result = dict({{#each OutputVariables}}{{normalize Name}} = self.output_{{normalize Name}}{{#unless @last}}, {{/unless}}{{/each}})
         return result
 
@@ -282,7 +317,7 @@ class Model_{{normalize ModelName}}(object):
         plt.show()
 
 {{else}}
-## Model '{{ModelName}}' jest niedokończony.
+## Model '{{ModelName}}' jest niedokonczony.
 ##
 {{/if}}
 
@@ -297,3 +332,4 @@ if __name__ == "__main__":
     print(f"{{normalize ModelName}}: { m{{@Index}}_result }")
 {{#unless IsValid}}"""{{/unless}}
 {{/each}}
+    print("Koniec.")

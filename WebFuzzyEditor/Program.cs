@@ -35,7 +35,8 @@ namespace WebFuzzyEditor
             {
                 pmg.Run();
                 string pc = pmg.PythonCode;
-                break;
+                Console.WriteLine(pc);
+                return;
             }
 
 #endif

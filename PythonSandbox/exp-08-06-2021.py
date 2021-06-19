@@ -339,6 +339,15 @@ class Model_Przekaz_tresc(object):
 
 if __name__ == "__main__":
 
+    a = np.array([1,2,3,4])
+    b = np.array([5,6,7,8])
+    c = np.array([9,10,11,12])
+    d = np.hstack((a,b,c,c))
+
+
+
+
+
     m0 = Model_Przekaz_tresc()
     m0.ShowAllVariables()
     m0_result = m0.Execute(np.random.choice(m0.x_Censydiam1), np.random.choice(m0.x_Censydiam2), np.random.choice(m0.x_Censydiam3), np.random.choice(m0.x_Censydiam4))

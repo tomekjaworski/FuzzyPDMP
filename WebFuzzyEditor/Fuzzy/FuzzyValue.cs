@@ -22,9 +22,15 @@ namespace WebFuzzyEditor.Fuzzy
         public string Name { get; set; }
         public string Description { get; set; }
 
+        public string NormalizedVariableValueName =>
+            PythonModelGenerator.NormalizePythonIdentifier(this.variable.Name) + "_" + PythonModelGenerator.NormalizePythonIdentifier(this.Name);
+
         private FuzzyVariable variable;
-        public FuzzyVariable Variable { get => this.variable; 
-            set {
+        public FuzzyVariable Variable
+        {
+            get => this.variable;
+            set
+            {
                 this.variable = value;
                 if (value == null)
                     return;
@@ -158,7 +164,7 @@ namespace WebFuzzyEditor.Fuzzy
         {
             FuzzyValue copy = new FuzzyValue(this.Variable, this.Name, this.Description);
             foreach (var family in this.parameters)
-                foreach(DictionaryEntry par in family.Value)
+                foreach (DictionaryEntry par in family.Value)
                 {
                     NamedParameter np = par.Value as NamedParameter;
                     string param_name = par.Key as string;

@@ -169,13 +169,18 @@ class Model_{{normalize ModelName}}(object):
         # Wejscie: {{Name}}{{#each Values}}
         self.memb_{{NormalizedVariableValueName}}_parameters = np.array([{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
 {{~/each}}
-{{/each}}
 
+{{/each}}
 
 {{#each OutputVariables}}
         # Wyjscie: {{Name}}{{#each Values}}
         self.memb_{{NormalizedVariableValueName}}_parameters = np.array([{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
 {{~/each}}{{/each}}
+
+        # Test...
+        temp = self.GetParametersAsVector()
+        self.SetParametersAsVector(temp)		
+        pass
 
     #
     #
@@ -200,7 +205,7 @@ class Model_{{normalize ModelName}}(object):
 
 {{#each OutputVariables}}
         # Wyjście: {{Name}}{{#each Values}}
-        self.memb_{{NormalizedVariableValueName}} = fuzz.trapmf(self.x_{{normalize Variable.Name}}, [{{D4 MembershipParameters.SuppL.Value}}, {{D4 MembershipParameters.KernL.Value}}, {{D4 MembershipParameters.KernR.Value}}, {{D4 MembershipParameters.SuppR.Value}}])
+        self.memb_{{NormalizedVariableValueName}} = fuzz.trapmf(self.x_{{normalize Variable.Name}}, self.memb_{{NormalizedVariableValueName}}_parameters)
 {{~/each}}{{/each}}
 
 	#

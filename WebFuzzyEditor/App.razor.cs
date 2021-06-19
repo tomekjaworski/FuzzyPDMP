@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebFuzzyEditor
 {
-    public  partial class App
+    public partial class App
     {
     }
 }

@@ -7,6 +7,6 @@ namespace WebFuzzyEditor.Pages
 {
     public partial class Error
     {
-        
+
     }
 }

@@ -98,7 +98,7 @@ namespace WebFuzzyEditor.Pages
             //copy.Name += " (kopia)";
             //copy.Description += " (kopia)";
 
-            foreach(FuzzyValue value in copy.Values)
+            foreach (FuzzyValue value in copy.Values)
             {
                 //value.Name += " (kopia)";
                 //value.Description += " (kopia)";

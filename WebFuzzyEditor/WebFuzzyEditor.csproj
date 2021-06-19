@@ -4,6 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>a41588c3-f880-46ba-abef-d76f8ef828f2</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <Today>$([System.DateTime]::Now)</Today>
   </PropertyGroup>
 
   <ItemGroup>

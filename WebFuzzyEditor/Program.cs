@@ -26,15 +26,21 @@ namespace WebFuzzyEditor
             Console.WriteLine($"Katalog roboczy: {Directory.GetCurrentDirectory()}");
             Console.WriteLine($"Wejście: {System.Reflection.Assembly.GetExecutingAssembly().Location}; PID:{Process.GetCurrentProcess().Id}");
 
+            //
+#if DEBUG
             BoardProvider.Provider.LoadBoard();
             PythonModelGenerator pmg = new PythonModelGenerator();
-            pmg.ApplyBoard(BoardProvider.Board);
+            pmg.ApplyBoard(BoardProvider.Board, "code_anfis.handlebars");
             while (true)
             {
                 pmg.Run();
                 string pc = pmg.PythonCode;
                 break;
             }
+
+#endif
+            //
+            //
 
             cts = new CancellationTokenSource();
             Thread th = new Thread(new ThreadStart(StoreThread));

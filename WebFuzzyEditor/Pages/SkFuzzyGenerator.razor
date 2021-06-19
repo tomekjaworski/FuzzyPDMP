@@ -6,7 +6,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="p-1 d-flex justify-content-end">
-                <button class="btn btn-success btn-sm" @onclick="@((MouseEventArgs e)=>this.OnGenerateCode(e))">
+                <button class="btn btn-success btn-sm mr-2" @onclick="@((MouseEventArgs e)=>this.OnGenerateCode(e, GeneratorType.SkFuzzyClassic))">
+                    Generuj klasy <span class="font-italics">skfuzzy</span>
+                </button>
+
+                <button class="btn btn-success btn-sm" @onclick="@((MouseEventArgs e)=>this.OnGenerateCode(e, GeneratorType.SkFuzzyANFIS))">
                     Generuj klasy <span class="font-italics">skfuzzy</span>
                 </button>
             </div>

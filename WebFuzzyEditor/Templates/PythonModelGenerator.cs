@@ -36,6 +36,7 @@ namespace WebFuzzyEditor
             TokenType.NamedVariable => this.Name,
             TokenType.FuzzyValue => this.FuzzyValue.ToString(),
             TokenType.Connective => this.Connective.ToString(),
+            _ => null
         };
     }
 
@@ -62,6 +63,7 @@ namespace WebFuzzyEditor
     public class PythonModelGenerator
     {
         private Board board;
+        private string template_name;
         private string code;
 
         public string PythonCode => this.code;
@@ -71,9 +73,13 @@ namespace WebFuzzyEditor
             //
         }
 
-        public void ApplyBoard(Board board)
+        /// <summary>Metoda przekazuje generatorowi kodu przestrzeń roboczą modelami <paramref name="board"/>, aby na podstawie szablonu <paramref name="templateName"/> wygenerował kod źródłowy.</summary>
+        /// <param name="board">Przestrzeń modeli rozmytych</param>
+        /// <param name="templateName">Nazwa szablonu</param>
+        public void ApplyBoard(Board board, string templateName)
         {
             this.board = board;
+            this.template_name = templateName;
         }
 
         private static string GetFullPath(string fileName)
@@ -113,7 +119,7 @@ namespace WebFuzzyEditor
 
         public void Run()
         {
-            string template_string = File.ReadAllText(GetFullPath("code.handlebars"), Encoding.UTF8);
+            string template_string = File.ReadAllText(GetFullPath(this.template_name), Encoding.UTF8);
             Handlebars.RegisterHelper("normalize",
                 (writer, context, parameters) =>
                     writer.WriteSafeString(NormalizePythonIdentifier(parameters[0] as string))
@@ -183,7 +189,7 @@ namespace WebFuzzyEditor
 
                 List<object> rule_value_connection = new List<object>();
                 List<object> compiled_rules = new List<object>();
-                Dictionary<FuzzyValue, List<object> > value2rule = new Dictionary<FuzzyValue, List<object>>();
+                Dictionary<FuzzyValue, List<object>> value2rule = new Dictionary<FuzzyValue, List<object>>();
 
                 foreach (FuzzyRule fr in fmodel.Rules)
                 {
@@ -259,7 +265,7 @@ namespace WebFuzzyEditor
                     compiled_rules.Add(compiled_rule);
 
 
-                    foreach(FuzzyValue conclusion_value in fr.Conclusion.Select(c=>c.Value))
+                    foreach (FuzzyValue conclusion_value in fr.Conclusion.Select(c => c.Value))
                     {
                         if (!value2rule.ContainsKey(conclusion_value))
                             value2rule[conclusion_value] = new List<object>();

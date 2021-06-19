@@ -16,15 +16,15 @@ namespace WebFuzzyEditor.Pages
 {
     public partial class SkFuzzyGenerator
     {
+        private enum GeneratorType { SkFuzzyClassic, SkFuzzyANFIS };
 
 		private MonacoEditor _editor { get; set; }
 
-		private async Task OnGenerateCode(MouseEventArgs e)
+        private async Task OnGenerateCode(MouseEventArgs e, GeneratorType genType)
         {
 			try
 			{
 				PythonModelGenerator generator = new PythonModelGenerator();
-				generator.ApplyBoard(BoardProvider.Board);
 				generator.Run();
 				await this._editor.SetValue(generator.PythonCode);
 			}
@@ -40,6 +40,12 @@ namespace WebFuzzyEditor.Pages
 				await this._editor.SetValue(sb.ToString());
 			}
 		}
+                string code_template_file = genType switch
+                {
+                    GeneratorType.SkFuzzyClassic => "code_classic.handlebars",
+                    GeneratorType.SkFuzzyANFIS => "code_anfis.handlebars",
+                    _ => null
+                };
 
 		private StandaloneEditorConstructionOptions EditorConstructionOptions(MonacoEditor editor)
 		{
@@ -52,4 +58,5 @@ namespace WebFuzzyEditor.Pages
 			};
 		}
 	}
+                generator.ApplyBoard(BoardProvider.Board, code_template_file);
 }

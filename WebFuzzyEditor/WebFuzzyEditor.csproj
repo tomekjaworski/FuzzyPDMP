@@ -39,7 +39,10 @@
     <None Update="StartDevelopmentSession.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Templates\code.handlebars">
+    <None Update="Templates\code_anfis.handlebars">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\code_classic.handlebars">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

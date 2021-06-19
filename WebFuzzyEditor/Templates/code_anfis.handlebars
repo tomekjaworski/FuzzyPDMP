@@ -10,8 +10,11 @@ import skfuzzy as fuzz
 import matplotlib.pyplot as plt
 from typing import List, Union
 from typing import Callable
+import scipy
+import scipy.optimize
 
-
+#
+#
 class FuzzyOperation(object):
     or_connective = None # type: Callable[[float, float], float]
     and_connective = None # type: Callable[[float, float], float]
@@ -106,6 +109,29 @@ class FuzzyOperation(object):
         output = fuzz.defuzz(domain, aggregatedVariable, 'centroid')
         return output
 
+#
+#
+class FuzzyModel(object):
+    def SetParametersAsVector(self, parameters: np.ndarray):
+        raise NotImplementedError()
+
+    def GetParametersAsVector(self) -> np.ndarray:
+        raise NotImplementedError()
+
+    def Execute(self, *args) -> float:
+        raise NotImplementedError()
+
+#
+#
+class ANFIS:
+    def ModelEvaluator(params: np.ndarray, model: FuzzyModel, dataX: np.ndarray, dataY: np.ndarray) -> float:
+        modelY = np.zeros((dataX.shape[0]))
+        for row, idx in zip(dataX, range(0, dataX.shape[0])):
+            modelY[idx] = model.Execute(*row)
+
+        res = np.linalg.norm(dataY - modelY)
+        return res
+
 ## -------------------------------------------------------------------------
 
 {{#each Models}}
@@ -114,7 +140,7 @@ class FuzzyOperation(object):
 ## Opis:  {{{ModelDescription}}}
 ##
 {{#if IsValid}}
-class Model_{{normalize ModelName}}(object):
+class Model_{{normalize ModelName}}(FuzzyModel):
     foper = None #type: FuzzyOperation
 
     # Wartości ostre dla zmiennych wejsciowych
@@ -210,7 +236,7 @@ class Model_{{normalize ModelName}}(object):
 
 	#
 	#
-    def Execute(self, {{#each InputVariables}}{{#if @index}}, {{/if}}input_{{normalize Name}}: float{{/each}}):
+    def Execute(self, {{#each InputVariables}}{{#if @index}}, {{/if}}input_{{normalize Name}}: float{{/each}}) -> float:
 {{#each InputVariables}}
         self.input_{{normalize Name}} = input_{{normalize Name}}
 {{/each}}
@@ -266,8 +292,11 @@ class Model_{{normalize ModelName}}(object):
 {{/each}}
 
         #
-        # przygotowanie slownika wynik?w
-        result = dict({{#each OutputVariables}}{{normalize Name}} = self.output_{{normalize Name}}{{#unless @last}}, {{/unless}}{{/each}})
+        # przygotowanie slownika wyników
+        # result = dict({{#each OutputVariables}}{{normalize Name}} = self.output_{{normalize Name}}{{#unless @last}}, {{/unless}}{{/each}})
+        assert 1 == {{OutputVariables.Length}}, "Edytor FuzzyPDMP pozwala na budowanie modelu z wieloma zmiennymi wyjściowymi, jednak ten kod tego nie obsługuje."\
+                       "Popraw swój model tak, aby rozdzielić go na kilka mniejszych"
+        result = self.output_{{normalize OutputVariables.0.Name}}
         return result
 
 
@@ -337,4 +366,16 @@ if __name__ == "__main__":
     print(f"{{normalize ModelName}}: { m{{@Index}}_result }")
 {{#unless IsValid}}"""{{/unless}}
 {{/each}}
+
+    #
+    # Optymalizacja parametrów
+    # 
+    x0 = m0.GetParametersAsVector()
+
+    X = np.random.rand(100, 4) # Wartości wejściowe
+    Y = np.random.rand(100, 1) # Etykiety liczbowe
+    result = scipy.optimize.minimize(ANFIS.ModelEvaluator, x0, (m0, X, Y)) # type: scipy.optimize.OptimizeResult
+
+    print(f"Sukces: " + "TAK" if result.success else "NIE")
+    print(f"Status: {result.status}: {result.message}")
     print("Koniec.")

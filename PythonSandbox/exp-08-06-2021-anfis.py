@@ -1,7 +1,7 @@
 ﻿#
 # Zbiór modeli wygenerowany przez WebFuzzyEditor
 # Szablon generatora: code_classic.handlebards ( CLASSIC )
-# Znacznik czasowy generacji: 19.06.2021 17:30:24
+# Znacznik czasowy generacji: 19.06.2021 18:49:13
 #
 # Zazólc gesia jazn ZAZOLC GESIA JAZN
 
@@ -10,8 +10,11 @@ import skfuzzy as fuzz
 import matplotlib.pyplot as plt
 from typing import List, Union
 from typing import Callable
+import scipy
+import scipy.optimize
 
-
+#
+#
 class FuzzyOperation(object):
     or_connective = None # type: Callable[[float, float], float]
     and_connective = None # type: Callable[[float, float], float]
@@ -106,13 +109,36 @@ class FuzzyOperation(object):
         output = fuzz.defuzz(domain, aggregatedVariable, 'centroid')
         return output
 
+#
+#
+class FuzzyModel(object):
+    def SetParametersAsVector(self, parameters: np.ndarray):
+        raise NotImplementedError()
+
+    def GetParametersAsVector(self) -> np.ndarray:
+        raise NotImplementedError()
+
+    def Execute(self, *args) -> float:
+        raise NotImplementedError()
+
+#
+#
+class ANFIS:
+    def ModelEvaluator(params: np.ndarray, model: FuzzyModel, dataX: np.ndarray, dataY: np.ndarray) -> float:
+        modelY = np.zeros((dataX.shape[0]))
+        for row, idx in zip(dataX, range(0, dataX.shape[0])):
+            modelY[idx] = model.Execute(*row)
+
+        res = np.linalg.norm(dataY - modelY)
+        return res
+
 ## -------------------------------------------------------------------------
 
 ##
 ## Model: 'przekaz_tresc'
 ## Opis:  Description-76876E73
 ##
-class Model_Przekaz_tresc(object):
+class Model_Przekaz_tresc(FuzzyModel):
     foper = None #type: FuzzyOperation
 
     # Wartosci ostre dla zmiennych wejsciowych
@@ -177,12 +203,15 @@ class Model_Przekaz_tresc(object):
         # Wejscie: censydiam1
         self.memb_Censydiam1_Zabawa_parameters = np.array([0.0000, 0.0000, 1.0000, 9.0000])
         self.memb_Censydiam1_Kontrola_parameters = np.array([1.0000, 9.0000, 10.0000, 10.0000])
+
         # Wejscie: censydiam2
         self.memb_Censydiam2_Witalnosc_parameters = np.array([0.0000, 0.0000, 1.0000, 9.0000])
         self.memb_Censydiam2_Wyciszenie_parameters = np.array([1.0000, 9.0000, 10.0000, 10.0000])
+
         # Wejscie: censydiam3
         self.memb_Censydiam3_Status_parameters = np.array([0.0000, 0.0000, 1.0000, 9.0000])
         self.memb_Censydiam3_Przynaleznosc_parameters = np.array([1.0000, 9.0000, 10.0000, 10.0000])
+
         # Wejscie: censydiam4
         self.memb_Censydiam4_Dzielenie_parameters = np.array([0.0000, 0.0000, 1.0000, 9.0000])
         self.memb_Censydiam4_Wyroznianie_parameters = np.array([1.0000, 9.0000, 10.0000, 10.0000])
@@ -190,6 +219,11 @@ class Model_Przekaz_tresc(object):
         # Wyjscie: tresc_przekazu
         self.memb_Tresc_przekazu_Kontrola_parameters = np.array([0.0000, 0.0000, 1.0000, 9.0000])
         self.memb_Tresc_przekazu_Zabawa_parameters = np.array([1.0000, 9.0000, 10.0000, 10.0000])
+
+        # Test...
+        temp = self.GetParametersAsVector()
+        self.SetParametersAsVector(temp)
+        pass
 
     #
     #
@@ -222,12 +256,12 @@ class Model_Przekaz_tresc(object):
         self.memb_Censydiam4_Wyroznianie = fuzz.trapmf(self.x_Censydiam4, self.memb_Censydiam4_Wyroznianie_parameters)
 
         # Wyjscie: tresc_przekazu
-        self.memb_Tresc_przekazu_Kontrola = fuzz.trapmf(self.x_Tresc_przekazu, [0.0000, 0.0000, 1.0000, 9.0000])
-        self.memb_Tresc_przekazu_Zabawa = fuzz.trapmf(self.x_Tresc_przekazu, [1.0000, 9.0000, 10.0000, 10.0000])
+        self.memb_Tresc_przekazu_Kontrola = fuzz.trapmf(self.x_Tresc_przekazu, self.memb_Tresc_przekazu_Kontrola_parameters)
+        self.memb_Tresc_przekazu_Zabawa = fuzz.trapmf(self.x_Tresc_przekazu, self.memb_Tresc_przekazu_Zabawa_parameters)
 
         #
         #
-    def Execute(self, input_Censydiam1: float, input_Censydiam2: float, input_Censydiam3: float, input_Censydiam4: float):
+    def Execute(self, input_Censydiam1: float, input_Censydiam2: float, input_Censydiam3: float, input_Censydiam4: float) -> float:
         self.input_Censydiam1 = input_Censydiam1
         self.input_Censydiam2 = input_Censydiam2
         self.input_Censydiam3 = input_Censydiam3
@@ -316,8 +350,11 @@ class Model_Przekaz_tresc(object):
         self.output_Tresc_przekazu = self.foper.Centroid(self.x_Tresc_przekazu, aggregate)
 
         #
-        # przygotowanie slownika wynik?w
-        result = dict(Tresc_przekazu = self.output_Tresc_przekazu)
+        # przygotowanie slownika wyników
+        # result = dict(Tresc_przekazu = self.output_Tresc_przekazu)
+        assert 1 == 1, "Edytor FuzzyPDMP pozwala na budowanie modelu z wieloma zmiennymi wyjsciowymi, jednak ten kod tego nie obsluguje."\
+                       "Popraw swój model tak, aby rozdzielic go na kilka mniejszych"
+        result = self.output_Tresc_przekazu
         return result
 
 
@@ -393,5 +430,17 @@ if __name__ == "__main__":
     m0.ShowActivations()
     print(f"Przekaz_tresc: { m0_result }")
 
-    
+
+    #
+    # Optymalizacja parametrów
+    #
+    x0 = m0.GetParametersAsVector()
+
+    X = np.random.rand(100, 4) # Wartosci wejsciowe
+    Y = np.random.rand(100, 1) # Etykiety liczbowe
+    result = scipy.optimize.minimize(ANFIS.ModelEvaluator, x0, (m0, X, Y)) # type: scipy.optimize.OptimizeResult
+
+    print(f"Sukces: " + "TAK" if result.success else "NIE")
+    print(f"Status: {result.status}: {result.message}")
+    print("Koniec.")
 
